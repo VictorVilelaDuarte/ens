@@ -2,24 +2,29 @@ import bd from '../../config/database';
 
 class GaleriaController {
   lista(req, res) {
-    bd.query('SELECT * FROM ens_galeria', (err, result) => {
-      if (err) {
-        return res.status(400).json({
-          staus: false,
-          message: 'Não foi possível buscar os albuns.',
+    bd.query(
+      `SELECT G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
+       FROM ens_galeria AS G
+       JOIN ens_foto_capa AS C ON G.Galeria_ID = C.Capa_Galeria`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar os albuns.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
         });
       }
-      return res.status(200).json({
-        status: true,
-        data: result,
-      });
-    });
+    );
   }
 
   insere(req, res) {
     const { titulo, data } = req.body;
     bd.query(
-      `INSERT INTO ens_galeria (Galeria_Titulo, Galeria_Data) values ('${titulo}', '${data}')`,
+      `INSERT INTO ens_galeria (Galeria_Titulo, Galeria_Data) VALUES ('${titulo}', '${data}')`,
       (err) => {
         if (err) {
           return res.status(400).json({
@@ -58,7 +63,10 @@ class GaleriaController {
   busca(req, res) {
     const { id } = req.params;
     bd.query(
-      `SELECT * FROM ens_galeria WHERE Galeria_ID=${id}`,
+      `SELECT G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
+      FROM ens_galeria AS G
+      JOIN ens_foto_capa AS C ON G.Galeria_ID = C.Capa_Galeria
+      WHERE G.Galeria_ID = ${id}`,
       (err, result) => {
         if (err) {
           return res.status(400).json({
