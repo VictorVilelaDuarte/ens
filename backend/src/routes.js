@@ -27,5 +27,6 @@ routes.put('/galeria/:id', GaleriaController.altera);
 routes.delete('/galeria/:id', GaleriaController.deleta);
 
 routes.post('/capa', uploadCapa.single('file'), CapaController.insere);
+routes.get('/capa', CapaController.lista);
 
 export default routes;

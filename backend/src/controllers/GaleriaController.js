@@ -84,21 +84,18 @@ class GaleriaController {
 
   deleta(req, res) {
     const { id } = req.params;
-    bd.query(
-      `DELETE FROM ens_galeria WHERE Galeria_ID=${id}`,
-      (err, result) => {
-        if (err) {
-          return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível excluir o album.',
-          });
-        }
-        return res.status(200).json({
-          status: true,
-          message: 'Album deletado com sucesso!',
+    bd.query(`DELETE FROM ens_galeria WHERE Galeria_ID=${id}`, (err) => {
+      if (err) {
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível excluir o album.',
         });
       }
-    );
+      return res.status(200).json({
+        status: true,
+        message: 'Album deletado com sucesso!',
+      });
+    });
   }
 }
 
