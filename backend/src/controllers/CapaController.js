@@ -45,21 +45,6 @@ class CapaController {
       }
     );
   }
-
-  lista(req, res) {
-    bd.query('SELECT * FROM ens_foto_capa', (err, result) => {
-      if (err) {
-        return res.status(400).json({
-          staus: false,
-          message: 'Não foi possível buscar o evento.',
-        });
-      }
-      return res.status(200).json({
-        status: true,
-        data: result,
-      });
-    });
-  }
 }
 
 export default new CapaController();

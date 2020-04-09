@@ -16,6 +16,10 @@ class App {
       '/files-capa',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'capa'))
     );
+    this.server.use(
+      '/files-galeria',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'galeria'))
+    );
   }
 
   routes() {

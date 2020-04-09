@@ -4,11 +4,14 @@ import multer from 'multer';
 import EventoController from './controllers/EventoController';
 import GaleriaController from './controllers/GaleriaController';
 import CapaController from './controllers/CapaController';
+import AlbumController from './controllers/AlbumController';
 
 import multerCapa from '../config/multerCapa';
+import multerAlbum from '../config/multerAlbum';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
+const uploadAlbum = multer(multerAlbum);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -27,6 +30,8 @@ routes.put('/galeria/:id', GaleriaController.altera);
 routes.delete('/galeria/:id', GaleriaController.deleta);
 
 routes.post('/capa', uploadCapa.single('file'), CapaController.insere);
-routes.get('/capa', CapaController.lista);
+
+routes.post('/album', uploadAlbum.array('file'), AlbumController.insere);
+routes.get('/album/:id', AlbumController.busca);
 
 export default routes;
