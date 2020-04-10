@@ -33,5 +33,6 @@ routes.post('/capa', uploadCapa.single('file'), CapaController.insere);
 
 routes.post('/album', uploadAlbum.array('file'), AlbumController.insere);
 routes.get('/album/:id', AlbumController.busca);
+routes.delete('/album/:id', AlbumController.deleta);
 
 export default routes;

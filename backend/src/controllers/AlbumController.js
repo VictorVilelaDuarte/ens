@@ -47,6 +47,25 @@ class AlbumController {
       }
     );
   }
+
+  deleta(req, res) {
+    const { id } = req.params;
+    bd.query(
+      `DELETE FROM ens_foto_galeria WHERE Foto_ID=${id}`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível excluir a foto.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          message: 'Foto deletada com sucesso!',
+        });
+      }
+    );
+  }
 }
 
 export default new AlbumController();
