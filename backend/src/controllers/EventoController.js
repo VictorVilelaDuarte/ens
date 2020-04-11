@@ -92,6 +92,30 @@ class EventoController {
       });
     });
   }
+
+  home(req, res) {
+    let hoje = new Date().toLocaleDateString();
+    let mes = new Date();
+    mes.setDate(mes.getDate() + 30);
+    mes = mes.toLocaleDateString();
+
+    bd.query(
+      `SELECT * FROM ens_evento where Evento_Data BETWEEN '${hoje}' AND '${mes}' order by Evento_Data`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o evento.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
 }
 
 export default new EventoController();
