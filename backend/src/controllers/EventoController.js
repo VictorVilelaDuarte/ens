@@ -106,7 +106,7 @@ class EventoController {
           console.log(err);
           return res.status(400).json({
             staus: false,
-            message: 'Não foi possível buscar o evento.',
+            message: 'Não foi possível buscar os eventos.',
           });
         }
         return res.status(200).json({

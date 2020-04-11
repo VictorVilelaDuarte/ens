@@ -6,15 +6,18 @@ import GaleriaController from './controllers/GaleriaController';
 import CapaController from './controllers/CapaController';
 import AlbumController from './controllers/AlbumController';
 import InformensController from './controllers/InformensController';
+import OracaoController from './controllers/OracaoController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
 import multerInformens from '../config/multerInformens';
+import multerOracao from '../config/multerOracao';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
 const uploadAlbum = multer(multerAlbum);
 const uploadInformens = multer(multerInformens);
+const uploadOracao = multer(multerOracao);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -45,5 +48,8 @@ routes.post(
   InformensController.insere
 );
 routes.delete('/informens/:id', InformensController.deleta);
+
+routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
+routes.delete('/oracao/:id', OracaoController.deleta);
 
 export default routes;

@@ -26,6 +26,10 @@ class App {
         path.resolve(__dirname, '..', 'tmp', 'uploads', 'informens')
       )
     );
+    this.server.use(
+      '/files-oracao',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'oracao'))
+    );
   }
 
   routes() {
