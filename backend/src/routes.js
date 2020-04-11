@@ -7,6 +7,8 @@ import CapaController from './controllers/CapaController';
 import AlbumController from './controllers/AlbumController';
 import InformensController from './controllers/InformensController';
 import OracaoController from './controllers/OracaoController';
+import UserController from './controllers/UserController';
+import SessionController from './controllers/SessionController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -51,5 +53,13 @@ routes.delete('/informens/:id', InformensController.deleta);
 
 routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
+
+routes.get('/user', UserController.lista);
+// routes.get('/galeria/:id', GaleriaController.busca);
+routes.post('/user', UserController.insere);
+// routes.put('/galeria/:id', GaleriaController.altera);
+routes.delete('/user/:idmens', UserController.deleta);
+
+routes.post('/session', SessionController.insere);
 
 export default routes;
