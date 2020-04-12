@@ -1,0 +1,101 @@
+import bd from '../../config/database';
+
+class NoticiaController {
+  lista(req, res) {
+    bd.query('SELECT * FROM ens_noticia', (err, result) => {
+      if (err) {
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível buscar as noticias.',
+        });
+      }
+      return res.status(200).json({
+        status: true,
+        data: result,
+      });
+    });
+  }
+
+  insere(req, res) {
+    const autor = req.usuarioNome;
+    const { filename: path } = req.file;
+    const { hora, texto, titulo, destaque } = req.body;
+    const final_path = `${process.env.APP_URL}/files-noticia/${path}`;
+
+    bd.query(
+      `INSERT INTO ens_noticia (noticia_autor, noticia_hora, noticia_texto, noticia_titulo, noticia_imagem, noticia_destaque) VALUES ('${autor}', '${hora}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
+      (err) => {
+        if (err) {
+          console.log(err);
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível salvar a noticia.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          message: 'Noticia registrada com sucesso!',
+        });
+      }
+    );
+  }
+
+  altera(req, res) {
+    const { id } = req.params;
+    const { data, hora, local, equipe, descricao, historico, tipo } = req.body;
+    bd.query(
+      `UPDATE ens_evento
+       SET Evento_Data='${data}', Evento_Horario='${hora}', Evento_Local='${local}', Evento_TipoID='${tipo}', Evento_EquipeResp='${equipe}', Evento_Descricao='${descricao}', Evento_Historico='${historico}'
+       WHERE Evento_ID='${id}'`,
+      (err) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível salvar o evento.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          message: 'Evento atualizado com sucesso!',
+        });
+      }
+    );
+  }
+
+  busca(req, res) {
+    const { id } = req.params;
+    bd.query(
+      `SELECT * FROM ens_evento WHERE Evento_ID=${id}`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o evento.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
+
+  deleta(req, res) {
+    const { id } = req.params;
+    bd.query(`DELETE FROM ens_evento WHERE Evento_ID=${id}`, (err, result) => {
+      if (err) {
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível excluir o evento.',
+        });
+      }
+      return res.status(200).json({
+        status: true,
+        message: 'Evento deletado com sucesso!',
+      });
+    });
+  }
+}
+
+export default new NoticiaController();

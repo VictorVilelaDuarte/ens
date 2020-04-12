@@ -10,18 +10,21 @@ import AlbumController from './controllers/AlbumController';
 import InformensController from './controllers/InformensController';
 import OracaoController from './controllers/OracaoController';
 import UserController from './controllers/UserController';
+import NoticiaController from './controllers/NoticiaController';
 import SessionController from './controllers/SessionController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
 import multerInformens from '../config/multerInformens';
 import multerOracao from '../config/multerOracao';
+import multerNoticia from '../config/multerNoticia';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
 const uploadAlbum = multer(multerAlbum);
 const uploadInformens = multer(multerInformens);
 const uploadOracao = multer(multerOracao);
+const uploadNoticia = multer(multerNoticia);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -60,6 +63,17 @@ routes.get('/user', authMiddleware, UserController.lista);
 routes.get('/user/:idmens', UserController.busca);
 routes.post('/user', UserController.insere);
 routes.delete('/user/:idmens', UserController.deleta);
+
+routes.get('/noticia', NoticiaController.lista);
+// routes.get('/evento/:id', EventoController.busca);
+routes.post(
+  '/noticia',
+  authMiddleware,
+  uploadNoticia.single('file'),
+  NoticiaController.insere
+);
+// routes.put('/evento/:id', EventoController.altera);
+// routes.delete('/evento/:id', EventoController.deleta);
 
 routes.post('/session', SessionController.insere);
 
