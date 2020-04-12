@@ -57,9 +57,8 @@ routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
 
 routes.get('/user', authMiddleware, UserController.lista);
-// routes.get('/galeria/:id', GaleriaController.busca);
+routes.get('/user/:idmens', UserController.busca);
 routes.post('/user', UserController.insere);
-// routes.put('/galeria/:id', GaleriaController.altera);
 routes.delete('/user/:idmens', UserController.deleta);
 
 routes.post('/session', SessionController.insere);
