@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import bd from '../../config/database';
+import authConfig from '../../config/authConfig';
+
 class SessionController {
   insere(req, res) {
     const { idmens, senha } = req.body;
@@ -32,9 +34,13 @@ class SessionController {
             IDMENS: result[0].SiteAcesso_CasalIDMENS,
             Nome: result[0].SiteAcesso_CasalNome,
           },
-          token: jwt.sign({ idmens }, '22f73b1d5b9b6d85fb8986bc3c055981', {
-            expiresIn: '7d',
-          }),
+          token: jwt.sign(
+            { idmens, nome: result[0].SiteAcesso_CasalNome },
+            authConfig.secret,
+            {
+              expiresIn: authConfig.expiresIn,
+            }
+          ),
         });
       }
     );

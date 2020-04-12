@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import multer from 'multer';
 
+import authMiddleware from './middlewares/auth';
+
 import EventoController from './controllers/EventoController';
 import GaleriaController from './controllers/GaleriaController';
 import CapaController from './controllers/CapaController';
@@ -54,7 +56,7 @@ routes.delete('/informens/:id', InformensController.deleta);
 routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
 
-routes.get('/user', UserController.lista);
+routes.get('/user', authMiddleware, UserController.lista);
 // routes.get('/galeria/:id', GaleriaController.busca);
 routes.post('/user', UserController.insere);
 // routes.put('/galeria/:id', GaleriaController.altera);
