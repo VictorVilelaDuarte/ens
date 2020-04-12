@@ -65,15 +65,15 @@ routes.post('/user', UserController.insere);
 routes.delete('/user/:idmens', UserController.deleta);
 
 routes.get('/noticia', NoticiaController.lista);
-// routes.get('/evento/:id', EventoController.busca);
+routes.get('/noticia/:id', NoticiaController.busca);
 routes.post(
   '/noticia',
   authMiddleware,
   uploadNoticia.single('file'),
   NoticiaController.insere
 );
-// routes.put('/evento/:id', EventoController.altera);
-// routes.delete('/evento/:id', EventoController.deleta);
+routes.put('/noticia/:id', authMiddleware, NoticiaController.altera);
+routes.delete('/noticia/:id', NoticiaController.deleta);
 
 routes.post('/session', SessionController.insere);
 
