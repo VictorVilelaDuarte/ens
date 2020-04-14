@@ -116,6 +116,29 @@ class EventoController {
       }
     );
   }
+
+  filtro(req, res) {
+    const { mes } = req.body;
+    const ano = new Date().getFullYear().toString();
+    const data_inicial = `${ano}-${mes}-01`;
+    const data_final = `${ano}-${mes}-31`;
+
+    bd.query(
+      `SELECT * FROM ens_evento WHERE Evento_Data BETWEEN '${data_inicial}' AND '${data_final}' ORDER BY Evento_Data`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o evento.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
 }
 
 export default new EventoController();
