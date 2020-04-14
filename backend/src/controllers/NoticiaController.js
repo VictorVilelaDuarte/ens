@@ -104,6 +104,25 @@ class NoticiaController {
       }
     );
   }
+
+  home(req, res) {
+    bd.query(
+      `SELECT * FROM ens_noticia WHERE noticia_destaque = 1`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar as noticias.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
 }
 
 export default new NoticiaController();

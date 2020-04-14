@@ -72,6 +72,7 @@ routes.post(
   uploadNoticia.single('file'),
   NoticiaController.insere
 );
+routes.get('/noticiahome', NoticiaController.home);
 routes.put('/noticia/:id', authMiddleware, NoticiaController.altera);
 routes.delete('/noticia/:id', NoticiaController.deleta);
 
