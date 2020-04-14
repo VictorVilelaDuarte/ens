@@ -19,6 +19,7 @@ import multerAlbum from '../config/multerAlbum';
 import multerInformens from '../config/multerInformens';
 import multerOracao from '../config/multerOracao';
 import multerNoticia from '../config/multerNoticia';
+import multerEquipe from '../config/multerEquipe';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
@@ -26,6 +27,7 @@ const uploadAlbum = multer(multerAlbum);
 const uploadInformens = multer(multerInformens);
 const uploadOracao = multer(multerOracao);
 const uploadNoticia = multer(multerNoticia);
+const uploadEquipe = multer(multerEquipe);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -79,12 +81,10 @@ routes.put('/noticia/:id', authMiddleware, NoticiaController.altera);
 routes.delete('/noticia/:id', NoticiaController.deleta);
 
 routes.get('/equipe', EquipeController.lista);
-// routes.get('/evento/:id', EventoController.busca);
-// routes.get('/eventohome', EventoController.home);
-// routes.post('/evento', EventoController.insere);
-// routes.post('/eventofiltro', EventoController.filtro);
-// routes.put('/evento/:id', EventoController.altera);
-// routes.delete('/evento/:id', EventoController.deleta);
+routes.post('/equipe', uploadEquipe.single('file'), EquipeController.insere);
+routes.get('/equipe/:id', EquipeController.busca);
+routes.put('/equipe/:id', EquipeController.altera);
+routes.delete('/equipe/:id', EquipeController.deleta);
 
 routes.post('/session', SessionController.insere);
 
