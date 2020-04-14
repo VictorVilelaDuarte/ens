@@ -12,6 +12,7 @@ import OracaoController from './controllers/OracaoController';
 import UserController from './controllers/UserController';
 import NoticiaController from './controllers/NoticiaController';
 import SessionController from './controllers/SessionController';
+import EquipeController from './controllers/EquipeController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -76,6 +77,14 @@ routes.post(
 routes.get('/noticiahome', NoticiaController.home);
 routes.put('/noticia/:id', authMiddleware, NoticiaController.altera);
 routes.delete('/noticia/:id', NoticiaController.deleta);
+
+routes.get('/equipe', EquipeController.lista);
+// routes.get('/evento/:id', EventoController.busca);
+// routes.get('/eventohome', EventoController.home);
+// routes.post('/evento', EventoController.insere);
+// routes.post('/eventofiltro', EventoController.filtro);
+// routes.put('/evento/:id', EventoController.altera);
+// routes.delete('/evento/:id', EventoController.deleta);
 
 routes.post('/session', SessionController.insere);
 
