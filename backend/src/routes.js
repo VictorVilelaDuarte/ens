@@ -89,8 +89,8 @@ routes.delete('/equipe/:id', EquipeController.deleta);
 
 routes.get('/padroeira', PadroeiraController.lista);
 routes.post('/padroeira', PadroeiraController.insere);
-// routes.get('/equipe/:id', EquipeController.busca);
-// routes.put('/equipe/:id', EquipeController.altera);
+routes.get('/padroeira/:id', PadroeiraController.busca);
+routes.put('/padroeira/:id', PadroeiraController.altera);
 routes.delete('/padroeira/:id', PadroeiraController.deleta);
 
 routes.post('/session', SessionController.insere);
