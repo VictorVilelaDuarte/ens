@@ -11,7 +11,6 @@ class OracaoController {
          VALUES ('${titulo}','${final_path}')`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar a oração.',
@@ -34,7 +33,6 @@ class OracaoController {
           message: 'Não foi possível excluir a oração.',
         });
       }
-      console.log(result);
       return res.status(200).json({
         status: true,
         message: 'Oração deletada com sucesso!',

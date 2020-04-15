@@ -11,7 +11,6 @@ class InformensController {
          VALUES ('${titulo}','${final_path}', '${data}')`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível o informens.',

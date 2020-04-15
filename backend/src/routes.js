@@ -13,6 +13,7 @@ import UserController from './controllers/UserController';
 import NoticiaController from './controllers/NoticiaController';
 import SessionController from './controllers/SessionController';
 import EquipeController from './controllers/EquipeController';
+import PadroeiraController from './controllers/PadroeiraController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -85,6 +86,12 @@ routes.post('/equipe', uploadEquipe.single('file'), EquipeController.insere);
 routes.get('/equipe/:id', EquipeController.busca);
 routes.put('/equipe/:id', EquipeController.altera);
 routes.delete('/equipe/:id', EquipeController.deleta);
+
+routes.get('/padroeira', PadroeiraController.lista);
+routes.post('/padroeira', PadroeiraController.insere);
+// routes.get('/equipe/:id', EquipeController.busca);
+// routes.put('/equipe/:id', EquipeController.altera);
+routes.delete('/padroeira/:id', PadroeiraController.deleta);
 
 routes.post('/session', SessionController.insere);
 

@@ -71,7 +71,6 @@ class EquipeController {
        WHERE Equipe_ID='${id}'`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar a equipe.',

@@ -4,7 +4,6 @@ class AlbumController {
   insere(req, res) {
     const { galeria } = req.body;
     req.files.map((item) => {
-      // console.log(item);
       const { filename: path } = item;
       const final_path = `${process.env.APP_URL}/files-galeria/${path}`;
 
@@ -12,7 +11,6 @@ class AlbumController {
         `INSERT INTO ens_foto_galeria (Foto_Path, Foto_Galeria) values ('${final_path}', '${galeria}')`,
         (err) => {
           if (err) {
-            console.log(err);
             return res.status(400).json({
               staus: false,
               message: 'Não foi possível salvar as fotos.',

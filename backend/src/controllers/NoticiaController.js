@@ -27,7 +27,6 @@ class NoticiaController {
       `INSERT INTO ens_noticia (noticia_autor, noticia_hora, noticia_texto, noticia_titulo, noticia_imagem, noticia_destaque) VALUES ('${autor}', '${hoje}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar a noticia.',
@@ -53,7 +52,6 @@ class NoticiaController {
        WHERE noticia_cod='${id}'`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar a noticia.',
@@ -110,7 +108,6 @@ class NoticiaController {
       `SELECT * FROM ens_noticia WHERE noticia_destaque = 1`,
       (err, result) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível buscar as noticias.',

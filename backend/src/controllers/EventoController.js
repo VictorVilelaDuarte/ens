@@ -103,7 +103,6 @@ class EventoController {
       `SELECT * FROM ens_evento where Evento_Data BETWEEN '${hoje}' AND '${mes}' order by Evento_Data`,
       (err, result) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível buscar os eventos.',
