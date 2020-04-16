@@ -14,6 +14,7 @@ import NoticiaController from './controllers/NoticiaController';
 import SessionController from './controllers/SessionController';
 import EquipeController from './controllers/EquipeController';
 import PadroeiraController from './controllers/PadroeiraController';
+import PaginaController from './controllers/PaginaController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -92,6 +93,9 @@ routes.post('/padroeira', PadroeiraController.insere);
 routes.get('/padroeira/:id', PadroeiraController.busca);
 routes.put('/padroeira/:id', PadroeiraController.altera);
 routes.delete('/padroeira/:id', PadroeiraController.deleta);
+
+routes.get('/pagina/:id', PaginaController.busca);
+routes.put('/pagina/:id', PaginaController.altera);
 
 routes.post('/session', SessionController.insere);
 
