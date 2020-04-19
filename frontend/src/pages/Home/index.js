@@ -1,7 +1,8 @@
 import React from 'react';
 
 // import { Container } from './styles';
+import Header from '../../components/Header';
 
 export default function Home() {
-  return <p>HOME</p>;
+  return <Header />;
 }
