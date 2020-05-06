@@ -16,12 +16,13 @@ export const ImagemTopo = styled.img`
 
 export const Menu = styled(Navbar)`
   width: 100% !important;
-  background-color: #225e7f !important;
+  background-color: #326b97 !important;
   border-radius: 2px !important;
 `;
 
 export const Item = styled(Nav)`
   a {
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.8) !important;
   }
 
@@ -32,10 +33,10 @@ export const Item = styled(Nav)`
 
 export const Dropdown = styled(NavDropdown)`
   div {
-    background-color: #225e7f !important;
+    background-color: #326b97 !important;
   }
   a {
-    background-color: #225e7f !important;
+    background-color: #326b97 !important;
     color: rgba(255, 255, 255, 0.8) !important;
   }
 
