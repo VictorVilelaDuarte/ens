@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  height: 100%;
-  background: #f7f7f7;
+export const Container = styled.div`
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid red;
+  max-width: 1100px;
 `;
