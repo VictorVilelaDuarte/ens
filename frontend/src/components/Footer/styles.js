@@ -30,11 +30,11 @@ export const FooterImage = styled.img`
 `;
 
 export const FooterEnsImage = styled.img`
-  height: 150px;
+  height: 84px;
   width: 150px;
 
   @media screen and (max-width: 600px) {
-    height: 75px;
+    height: 42px;
     width: 75px;
   }
 `;
