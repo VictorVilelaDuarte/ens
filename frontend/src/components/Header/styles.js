@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1100px;
+  max-width: 1200px;
 `;
 
 export const ImagemTopo = styled.img`
@@ -21,7 +21,7 @@ export const Menu = styled(Navbar)`
 
 export const Item = styled(Nav)`
   a {
-    font-size: 15px;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.8) !important;
   }
 

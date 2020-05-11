@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1100px;
+  max-width: 1200px;
   width: 100%;
 `;
 
@@ -12,7 +12,7 @@ export const DivEvento = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  max-width: 1100px;
+  max-width: 1200px;
   padding: 10px 10px 10px 20px;
 `;
 
