@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container } from './styles';
+import { Container, Evento, DivEvento } from './styles';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
@@ -47,12 +47,54 @@ export default function Home() {
     getEventos();
   }, []);
 
+  function formatDate(date) {
+    const d = new Date(date);
+    let mes = '' + (d.getMonth() + 1);
+    let dia = '' + d.getDate();
+    let ano = '' + d.getFullYear();
+
+    mes.length < 2 ? (mes = '0' + mes) : (mes = mes);
+    dia.length < 2 ? (dia = '0' + dia) : (dia = dia);
+
+    return [dia, mes, ano].join('/');
+  }
+
+  function formatHour(hour) {
+    return hour.substring(0, 5);
+  }
+
   return (
     <>
       {console.log(noticia, evento)}
       <Header />
       <Container>
-        <h1>HOMEPAGE</h1>
+        <DivEvento>
+          <ul>
+            {evento.map((item) => (
+              <Evento key={item.Evento_ID}>
+                <b>{formatDate(item.Evento_Data)}</b>
+                {item.Evento_Horario ? (
+                  <text>
+                    {' '}
+                    às <b>{formatHour(item.Evento_Horario)}</b> -{' '}
+                  </text>
+                ) : (
+                  ` - `
+                )}
+                <b>{item.Evento_Descricao}</b>
+                {item.Evento_Local ? (
+                  <text>
+                    {' '}
+                    em <b>{item.Evento_Local}</b> realizado por equipe{' '}
+                  </text>
+                ) : (
+                  ` realizado por equipe `
+                )}
+                <b>{item.Evento_EquipeResp}</b>
+              </Evento>
+            ))}
+          </ul>
+        </DivEvento>
       </Container>
       <Footer />
     </>
