@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Container,
   Content,
@@ -21,7 +23,9 @@ export default function Footer() {
           <DivImages>
             <FooterEnsImage src={Ens} />
             <FooterImage src={Logo} />
-            <FooterImage src={Cadeado} />
+            <Link to="/loginadm">
+              <FooterImage src={Cadeado} />
+            </Link>
           </DivImages>
           <DivServile>
             <img src={Servile} />
