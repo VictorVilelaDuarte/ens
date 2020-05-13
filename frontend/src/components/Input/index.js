@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Container, InputText } from './styles';
 
-function Input({ style, children, placeholder }) {
+function Input({ children, placeholder }) {
   return (
-    <Container style={style}>
+    <Container>
       {children}
       <InputText placeholder={placeholder} />
     </Container>

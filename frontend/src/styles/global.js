@@ -38,4 +38,8 @@ export default createGlobalStyle`
   button{
     cursor: pointer;
   }
+
+  button:focus{
+    outline: none;
+  }
 `;
