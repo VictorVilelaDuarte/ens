@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
-function Button({ children }) {
+function Button({ children, ...rest }) {
   return (
-    <>
-      <Container>
-        <text>{children}</text>
-      </Container>
-    </>
+    <Container {...rest} type="submit">
+      {children}
+    </Container>
   );
 }
 

@@ -9,7 +9,5 @@ export const Container = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
 
-  text {
-    color: #fff;
-  }
+  color: #fff;
 `;
