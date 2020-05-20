@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
+import history from '../../services/history';
 
 import { Container, DivForm, FormLogin } from './styles';
 
@@ -35,8 +36,9 @@ export default function LoginAdm() {
           idmens,
           senha: password,
         })
-        .then((res) => {
+        .then(() => {
           toast.success('Login efetuado com sucesso!');
+          history.push('/painel');
         })
         .catch((err) => {
           toast.error(err.response.data.message);
