@@ -12,7 +12,7 @@ class SessionController {
       async (err, result) => {
         if (err || result.length == 0) {
           return res.status(400).json({
-            staus: false,
+            status: false,
             message: 'IDMENS inválido, tente novamente.',
           });
         }
