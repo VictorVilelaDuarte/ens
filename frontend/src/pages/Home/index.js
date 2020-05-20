@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
 
 import { Container, Evento, DivEvento } from './styles';
@@ -19,13 +20,9 @@ export default function Home() {
             res.data.data.map((item) => {
               setNoticia((prevNoticias) => [...prevNoticias, item]);
             });
-          } else {
-            console.log(`erro ao buscar`);
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(() => {});
     }
     function getEventos() {
       api
@@ -35,13 +32,9 @@ export default function Home() {
             res.data.data.map((item) => {
               setEvento((prevEventos) => [...prevEventos, item]);
             });
-          } else {
-            console.log(`erro ao buscar`);
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch(() => {});
     }
     getNoticias();
     getEventos();
@@ -49,12 +42,12 @@ export default function Home() {
 
   function formatDate(date) {
     const d = new Date(date);
-    let mes = '' + (d.getMonth() + 1);
-    let dia = '' + d.getDate();
-    let ano = '' + d.getFullYear();
+    let mes = `${d.getMonth() + 1}`;
+    let dia = `${d.getDate()}`;
+    const ano = `${d.getFullYear()}`;
 
-    mes.length < 2 ? (mes = '0' + mes) : (mes = mes);
-    dia.length < 2 ? (dia = '0' + dia) : (dia = dia);
+    mes.length < 2 ? (mes = `0${mes}`) : mes;
+    dia.length < 2 ? (dia = `0${dia}`) : dia;
 
     return [dia, mes, ano].join('/');
   }
@@ -65,7 +58,6 @@ export default function Home() {
 
   return (
     <>
-      {console.log(noticia, evento)}
       <Header />
       <Container>
         <DivEvento>

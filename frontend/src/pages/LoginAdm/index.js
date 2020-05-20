@@ -15,6 +15,7 @@ import Title from '../../components/Title';
 export default function LoginAdm() {
   const formRef = useRef(null);
   async function handleLogin(data) {
+    const { idmens, password } = data;
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
@@ -28,6 +29,18 @@ export default function LoginAdm() {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      api
+        .post('/session', {
+          idmens,
+          senha: password,
+        })
+        .then((res) => {
+          toast.success('Login efetuado com sucesso!');
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
