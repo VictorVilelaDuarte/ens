@@ -6,6 +6,7 @@ import Routes from './routes';
 import history from './services/history';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { AuthProvider } from './context/AuthContext';
 import GlobalStyle from './styles/global';
 
 function App() {
@@ -13,10 +14,12 @@ function App() {
 
   return (
     <Router history={history}>
-      <Layout>
-        <Routes />
-        <ToastContainer />
-      </Layout>
+      <AuthProvider>
+        <Layout>
+          <Routes />
+          <ToastContainer />
+        </Layout>
+      </AuthProvider>
       <GlobalStyle />
     </Router>
   );

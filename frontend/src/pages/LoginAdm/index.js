@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
+import jwt_decode from 'jwt-decode';
 import { FaUser, FaLock } from 'react-icons/fa';
-import { toast } from 'react-toastify';
 import * as Yup from 'yup';
+
+import { AuthContext } from '../../context/AuthContext';
 import history from '../../services/history';
 
 import { Container, DivForm, FormLogin } from './styles';
 
-import api from '../../services/api';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Input from '../../components/Input';
@@ -14,9 +15,17 @@ import Button from '../../components/Button';
 import Title from '../../components/Title';
 
 export default function LoginAdm() {
+  const { signIn, loggedUser, signOut } = useContext(AuthContext);
+  if (loggedUser.token) {
+    const { exp } = jwt_decode(loggedUser.token);
+    if (Date.now() >= exp * 1000) {
+      signOut();
+    }
+
+    history.push('/painel');
+  }
   const formRef = useRef(null);
   async function handleLogin(data) {
-    const { idmens, password } = data;
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
@@ -31,18 +40,7 @@ export default function LoginAdm() {
         abortEarly: false,
       });
 
-      api
-        .post('/session', {
-          idmens,
-          senha: password,
-        })
-        .then(() => {
-          toast.success('Login efetuado com sucesso!');
-          history.push('/painel');
-        })
-        .catch((err) => {
-          toast.error(err.response.data.message);
-        });
+      signIn(data);
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
