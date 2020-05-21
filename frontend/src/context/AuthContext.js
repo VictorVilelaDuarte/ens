@@ -1,5 +1,6 @@
 import React, { createContext, useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
+import jwt_decode from 'jwt-decode';
 
 import api from '../services/api';
 import history from '../services/history';
@@ -43,8 +44,23 @@ export function AuthProvider({ children }) {
     setData({});
   }, []);
 
+  const verifyAuth = useCallback(() => {
+    if (data.token) {
+      const { exp } = jwt_decode(data.token);
+      if (Date.now() >= exp * 1000) {
+        signOut();
+      }
+
+      history.push('/painel');
+    } else {
+      history.push('/loginadm');
+    }
+  }, [data]);
+
   return (
-    <AuthContext.Provider value={{ loggedUser: data, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ loggedUser: data, signIn, signOut, verifyAuth }}
+    >
       {children}
     </AuthContext.Provider>
   );

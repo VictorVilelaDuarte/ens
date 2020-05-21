@@ -1,10 +1,8 @@
-import React, { useRef, useContext } from 'react';
-import jwt_decode from 'jwt-decode';
+import React, { useRef, useEffect, useContext } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import * as Yup from 'yup';
 
 import { AuthContext } from '../../context/AuthContext';
-import history from '../../services/history';
 
 import { Container, DivForm, FormLogin } from './styles';
 
@@ -15,15 +13,11 @@ import Button from '../../components/Button';
 import Title from '../../components/Title';
 
 export default function LoginAdm() {
-  const { signIn, loggedUser, signOut } = useContext(AuthContext);
-  if (loggedUser.token) {
-    const { exp } = jwt_decode(loggedUser.token);
-    if (Date.now() >= exp * 1000) {
-      signOut();
-    }
+  const { signIn, verifyAuth } = useContext(AuthContext);
+  useEffect(() => {
+    verifyAuth();
+  }, []);
 
-    history.push('/painel');
-  }
   const formRef = useRef(null);
   async function handleLogin(data) {
     try {
