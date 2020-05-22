@@ -20,7 +20,7 @@ import { Container, BigButtons, DivButtons } from './styles';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import Title from '../../components/Title';
+import AdmHeader from '../../components/AdmHeader';
 
 function Painel() {
   const { verifyAuth } = useContext(AuthContext);
@@ -31,8 +31,8 @@ function Painel() {
   return (
     <>
       <Header />
+      <AdmHeader />
       <Container>
-        <Title>Bem-vindo!</Title>
         <DivButtons>
           <BigButtons color="blue">
             <FaNewspaper /> Notícias
