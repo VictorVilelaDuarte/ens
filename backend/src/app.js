@@ -12,8 +12,12 @@ class App {
   }
 
   middlewares() {
+    const corsOptions = {
+      exposedHeaders: ['prevPage', 'page', 'nextPage', 'lastPage'],
+    };
+
     this.server.use(express.json());
-    this.server.use(cors());
+    this.server.use(cors(corsOptions));
     this.server.use(
       '/files-capa',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'capa'))
