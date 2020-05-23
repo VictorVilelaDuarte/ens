@@ -13,6 +13,7 @@ import {
   FaUserTie,
   FaChurch,
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthContext';
 
@@ -34,9 +35,11 @@ function Painel() {
       <AdmHeader />
       <Container>
         <DivButtons>
-          <BigButtons color="blue">
-            <FaNewspaper /> Notícias
-          </BigButtons>
+          <Link to="/noticiaadm">
+            <BigButtons color="blue">
+              <FaNewspaper /> Notícias
+            </BigButtons>
+          </Link>
           <BigButtons color="blue">
             <FaFile /> Informens
           </BigButtons>

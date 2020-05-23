@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Eventos from '../pages/Eventos';
 import LoginAdm from '../pages/LoginAdm';
 import Painel from '../pages/Painel';
+import NoticiaAdm from '../pages/NoticiaAdm';
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
       <Route path="/register" component={Eventos} />
       <Route path="/loginadm" component={LoginAdm} />
       <Route path="/painel" component={Painel} />
+      <Route path="/noticiaadm" component={NoticiaAdm} />
     </Switch>
   );
 }

@@ -27,7 +27,7 @@ export default createGlobalStyle`
   }
 
   a{
-    text-decoration: none;
+    text-decoration: none !important;
     cursor: pointer;
   }
 
