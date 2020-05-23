@@ -9,11 +9,12 @@ export const Container = styled.div`
 `;
 
 export const ImagemTopo = styled.img`
-  margin-top: 0;
+  margin-top: 5px;
   width: 100%;
 `;
 
 export const Menu = styled(Navbar)`
+  margin-top: 15px;
   width: 100% !important;
   background-color: #326b97 !important;
   border-radius: 2px !important;
