@@ -26,7 +26,7 @@ import AdmHeader from '../../components/AdmHeader';
 function Painel() {
   const { verifyAuth } = useContext(AuthContext);
   useEffect(() => {
-    verifyAuth();
+    verifyAuth('/painel');
   }, []);
 
   return (

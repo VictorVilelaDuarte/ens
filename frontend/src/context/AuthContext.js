@@ -44,18 +44,21 @@ export function AuthProvider({ children }) {
     setData({});
   }, []);
 
-  const verifyAuth = useCallback(() => {
-    if (data.token) {
-      const { exp } = jwt_decode(data.token);
-      if (Date.now() >= exp * 1000) {
-        signOut();
-      }
+  const verifyAuth = useCallback(
+    (page) => {
+      if (data.token) {
+        const { exp } = jwt_decode(data.token);
+        if (Date.now() >= exp * 1000) {
+          signOut();
+        }
 
-      history.push('/painel');
-    } else {
-      history.push('/loginadm');
-    }
-  }, [data]);
+        history.push(`${page}`);
+      } else {
+        history.push('/loginadm');
+      }
+    },
+    [data]
+  );
 
   return (
     <AuthContext.Provider

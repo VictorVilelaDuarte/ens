@@ -9,6 +9,11 @@ import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 
 function NoticiaAdm() {
+  const { verifyAuth } = useContext(AuthContext);
+  useEffect(() => {
+    verifyAuth('/noticiaadm');
+  }, []);
+
   return (
     <>
       <Header />
