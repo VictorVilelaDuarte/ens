@@ -15,7 +15,7 @@ import Title from '../../components/Title';
 export default function LoginAdm() {
   const { signIn, verifyAuth } = useContext(AuthContext);
   useEffect(() => {
-    verifyAuth();
+    verifyAuth('/loginadm');
   }, []);
 
   const formRef = useRef(null);

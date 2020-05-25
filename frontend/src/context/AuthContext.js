@@ -52,6 +52,11 @@ export function AuthProvider({ children }) {
           signOut();
         }
 
+        if (page === '/loginadm') {
+          history.push('painel');
+          return;
+        }
+
         history.push(`${page}`);
       } else {
         history.push('/loginadm');
