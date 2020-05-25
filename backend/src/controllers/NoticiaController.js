@@ -49,7 +49,7 @@ class NoticiaController {
           .header({
             prevPage: page <= 1 ? page : page - 1,
             page,
-            nextPage: numberOfPages >= page ? page : page + 1,
+            nextPage: numberOfPages >= page ? page + 1 : page,
             lastPage: numberOfPages,
           })
           .json({
