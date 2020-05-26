@@ -1,7 +1,7 @@
 import bd from '../../config/database';
 
 class NoticiaController {
-  lista(req, res) {
+  async lista(req, res) {
     let { page } = req.query;
     let offset = 0;
     let numberOfPages = 0;
@@ -33,31 +33,31 @@ class NoticiaController {
       if (page > 1) {
         offset = (page - 1) * 10;
       }
-    });
 
-    bd.query(
-      `SELECT * FROM ens_noticia LIMIT 10 OFFSET ${offset}`,
-      (err, result) => {
-        if (err) {
-          return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível buscar as noticias.',
-          });
+      bd.query(
+        `SELECT * FROM ens_noticia LIMIT 10 OFFSET ${offset}`,
+        (error, results) => {
+          if (error) {
+            return res.status(400).json({
+              staus: false,
+              message: 'Não foi possível buscar as noticias.',
+            });
+          }
+          return res
+            .status(200)
+            .header({
+              prevPage: page <= 1 ? page : page - 1,
+              page,
+              nextPage: numberOfPages >= page ? page + 1 : page,
+              lastPage: numberOfPages,
+            })
+            .json({
+              status: true,
+              data: results,
+            });
         }
-        return res
-          .status(200)
-          .header({
-            prevPage: page <= 1 ? page : page - 1,
-            page,
-            nextPage: numberOfPages >= page ? page + 1 : page,
-            lastPage: numberOfPages,
-          })
-          .json({
-            status: true,
-            data: result,
-          });
-      }
-    );
+      );
+    });
   }
 
   insere(req, res) {
