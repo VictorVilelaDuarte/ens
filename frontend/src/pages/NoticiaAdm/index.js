@@ -1,6 +1,9 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Pagination } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import history from '../../services/history';
 
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
@@ -11,32 +14,46 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 
-function NoticiaAdm() {
+function NoticiaAdm({ match }) {
   const { verifyAuth } = useContext(AuthContext);
   const [noticia, setNoticia] = useState([]);
   const [pagination, setPagination] = useState({});
+  const [changePage, setChangePage] = useState(0);
 
   useEffect(() => {
-    verifyAuth('/noticiaadm');
-  }, []);
-
-  useEffect(() => {
+    let thisPage = match.params.page;
+    if (!thisPage) {
+      thisPage = 1;
+    }
+    verifyAuth(`/noticiaadm/${thisPage}`);
     function getNoticias() {
       api
-        .get(`/noticia`)
+        .get(`/noticia?page=${thisPage}`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
               setNoticia((prevNoticias) => [...prevNoticias, item]);
             });
 
-            console.log(res);
+            const { lastpage, page, nextpage, prevpage } = res.headers;
+            setPagination({
+              lastpage,
+              page,
+              nextpage,
+              prevpage,
+            });
           }
         })
         .catch(() => {});
     }
     getNoticias();
-  }, []);
+  }, [changePage]);
+
+  function handleChangePagination(nPage) {
+    history.push(`/noticiaadm/${nPage}`);
+    setNoticia([]);
+    setChangePage(nPage);
+  }
 
   return (
     <>
@@ -79,21 +96,47 @@ function NoticiaAdm() {
         </Table>
 
         <Pagination>
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Item>{1}</Pagination.Item>
-          <Pagination.Ellipsis />
-
-          <Pagination.Item>{10}</Pagination.Item>
-          <Pagination.Item>{11}</Pagination.Item>
-          <Pagination.Item active>{12}</Pagination.Item>
-          <Pagination.Item>{13}</Pagination.Item>
-          <Pagination.Item disabled>{14}</Pagination.Item>
-
-          <Pagination.Ellipsis />
-          <Pagination.Item>{20}</Pagination.Item>
-          <Pagination.Next />
-          <Pagination.Last />
+          {pagination.page === pagination.prevpage ? (
+            <>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.nextpage)}
+              >
+                {pagination.nextpage}
+              </Pagination.Item>
+              <Pagination.Last
+                onClick={() => handleChangePagination(pagination.lastpage)}
+              />
+            </>
+          ) : pagination.page === pagination.lastpage ? (
+            <>
+              <Pagination.First onClick={() => handleChangePagination(1)} />
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.prevpage)}
+              >
+                {pagination.prevpage}
+              </Pagination.Item>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+            </>
+          ) : (
+            <>
+              <Pagination.First onClick={() => handleChangePagination(1)} />
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.prevpage)}
+              >
+                {pagination.prevpage}
+              </Pagination.Item>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.nextpage)}
+              >
+                {pagination.nextpage}
+              </Pagination.Item>
+              <Pagination.Last
+                onClick={() => handleChangePagination(pagination.lastpage)}
+              />
+            </>
+          )}
         </Pagination>
       </Container>
       <Footer />
