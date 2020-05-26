@@ -1,13 +1,14 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from 'react';
-import { Table, Pagination } from 'react-bootstrap';
+import { Table, Pagination, Modal } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import history from '../../services/history';
 
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 
-import { Container } from './styles';
+import { Container, ButtonDelete, ButtonCancelDelete } from './styles';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -18,6 +19,8 @@ function NoticiaAdm({ match }) {
   const [noticia, setNoticia] = useState([]);
   const [pagination, setPagination] = useState({});
   const [changePage, setChangePage] = useState(0);
+  const [showDelete, setShowDetele] = useState(false);
+  const [noticiaToDelete, setNoticiaToDelete] = useState({});
 
   useEffect(() => {
     let thisPage = match.params.page;
@@ -43,7 +46,9 @@ function NoticiaAdm({ match }) {
             });
           }
         })
-        .catch(() => {});
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
     }
     getNoticias();
   }, [changePage]);
@@ -70,6 +75,32 @@ function NoticiaAdm({ match }) {
     return `${dt}/${month}/${year}`;
   }
 
+  function handleShowDelete(noticiaDelete) {
+    if (noticiaDelete) {
+      setNoticiaToDelete(noticiaDelete);
+    } else {
+      setNoticiaToDelete({});
+    }
+    setShowDetele(!showDelete);
+  }
+
+  function handleDelete() {
+    api
+      .delete(`/noticia/${noticiaToDelete.noticia_cod}`)
+      .then((res) => {
+        toast.info(res.data.message);
+        setNoticia(
+          noticia.filter(
+            (item) => item.noticia_cod !== noticiaToDelete.noticia_cod
+          )
+        );
+        handleShowDelete();
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        handleShowDelete();
+      });
+  }
   return (
     <>
       <Header />
@@ -103,7 +134,11 @@ function NoticiaAdm({ match }) {
                   <FaEdit size={18} color="#326B97" />
                 </td>
                 <td>
-                  <FaTrash size={18} color="#F54B30" />
+                  <FaTrash
+                    size={18}
+                    color="#F54B30"
+                    onClick={() => handleShowDelete(item)}
+                  />
                 </td>
               </tr>
             ))}
@@ -155,6 +190,24 @@ function NoticiaAdm({ match }) {
         </Pagination>
       </Container>
       <Footer />
+      <Modal show={showDelete} onHide={handleShowDelete}>
+        <Modal.Header
+          style={{ backgroundColor: '#F54B30', color: '#fff' }}
+          closeButton
+        >
+          <Modal.Title>Tem certeza que deseja deletar?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza que deseja deletar a noticia:{' '}
+          {noticiaToDelete.noticia_titulo}
+        </Modal.Body>
+        <Modal.Footer>
+          <ButtonCancelDelete onClick={handleShowDelete}>
+            Cancelar
+          </ButtonCancelDelete>
+          <ButtonDelete onClick={handleDelete}>Deletar</ButtonDelete>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

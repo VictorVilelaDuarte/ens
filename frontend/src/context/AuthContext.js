@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
       })
       .then((res) => {
         const { token, user } = res.data;
-        toast.success('Login efetuado com sucesso!');
+        toast.info('Login efetuado com sucesso!');
         localStorage.setItem('ensccpv:token', token);
         localStorage.setItem('ensccpv:user', JSON.stringify(user));
         setData({ token, user });
