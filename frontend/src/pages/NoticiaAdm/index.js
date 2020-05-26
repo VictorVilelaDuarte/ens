@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Pagination } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import history from '../../services/history';
 
 import api from '../../services/api';
@@ -55,6 +54,22 @@ function NoticiaAdm({ match }) {
     setChangePage(nPage);
   }
 
+  function formatDate(date) {
+    const nDate = new Date(date);
+    const year = nDate.getFullYear();
+    let month = nDate.getMonth() + 1;
+    let dt = nDate.getDate();
+
+    if (dt < 10) {
+      dt = `0${dt}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+
+    return `${dt}/${month}/${year}`;
+  }
+
   return (
     <>
       <Header />
@@ -76,7 +91,7 @@ function NoticiaAdm({ match }) {
               <tr>
                 <td>{item.noticia_autor}</td>
                 <td>{item.noticia_titulo}</td>
-                <td>{item.noticia_hora}</td>
+                <td>{formatDate(item.noticia_hora)}</td>
                 <td>
                   {item.noticia_destaque === 0 ? (
                     <FaCheckCircle size={18} color="#4BAA4E" />
