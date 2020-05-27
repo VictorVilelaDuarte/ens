@@ -8,11 +8,17 @@ import history from '../../services/history';
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 
-import { Container, ButtonDelete, ButtonCancelDelete } from './styles';
+import {
+  Container,
+  ButtonDelete,
+  ButtonCancelDelete,
+  TitleDiv,
+} from './styles';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
+import AddButton from '../../components/AddButton';
 
 function NoticiaAdm({ match }) {
   const { verifyAuth } = useContext(AuthContext);
@@ -105,7 +111,11 @@ function NoticiaAdm({ match }) {
     <>
       <Header />
       <Container>
-        <Title>Notícias</Title>
+        <TitleDiv>
+          <Title>Notícias</Title>
+          <AddButton>Adicionar</AddButton>
+        </TitleDiv>
+
         <Table striped bordered hover responsive>
           <thead>
             <tr>

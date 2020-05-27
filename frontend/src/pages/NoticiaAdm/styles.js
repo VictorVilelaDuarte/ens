@@ -30,3 +30,8 @@ export const ButtonCancelDelete = styled.button`
 
   color: #fff;
 `;
+
+export const TitleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
