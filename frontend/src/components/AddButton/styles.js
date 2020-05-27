@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Button = styled.button`
   height: 46px;
@@ -11,7 +12,7 @@ export const Button = styled.button`
   color: #fff;
 `;
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   width: 50%;
   display: flex;
   justify-content: flex-end;

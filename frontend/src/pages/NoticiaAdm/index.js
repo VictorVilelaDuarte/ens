@@ -3,8 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Table, Pagination, Modal } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import history from '../../services/history';
 
+import history from '../../services/history';
 import api from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -113,7 +113,7 @@ function NoticiaAdm({ match }) {
       <Container>
         <TitleDiv>
           <Title>Notícias</Title>
-          <AddButton>Adicionar</AddButton>
+          <AddButton url="/noticiaCadastro">Adicionar</AddButton>
         </TitleDiv>
 
         <Table striped bordered hover responsive>

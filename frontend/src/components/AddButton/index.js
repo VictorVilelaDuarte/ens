@@ -3,9 +3,9 @@ import { FaPlus } from 'react-icons/fa';
 
 import { Container, Button } from './styles';
 
-function AddButton({ children, ...rest }) {
+function AddButton({ children, url, ...rest }) {
   return (
-    <Container>
+    <Container to={url}>
       <Button {...rest} type="submit">
         <FaPlus /> {'  '} {children}
       </Button>

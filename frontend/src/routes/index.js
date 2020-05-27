@@ -7,6 +7,8 @@ import LoginAdm from '../pages/LoginAdm';
 import Painel from '../pages/Painel';
 import NoticiaAdm from '../pages/NoticiaAdm';
 
+import NoticiaCadastro from '../pages/Cadastro/noticia';
+
 export default function Routes() {
   return (
     <Switch>
@@ -15,6 +17,7 @@ export default function Routes() {
       <Route path="/loginadm" component={LoginAdm} />
       <Route path="/painel" component={Painel} />
       <Route path="/noticiaadm/:page?" component={NoticiaAdm} />
+      <Route path="/noticiaCadastro" component={NoticiaCadastro} />
     </Switch>
   );
 }
