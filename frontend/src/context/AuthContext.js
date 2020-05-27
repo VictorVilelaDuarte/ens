@@ -30,6 +30,7 @@ export function AuthProvider({ children }) {
         localStorage.setItem('ensccpv:token', token);
         localStorage.setItem('ensccpv:user', JSON.stringify(user));
         setData({ token, user });
+        api.defaults.headers.Authorization = `Bearer ${token}`;
         history.push('/painel');
       })
       .catch((err) => {
