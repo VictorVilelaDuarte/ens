@@ -22,8 +22,9 @@ export const FormDiv = styled.div`
   justify-content: center;
 `;
 
-export const FormData = styled(Form)`
+export const FormInputs = styled(Form)`
   width: 80%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
