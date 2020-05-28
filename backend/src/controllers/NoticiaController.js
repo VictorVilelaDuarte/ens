@@ -35,9 +35,10 @@ class NoticiaController {
       }
 
       bd.query(
-        `SELECT * FROM ens_noticia LIMIT 10 OFFSET ${offset} ORDER BY noticia_hora DESC`,
+        `SELECT * FROM ens_noticia ORDER BY noticia_hora DESC LIMIT 10 OFFSET ${offset} `,
         (error, results) => {
           if (error) {
+            console.log(error);
             return res.status(400).json({
               staus: false,
               message: 'Não foi possível buscar as noticias.',
