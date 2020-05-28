@@ -35,7 +35,7 @@ class NoticiaController {
       }
 
       bd.query(
-        `SELECT * FROM ens_noticia LIMIT 10 OFFSET ${offset}`,
+        `SELECT * FROM ens_noticia LIMIT 10 OFFSET ${offset} ORDER BY noticia_hora DESC`,
         (error, results) => {
           if (error) {
             return res.status(400).json({
