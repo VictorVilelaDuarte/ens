@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div`
   padding: 0 15px;
   height: 46px;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   background-color: #fff;
-  width: 300px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;

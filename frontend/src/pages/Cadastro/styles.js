@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from '@unform/web';
 
 export const Container = styled.div`
   display: flex;
@@ -14,9 +15,15 @@ export const TitleDiv = styled.div`
 `;
 
 export const FormDiv = styled.div`
-  background-color: #fff;
   width: 90%;
-  /* height: 50px; */
   align-self: center;
   padding: 10px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const FormData = styled(Form)`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 `;
