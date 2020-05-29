@@ -134,7 +134,7 @@ function NoticiaAdm({ match }) {
                 <td>{item.noticia_titulo}</td>
                 <td>{formatDate(item.noticia_hora)}</td>
                 <td>
-                  {item.noticia_destaque === 0 ? (
+                  {item.noticia_destaque === 1 ? (
                     <FaCheckCircle size={18} color="#4BAA4E" />
                   ) : (
                     <FaTimesCircle size={18} color="#000" />

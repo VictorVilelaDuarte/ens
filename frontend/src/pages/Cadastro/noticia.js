@@ -3,6 +3,7 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ImageUploader from 'react-images-upload';
 import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 
 import api from '../../services/api';
 import history from '../../services/history';
@@ -32,22 +33,51 @@ function NoticiaCadastro() {
     setPicture(Cpicture);
   }
 
-  function handleSubmit(data) {
-    const formData = new FormData();
-    formData.append('file', picture[0]);
-    formData.append('titulo', data.title);
-    formData.append('texto', text);
-    formData.append('destaque', data.noticiaDestaque ? '1' : '0');
-
-    api
-      .post('/noticia', formData)
-      .then((res) => {
-        toast.info(res.data.message);
-        history.push('/noticiaadm');
-      })
-      .catch((err) => {
-        toast.error(err.data.message);
+  async function handleSubmit(data) {
+    try {
+      formRef.current.setErrors({});
+      const schema = Yup.object().shape({
+        title: Yup.string().required('O titulo é obrigatório'),
+        noticiaDestaque: Yup.bool(),
       });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      if (!picture) {
+        toast.error('É necessário inserir imagem na notícia');
+        return;
+      }
+      if (!text) {
+        toast.error('É necessário inserir um texto na notícia');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', picture[0]);
+      formData.append('titulo', data.title);
+      formData.append('texto', text);
+      formData.append('destaque', data.noticiaDestaque ? '1' : '0');
+      api
+        .post('/noticia', formData)
+        .then((res) => {
+          toast.info(res.data.message);
+          history.push('/noticiaadm');
+        })
+        .catch((err) => {
+          toast.error(err.data.message);
+        });
+    } catch (err) {
+      console.log(err);
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+    }
   }
 
   return (
