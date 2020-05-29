@@ -19,6 +19,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
+import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function NoticiaAdm({ match }) {
   const { verifyAuth } = useContext(AuthContext);
@@ -141,14 +142,18 @@ function NoticiaAdm({ match }) {
                   )}
                 </td>
                 <td>
-                  <FaEdit size={18} color="#326B97" />
+                  <ButtonIconPointer>
+                    <FaEdit size={18} color="#326B97" />
+                  </ButtonIconPointer>
                 </td>
                 <td>
-                  <FaTrash
-                    size={18}
-                    color="#F54B30"
-                    onClick={() => handleShowDelete(item)}
-                  />
+                  <ButtonIconPointer>
+                    <FaTrash
+                      size={18}
+                      color="#F54B30"
+                      onClick={() => handleShowDelete(item)}
+                    />
+                  </ButtonIconPointer>
                 </td>
               </tr>
             ))}

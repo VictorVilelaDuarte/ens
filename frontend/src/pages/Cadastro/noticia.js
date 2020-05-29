@@ -69,7 +69,6 @@ function NoticiaCadastro() {
           toast.error(err.data.message);
         });
     } catch (err) {
-      console.log(err);
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
         err.inner.forEach((error) => {
