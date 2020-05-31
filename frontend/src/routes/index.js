@@ -17,7 +17,7 @@ export default function Routes() {
       <Route path="/loginadm" component={LoginAdm} />
       <Route path="/painel" component={Painel} />
       <Route path="/noticiaadm/:page?" component={NoticiaAdm} />
-      <Route path="/noticiaCadastro" component={NoticiaCadastro} />
+      <Route path="/noticiaCadastro/:noticia?" component={NoticiaCadastro} />
     </Switch>
   );
 }

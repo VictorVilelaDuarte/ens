@@ -113,7 +113,7 @@ function NoticiaAdm({ match }) {
       <Header />
       <Container>
         <TitleDiv>
-          <Title>Notícias</Title>
+          <Title back="/painel">Notícias</Title>
           <AddButton url="/noticiaCadastro">Adicionar</AddButton>
         </TitleDiv>
 
@@ -143,7 +143,13 @@ function NoticiaAdm({ match }) {
                 </td>
                 <td>
                   <ButtonIconPointer>
-                    <FaEdit size={18} color="#326B97" />
+                    <FaEdit
+                      onClick={() =>
+                        history.push(`/noticiaCadastro/${item.noticia_cod}`)
+                      }
+                      size={18}
+                      color="#326B97"
+                    />
                   </ButtonIconPointer>
                 </td>
                 <td>

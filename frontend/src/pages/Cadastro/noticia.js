@@ -19,14 +19,37 @@ import Button from '../../components/Button';
 
 import { Container, FormDiv, TitleDiv, FormInputs } from './styles';
 
-function NoticiaCadastro() {
+function NoticiaCadastro({ match }) {
   const formRef = useRef(null);
+  const { verifyAuth } = useContext(AuthContext);
   const [picture, setPicture] = useState();
   const [text, setText] = useState('');
+  const [CNoticia, setCNoticia] = useState({});
 
-  const { verifyAuth } = useContext(AuthContext);
   useEffect(() => {
-    verifyAuth('/noticiaCadastro');
+    const { noticia } = match.params;
+    if (!noticia) {
+      verifyAuth('/noticiaCadastro');
+      return;
+    }
+    verifyAuth(`/noticiaCadastro/${noticia}`);
+
+    api
+      .get(`/noticia/${noticia}`)
+      .then((res) => {
+        const response = res.data.data[0];
+        const CNoticiaOBJ = {
+          id: response.noticia_cod,
+          title: response.noticia_titulo,
+          text: response.noticia_texto,
+          picture: [response.noticia_imagem],
+          noticiaDestaque: response.noticia_destaque === 1,
+        };
+        setCNoticia(CNoticiaOBJ);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   function onDrop(Cpicture) {
@@ -87,9 +110,15 @@ function NoticiaCadastro() {
           <Title>Cadastro de notícia</Title>
         </TitleDiv>
         <FormDiv>
-          <FormInputs ref={formRef} onSubmit={handleSubmit}>
+          <FormInputs
+            ref={formRef}
+            initialData={CNoticia}
+            onSubmit={handleSubmit}
+          >
             <InputTexto name="title" placeholder="Digite o titulo da notícia" />
+            {console.log(CNoticia.picture)}
             <ImageUploader
+              defaultImages={CNoticia ? CNoticia.picture : ''}
               withIcon
               withPreview
               singleImage
@@ -102,7 +131,7 @@ function NoticiaCadastro() {
             <CKEditor
               editor={ClassicEditor}
               config={{ placeholder: 'Digite o texto da notícia' }}
-              data=""
+              data={CNoticia ? CNoticia.text : ''}
               onChange={(event, editor) => {
                 const data = editor.getData();
                 setText(data);
