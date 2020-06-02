@@ -61,6 +61,7 @@ routes.post(
   InformensController.insere
 );
 routes.delete('/informens/:id', InformensController.deleta);
+routes.get('/informens', InformensController.lista);
 
 routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
