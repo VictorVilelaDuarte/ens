@@ -24,7 +24,7 @@ function NoticiaCadastro({ match }) {
   const { verifyAuth } = useContext(AuthContext);
   const [picture, setPicture] = useState();
   const [text, setText] = useState('');
-  const [CNoticia, setCNoticia] = useState({});
+  const [CNoticia, setCNoticia] = useState();
 
   useEffect(() => {
     const { noticia } = match.params;
@@ -46,6 +46,7 @@ function NoticiaCadastro({ match }) {
           noticiaDestaque: response.noticia_destaque === 1,
         };
         setCNoticia(CNoticiaOBJ);
+        setText(CNoticiaOBJ.text);
       })
       .catch((err) => {
         console.log(err);
@@ -68,29 +69,46 @@ function NoticiaCadastro({ match }) {
         abortEarly: false,
       });
 
-      if (!picture) {
+      if (!picture && !CNoticia) {
         toast.error('É necessário inserir imagem na notícia');
         return;
       }
+
       if (!text) {
         toast.error('É necessário inserir um texto na notícia');
         return;
       }
 
       const formData = new FormData();
-      formData.append('file', picture[0]);
+      if (picture) {
+        formData.append('file', picture[0]);
+      }
+
       formData.append('titulo', data.title);
       formData.append('texto', text);
       formData.append('destaque', data.noticiaDestaque ? '1' : '0');
-      api
-        .post('/noticia', formData)
-        .then((res) => {
-          toast.info(res.data.message);
-          history.push('/noticiaadm');
-        })
-        .catch((err) => {
-          toast.error(err.data.message);
-        });
+
+      if (CNoticia) {
+        api
+          .post(`/noticia/${CNoticia.id}`, formData)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/noticiaadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      } else {
+        api
+          .post('/noticia', formData)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/noticiaadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      }
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -116,7 +134,6 @@ function NoticiaCadastro({ match }) {
             onSubmit={handleSubmit}
           >
             <InputTexto name="title" placeholder="Digite o titulo da notícia" />
-            {console.log(CNoticia.picture)}
             <ImageUploader
               defaultImages={CNoticia ? CNoticia.picture : ''}
               withIcon
