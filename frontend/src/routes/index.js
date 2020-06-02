@@ -10,6 +10,7 @@ import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
+import InformensCadastro from '../pages/Cadastro/Informens';
 
 export default function Routes() {
   return (
@@ -18,9 +19,15 @@ export default function Routes() {
       <Route path="/register" component={Eventos} />
       <Route path="/loginadm" component={LoginAdm} />
       <Route path="/painel" component={Painel} />
+
       <Route path="/noticiaadm/:page?" component={NoticiaAdm} />
       <Route path="/informensadm/:page?" component={InformensAdm} />
+
       <Route path="/noticiaCadastro/:noticia?" component={NoticiaCadastro} />
+      <Route
+        path="/informensCadastro/:noticia?"
+        component={InformensCadastro}
+      />
     </Switch>
   );
 }
