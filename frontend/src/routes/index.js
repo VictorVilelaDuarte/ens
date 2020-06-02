@@ -5,9 +5,10 @@ import Home from '../pages/Home';
 import Eventos from '../pages/Eventos';
 import LoginAdm from '../pages/LoginAdm';
 import Painel from '../pages/Painel';
-import NoticiaAdm from '../pages/NoticiaAdm';
 
-import NoticiaCadastro from '../pages/Cadastro/noticia';
+import NoticiaAdm from '../pages/Adm/Noticia';
+
+import NoticiaCadastro from '../pages/Cadastro/Noticia';
 
 export default function Routes() {
   return (
