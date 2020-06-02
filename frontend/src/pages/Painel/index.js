@@ -40,9 +40,11 @@ function Painel() {
               <FaNewspaper /> Notícias
             </BigButtons>
           </Link>
-          <BigButtons color="blue">
-            <FaFile /> Informens
-          </BigButtons>
+          <Link to="/informensadm">
+            <BigButtons color="blue">
+              <FaFile /> Informens
+            </BigButtons>
+          </Link>
           <BigButtons color="blue">
             <FaCalendarAlt /> Eventos
           </BigButtons>

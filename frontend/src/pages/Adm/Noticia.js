@@ -167,7 +167,9 @@ function NoticiaAdm({ match }) {
         </Table>
 
         <Pagination>
-          {pagination.page === pagination.prevpage ? (
+          {pagination.lastpage === '1' ? (
+            <></>
+          ) : pagination.page === pagination.prevpage ? (
             <>
               <Pagination.Item active>{pagination.page}</Pagination.Item>
               <Pagination.Item

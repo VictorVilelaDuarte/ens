@@ -7,6 +7,7 @@ import LoginAdm from '../pages/LoginAdm';
 import Painel from '../pages/Painel';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
+import InformensAdm from '../pages/Adm/Informens';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 
@@ -18,6 +19,7 @@ export default function Routes() {
       <Route path="/loginadm" component={LoginAdm} />
       <Route path="/painel" component={Painel} />
       <Route path="/noticiaadm/:page?" component={NoticiaAdm} />
+      <Route path="/informensadm/:page?" component={InformensAdm} />
       <Route path="/noticiaCadastro/:noticia?" component={NoticiaCadastro} />
     </Switch>
   );
