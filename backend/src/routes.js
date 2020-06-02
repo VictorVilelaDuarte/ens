@@ -79,7 +79,12 @@ routes.post(
   NoticiaController.insere
 );
 routes.get('/noticiahome', NoticiaController.home);
-routes.put('/noticia/:id', authMiddleware, NoticiaController.altera);
+routes.post(
+  '/noticia/:id',
+  authMiddleware,
+  uploadNoticia.single('file'),
+  NoticiaController.altera
+);
 routes.delete('/noticia/:id', NoticiaController.deleta);
 
 routes.get('/equipe', EquipeController.lista);

@@ -38,7 +38,6 @@ class NoticiaController {
         `SELECT * FROM ens_noticia ORDER BY noticia_hora DESC LIMIT 10 OFFSET ${offset} `,
         (error, results) => {
           if (error) {
-            console.log(error);
             return res.status(400).json({
               staus: false,
               message: 'Não foi possível buscar as noticias.',
@@ -90,24 +89,29 @@ class NoticiaController {
     const { id } = req.params;
     const { texto, titulo, destaque } = req.body;
     const hoje = new Date().toLocaleDateString();
+    let sql = `UPDATE ens_noticia
+    SET noticia_autor='${autor}', noticia_hora='${hoje}', noticia_texto='${texto}', noticia_titulo='${titulo}', noticia_destaque='${destaque}'
+    WHERE noticia_cod='${id}'`;
+    if (req.file) {
+      const { filename: path } = req.file;
+      const final_path = `${process.env.APP_URL}/files-noticia/${path}`;
+      sql = `UPDATE ens_noticia
+    SET noticia_autor='${autor}', noticia_hora='${hoje}', noticia_texto='${texto}', noticia_titulo='${titulo}', noticia_destaque='${destaque}', noticia_imagem='${final_path}'
+    WHERE noticia_cod='${id}'`;
+    }
 
-    bd.query(
-      `UPDATE ens_noticia
-       SET noticia_autor='${autor}', noticia_hora='${hoje}', noticia_texto='${texto}', noticia_titulo='${titulo}', noticia_destaque='${destaque}'
-       WHERE noticia_cod='${id}'`,
-      (err) => {
-        if (err) {
-          return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível salvar a noticia.',
-          });
-        }
-        return res.status(200).json({
-          status: true,
-          message: 'Noticia atualizada com sucesso!',
+    bd.query(sql, (err) => {
+      if (err) {
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível salvar a noticia.',
         });
       }
-    );
+      return res.status(200).json({
+        status: true,
+        message: 'Noticia atualizada com sucesso!',
+      });
+    });
   }
 
   busca(req, res) {
