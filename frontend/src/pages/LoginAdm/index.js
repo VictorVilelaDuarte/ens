@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useRef, useContext } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import * as Yup from 'yup';
 
@@ -13,10 +13,7 @@ import Button from '../../components/Button';
 import Title from '../../components/Title';
 
 export default function LoginAdm() {
-  const { signIn, verifyAuth } = useContext(AuthContext);
-  useEffect(() => {
-    verifyAuth('/loginadm');
-  }, []);
+  const { signIn } = useContext(AuthContext);
 
   const formRef = useRef(null);
   async function handleLogin(data) {

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ImageUploader from 'react-images-upload';
@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 
 import api from '../../services/api';
 import history from '../../services/history';
-import { AuthContext } from '../../context/AuthContext';
 
 import './ckeditor.css';
 import Header from '../../components/Header';
@@ -21,18 +20,12 @@ import { Container, FormDiv, TitleDiv, FormInputs } from './styles';
 
 function NoticiaCadastro({ match }) {
   const formRef = useRef(null);
-  const { verifyAuth } = useContext(AuthContext);
   const [picture, setPicture] = useState();
   const [text, setText] = useState('');
   const [CNoticia, setCNoticia] = useState();
 
   useEffect(() => {
     const { noticia } = match.params;
-    if (!noticia) {
-      verifyAuth('/noticiaCadastro');
-      return;
-    }
-    verifyAuth(`/noticiaCadastro/${noticia}`);
 
     api
       .get(`/noticia/${noticia}`)

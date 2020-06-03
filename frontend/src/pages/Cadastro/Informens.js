@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import api from '../../services/api';
 import history from '../../services/history';
-import { AuthContext } from '../../context/AuthContext';
 
 import './ckeditor.css';
 import Header from '../../components/Header';
@@ -19,12 +18,7 @@ import { Container, FormDiv, TitleDiv, FormInputs } from './styles';
 
 function InformensCadastro() {
   const formRef = useRef(null);
-  const { verifyAuth } = useContext(AuthContext);
   const [file, setFile] = useState();
-
-  useEffect(() => {
-    verifyAuth('/informensCadastro');
-  }, []);
 
   function handleFile(e) {
     setFile(e.target.files[0]);

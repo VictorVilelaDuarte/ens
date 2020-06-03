@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import {
   FaNewspaper,
   FaFile,
@@ -15,8 +15,6 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../context/AuthContext';
-
 import { Container, BigButtons, DivButtons } from './styles';
 
 import Header from '../../components/Header';
@@ -24,11 +22,6 @@ import Footer from '../../components/Footer';
 import AdmHeader from '../../components/AdmHeader';
 
 function Painel() {
-  const { verifyAuth } = useContext(AuthContext);
-  useEffect(() => {
-    verifyAuth('/painel');
-  }, []);
-
   return (
     <>
       <Header />

@@ -1,12 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Pagination, Modal } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
 import api from '../../services/api';
-import { AuthContext } from '../../context/AuthContext';
 
 import {
   Container,
@@ -22,7 +21,6 @@ import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function NoticiaAdm({ match }) {
-  const { verifyAuth } = useContext(AuthContext);
   const [noticia, setNoticia] = useState([]);
   const [pagination, setPagination] = useState({});
   const [changePage, setChangePage] = useState(0);
@@ -34,7 +32,6 @@ function NoticiaAdm({ match }) {
     if (!thisPage) {
       thisPage = 1;
     }
-    verifyAuth(`/noticiaadm/${thisPage}`);
     function getNoticias() {
       api
         .get(`/noticia?page=${thisPage}`)

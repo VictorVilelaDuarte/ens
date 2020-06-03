@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+import Router from './Router';
 
 import Home from '../pages/Home';
 import Eventos from '../pages/Eventos';
@@ -15,18 +17,23 @@ import InformensCadastro from '../pages/Cadastro/Informens';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/register" component={Eventos} />
-      <Route path="/loginadm" component={LoginAdm} />
-      <Route path="/painel" component={Painel} />
+      <Router path="/" exact component={Home} />
+      <Router path="/register" component={Eventos} />
+      <Router path="/loginadm" component={LoginAdm} />
+      <Router path="/painel" component={Painel} isPrivate />
 
-      <Route path="/noticiaadm/:page?" component={NoticiaAdm} />
-      <Route path="/informensadm/:page?" component={InformensAdm} />
+      <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
+      <Router path="/informensadm/:page?" component={InformensAdm} isPrivate />
 
-      <Route path="/noticiaCadastro/:noticia?" component={NoticiaCadastro} />
-      <Route
+      <Router
+        path="/noticiaCadastro/:noticia?"
+        component={NoticiaCadastro}
+        isPrivate
+      />
+      <Router
         path="/informensCadastro/:noticia?"
         component={InformensCadastro}
+        isPrivate
       />
     </Switch>
   );

@@ -1,12 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Pagination, Modal } from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
 import api from '../../services/api';
-import { AuthContext } from '../../context/AuthContext';
 
 import {
   Container,
@@ -22,7 +21,6 @@ import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function InformensAdm({ match }) {
-  const { verifyAuth } = useContext(AuthContext);
   const [informens, setInformens] = useState([]);
   const [pagination, setPagination] = useState({});
   const [changePage, setChangePage] = useState(0);
@@ -34,7 +32,6 @@ function InformensAdm({ match }) {
     if (!thisPage) {
       thisPage = 1;
     }
-    verifyAuth(`/informensadm/${thisPage}`);
     function getNoticias() {
       api
         .get(`/informens?page=${thisPage}`)
