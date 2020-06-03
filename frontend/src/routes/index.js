@@ -31,7 +31,7 @@ export default function Routes() {
         isPrivate
       />
       <Router
-        path="/informensCadastro/:noticia?"
+        path="/informensCadastro/"
         component={InformensCadastro}
         isPrivate
       />
