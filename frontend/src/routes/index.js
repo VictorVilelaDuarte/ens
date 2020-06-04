@@ -10,6 +10,7 @@ import Painel from '../pages/Painel';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
+import EventoAdm from '../pages/Adm/Eventos';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -24,6 +25,7 @@ export default function Routes() {
 
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
       <Router path="/informensadm/:page?" component={InformensAdm} isPrivate />
+      <Router path="/eventoadm/:page?" component={EventoAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"

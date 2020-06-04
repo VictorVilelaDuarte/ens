@@ -38,9 +38,11 @@ function Painel() {
               <FaFile /> Informens
             </BigButtons>
           </Link>
-          <BigButtons color="blue">
-            <FaCalendarAlt /> Eventos
-          </BigButtons>
+          <Link to="/eventoadm">
+            <BigButtons color="blue">
+              <FaCalendarAlt /> Eventos
+            </BigButtons>
+          </Link>
           <BigButtons color="blue">
             <FaImages /> Galeria
           </BigButtons>

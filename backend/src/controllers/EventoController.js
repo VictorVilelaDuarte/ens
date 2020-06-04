@@ -2,17 +2,62 @@ import bd from '../../config/database';
 
 class EventoController {
   lista(req, res) {
-    bd.query('SELECT * FROM ens_evento', (err, result) => {
+    let { page } = req.query;
+    let offset = 0;
+    let numberOfPages = 0;
+    page = parseInt(page);
+    if (!page) {
+      page = 1;
+    }
+
+    bd.query('SELECT COUNT (*) as total from ens_evento', (err, result) => {
       if (err) {
         return res.status(400).json({
-          staus: false,
-          message: 'Não foi possível buscar o evento.',
+          status: false,
+          message: 'Não foi possivel buscar as noticias.',
         });
       }
-      return res.status(200).json({
-        status: true,
-        data: result,
-      });
+
+      const reminder = result[0].total % 10;
+      if (reminder) {
+        numberOfPages = parseInt(result[0].total / 10) + 1;
+      } else {
+        numberOfPages = result[0].total / 10;
+      }
+      if (page < 1) {
+        page = 1;
+      }
+      if (page > numberOfPages) {
+        page = numberOfPages;
+      }
+
+      if (page > 1) {
+        offset = (page - 1) * 10;
+      }
+
+      bd.query(
+        `SELECT * FROM ens_evento  ORDER BY Evento_Data DESC LIMIT 10 OFFSET ${offset}`,
+        (err, result) => {
+          if (err) {
+            return res.status(400).json({
+              staus: false,
+              message: 'Não foi possível buscar o evento.',
+            });
+          }
+          return res
+            .status(200)
+            .header({
+              prevPage: page <= 1 ? page : page - 1,
+              page,
+              nextPage: numberOfPages > page ? page + 1 : page,
+              lastPage: numberOfPages,
+            })
+            .json({
+              status: true,
+              data: result,
+            });
+        }
+      );
     });
   }
 
@@ -94,7 +139,7 @@ class EventoController {
   }
 
   home(req, res) {
-    let hoje = new Date().toLocaleDateString();
+    const hoje = new Date().toLocaleDateString();
     let mes = new Date();
     mes.setDate(mes.getDate() + 30);
     mes = mes.toLocaleDateString();
