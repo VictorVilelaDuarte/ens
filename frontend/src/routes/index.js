@@ -14,6 +14,7 @@ import EventoAdm from '../pages/Adm/Eventos';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
+import EventoCadastro from '../pages/Cadastro/Evento';
 
 export default function Routes() {
   return (
@@ -35,6 +36,11 @@ export default function Routes() {
       <Router
         path="/informensCadastro/"
         component={InformensCadastro}
+        isPrivate
+      />
+      <Router
+        path="/eventoCadastro/:evento?"
+        component={EventoCadastro}
         isPrivate
       />
     </Switch>

@@ -109,7 +109,7 @@ function EventoAdm({ match }) {
       <Container>
         <TitleDiv>
           <Title back="/painel">Eventos</Title>
-          <AddButton url="/noticiaCadastro">Adicionar</AddButton>
+          <AddButton url="/eventoCadastro">Adicionar</AddButton>
         </TitleDiv>
 
         <Table striped bordered hover responsive>
