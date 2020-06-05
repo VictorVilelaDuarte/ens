@@ -26,94 +26,32 @@ function EventoCadastro({ match }) {
   const [optionsTipo, setOptionsTipo] = useState([]);
   const [CEvento, setCEvento] = useState();
 
-  // useEffect(() => {
-  //   const { evento } = match.params;
-
-  //   api
-  //     .get(`/evento/${evento}`)
-  //     .then((res) => {
-  //       const response = res.data.data[0];
-  //       const CNoticiaOBJ = {
-  //         id: response.noticia_cod,
-  //         title: response.noticia_titulo,
-  //         text: response.noticia_texto,
-  //         picture: [response.noticia_imagem],
-  //         noticiaDestaque: response.noticia_destaque === 1,
-  //       };
-  //       setCNoticia(CNoticiaOBJ);
-  //       setText(CNoticiaOBJ.text);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
-  async function handleSubmit(data) {
-    console.log(data);
-
-    // try {
-    //   formRef.current.setErrors({});
-    //   const schema = Yup.object().shape({
-    //     title: Yup.string().required('O titulo é obrigatório'),
-    //     noticiaDestaque: Yup.bool(),
-    //   });
-
-    //   await schema.validate(data, {
-    //     abortEarly: false,
-    //   });
-
-    //   if (!picture && !CNoticia) {
-    //     toast.error('É necessário inserir imagem na notícia');
-    //     return;
-    //   }
-
-    //   if (!text) {
-    //     toast.error('É necessário inserir um texto na notícia');
-    //     return;
-    //   }
-
-    //   const formData = new FormData();
-    //   if (picture) {
-    //     formData.append('file', picture[0]);
-    //   }
-
-    //   formData.append('titulo', data.title);
-    //   formData.append('texto', text);
-    //   formData.append('destaque', data.noticiaDestaque ? '1' : '0');
-
-    //   if (CNoticia) {
-    //     api
-    //       .post(`/noticia/${CNoticia.id}`, formData)
-    //       .then((res) => {
-    //         toast.info(res.data.message);
-    //         history.push('/noticiaadm');
-    //       })
-    //       .catch((err) => {
-    //         toast.error(err.data.message);
-    //       });
-    //   } else {
-    //     api
-    //       .post('/noticia', formData)
-    //       .then((res) => {
-    //         toast.info(res.data.message);
-    //         history.push('/noticiaadm');
-    //       })
-    //       .catch((err) => {
-    //         toast.error(err.data.message);
-    //       });
-    //   }
-    // } catch (err) {
-    //   const validationErrors = {};
-    //   if (err instanceof Yup.ValidationError) {
-    //     err.inner.forEach((error) => {
-    //       validationErrors[error.path] = error.message;
-    //     });
-    //     formRef.current.setErrors(validationErrors);
-    //   }
-    // }
-  }
-
   useEffect(() => {
+    const { evento } = match.params;
+    function getCEvento() {
+      api
+        .get(`/evento/${evento}`)
+        .then((res) => {
+          const response = res.data.data[0];
+          const CEventoOBJ = {
+            id: response.Evento_ID,
+            data: response.Evento_Data,
+            descricao: response.Evento_Descricao,
+            equipe: response.Evento_EquipeResp,
+            hora: response.Evento_Horario,
+            local: response.Evento_Local,
+            tipo: response.Evento_TipoID,
+            text: response.Evento_Historico,
+            eventoDestaque: response.Evento_Destaque === 1,
+          };
+          setCEvento(CEventoOBJ);
+          setText(CEventoOBJ.text);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
     function getOptionTipoEvento() {
       api
         .get('/tipoevento')
@@ -134,7 +72,72 @@ function EventoCadastro({ match }) {
     }
 
     getOptionTipoEvento();
+    if (evento) {
+      getCEvento();
+    }
   }, []);
+
+  async function handleSubmit(data) {
+    console.log(data);
+
+    try {
+      formRef.current.setErrors({});
+      const schema = Yup.object().shape({
+        data: Yup.string().required('A data do evento é obrigatória'),
+        descricao: Yup.string().required('A descrição é obrigatória'),
+        equipe: Yup.string().required('A equipe responsavel é obrigatória'),
+        hora: Yup.string().required('A hora do evento é obrigatória'),
+        local: Yup.string().required('O local do evento é obrigatório'),
+        tipo: Yup.string().required('O tipo do evento é obrigatório'),
+        eventoDestaque: Yup.bool(),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      const json = {
+        data: data.data,
+        hora: data.hora,
+        local: data.local,
+        equipe: data.equipe,
+        descricao: data.descricao,
+        historico: text,
+        tipo: data.tipo,
+        destaque: data.eventoDestaque ? '1' : '0',
+      };
+
+      if (CEvento) {
+        api
+          .put(`/evento/${CEvento.id}`, json)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/eventoadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      } else {
+        api
+          .post('/evento', json)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/eventoadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      }
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+    }
+  }
 
   return (
     <>
@@ -160,7 +163,6 @@ function EventoCadastro({ match }) {
               name="equipe"
               placeholder="Digite a equipe responsável pelo evento"
             />
-            {/* {console.log(optionsTipo[0])} */}
             <InputSelect name="tipo" opcoes={optionsTipo} />
             <CKEditor
               editor={ClassicEditor}
