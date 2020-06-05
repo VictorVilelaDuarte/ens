@@ -90,11 +90,11 @@ function EventoAdm({ match }) {
 
   function handleDelete() {
     api
-      .delete(`/evento/${eventoToDelete.evento_ID}`)
+      .delete(`/evento/${eventoToDelete.Evento_ID}`)
       .then((res) => {
         toast.info(res.data.message);
         setEvento(
-          evento.filter((item) => item.evento_ID !== eventoToDelete.evento_ID)
+          evento.filter((item) => item.Evento_ID !== eventoToDelete.Evento_ID)
         );
         handleShowDelete();
       })
@@ -218,7 +218,7 @@ function EventoAdm({ match }) {
           <Modal.Title>Tem certeza que deseja deletar?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Tem certeza que deseja deletar a noticia:{' '}
+          Tem certeza que deseja deletar o evento:{' '}
           {eventoToDelete.Evento_Descricao}
         </Modal.Body>
         <Modal.Footer>

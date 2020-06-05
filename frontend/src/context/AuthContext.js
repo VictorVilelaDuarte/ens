@@ -45,31 +45,8 @@ export function AuthProvider({ children }) {
     setData({});
   }, []);
 
-  const verifyAuth = useCallback(
-    (page) => {
-      if (data.token) {
-        const { exp } = jwt_decode(data.token);
-        if (Date.now() >= exp * 1000) {
-          signOut();
-        }
-
-        if (page === '/loginadm') {
-          history.push('painel');
-          return;
-        }
-
-        history.push(`${page}`);
-      } else {
-        history.push('/loginadm');
-      }
-    },
-    [data]
-  );
-
   return (
-    <AuthContext.Provider
-      value={{ loggedUser: data, signIn, signOut, verifyAuth }}
-    >
+    <AuthContext.Provider value={{ loggedUser: data, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
