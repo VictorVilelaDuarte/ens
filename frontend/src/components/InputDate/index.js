@@ -17,6 +17,22 @@ function InputDate({ name, children, placeholder, ...rest }) {
     });
   }, [fieldName, registerField]);
 
+  function formatDate(date) {
+    const nDate = new Date(date);
+    const year = nDate.getFullYear();
+    let month = nDate.getMonth() + 1;
+    let dt = nDate.getDate();
+
+    if (dt < 10) {
+      dt = `0${dt}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+
+    return `${year}-${month}-${dt}`;
+  }
+
   return (
     <>
       <Container isFocused={isFocused} isErrored={!!error}>
@@ -26,8 +42,7 @@ function InputDate({ name, children, placeholder, ...rest }) {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           ref={inputRef}
-          defaultValue={defaultValue}
-          placeholder={placeholder}
+          value={defaultValue && formatDate(defaultValue)}
           {...rest}
         />
         {error && (

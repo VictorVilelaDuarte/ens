@@ -62,10 +62,19 @@ class EventoController {
   }
 
   insere(req, res) {
-    const { data, hora, local, equipe, descricao, historico, tipo } = req.body;
+    const {
+      data,
+      hora,
+      local,
+      equipe,
+      descricao,
+      historico,
+      tipo,
+      destaque,
+    } = req.body;
     bd.query(
-      `INSERT INTO ens_evento (Evento_Data, Evento_Horario, Evento_Local, Evento_TipoID, Evento_EquipeResp, Evento_Descricao, Evento_Historico)
-       VALUES ('${data}', '${hora}', '${local}', '${tipo}', '${equipe}', '${descricao}', '${historico}')`,
+      `INSERT INTO ens_evento (Evento_Data, Evento_Horario, Evento_Local, Evento_TipoID, Evento_EquipeResp, Evento_Descricao, Evento_Historico, Evento_Destaque)
+       VALUES ('${data}', '${hora}', '${local}', '${tipo}', '${equipe}', '${descricao}', '${historico}', '${destaque}')`,
       (err) => {
         if (err) {
           return res.status(400).json({
@@ -83,10 +92,19 @@ class EventoController {
 
   altera(req, res) {
     const { id } = req.params;
-    const { data, hora, local, equipe, descricao, historico, tipo } = req.body;
+    const {
+      data,
+      hora,
+      local,
+      equipe,
+      descricao,
+      historico,
+      tipo,
+      destaque,
+    } = req.body;
     bd.query(
       `UPDATE ens_evento
-       SET Evento_Data='${data}', Evento_Horario='${hora}', Evento_Local='${local}', Evento_TipoID='${tipo}', Evento_EquipeResp='${equipe}', Evento_Descricao='${descricao}', Evento_Historico='${historico}'
+       SET Evento_Data='${data}', Evento_Horario='${hora}', Evento_Local='${local}', Evento_TipoID='${tipo}', Evento_EquipeResp='${equipe}', Evento_Descricao='${descricao}', Evento_Historico='${historico}', Evento_Destaque='${destaque}'
        WHERE Evento_ID='${id}'`,
       (err) => {
         if (err) {

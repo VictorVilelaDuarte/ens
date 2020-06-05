@@ -37,11 +37,17 @@ function InputSelect({ name, children, opcoes, ...rest }) {
           onBlur={() => setIsFocused(false)}
           ref={inputRef}
           name={name}
-          defaultValue={defaultValue}
           {...rest}
         >
           {opcoes.map((item) => (
-            <option value={item.value}>{item.label}</option>
+            <>
+              <option
+                selected={item.value === parseInt(defaultValue)}
+                value={item.value}
+              >
+                {item.label}
+              </option>
+            </>
           ))}
         </Input>
         {error && (
