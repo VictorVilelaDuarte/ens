@@ -43,9 +43,11 @@ function Painel() {
               <FaCalendarAlt /> Eventos
             </BigButtons>
           </Link>
-          <BigButtons color="blue">
-            <FaImages /> Galeria
-          </BigButtons>
+          <Link to="/galeriaadm">
+            <BigButtons color="blue">
+              <FaImages /> Galeria
+            </BigButtons>
+          </Link>
           <BigButtons color="blue">
             <FaPrayingHands /> Orações
           </BigButtons>
