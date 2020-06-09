@@ -3,7 +3,7 @@ import bd from '../../config/database';
 class GaleriaController {
   lista(req, res) {
     bd.query(
-      `SELECT G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
+      `SELECT G.Galeria_ID, G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
        FROM ens_galeria AS G
        JOIN ens_foto_capa AS C ON G.Galeria_ID = C.Capa_Galeria`,
       (err, result) => {
