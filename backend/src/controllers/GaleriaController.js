@@ -32,10 +32,21 @@ class GaleriaController {
             message: 'Não foi possível salvar o album.',
           });
         }
-        return res.status(200).json({
-          status: true,
-          message: 'Album registrado com sucesso!',
-        });
+        bd.query(
+          `SELECT * FROM ens_galeria WHERE Galeria_ID = (SELECT MAX(Galeria_ID)from ens_galeria)`,
+          (error, result) => {
+            if (error) {
+              return res.status(400).json({
+                staus: false,
+                message: 'Não foi possível salvar o album.',
+              });
+            }
+            return res.status(200).json({
+              status: true,
+              data: result,
+            });
+          }
+        );
       }
     );
   }
@@ -63,7 +74,7 @@ class GaleriaController {
   busca(req, res) {
     const { id } = req.params;
     bd.query(
-      `SELECT G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
+      `SELECT G.Galeria_ID, G.Galeria_Titulo, G.Galeria_Data, C.Capa_Path
       FROM ens_galeria AS G
       JOIN ens_foto_capa AS C ON G.Galeria_ID = C.Capa_Galeria
       WHERE G.Galeria_ID = ${id}`,
