@@ -16,6 +16,7 @@ import GaleriaAdm from '../pages/Adm/Galeria';
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
 import EventoCadastro from '../pages/Cadastro/Evento';
+import GaleriaCadastro from '../pages/Cadastro/Galeria';
 
 export default function Routes() {
   return (
@@ -43,6 +44,11 @@ export default function Routes() {
       <Router
         path="/eventoCadastro/:evento?"
         component={EventoCadastro}
+        isPrivate
+      />
+      <Router
+        path="/galeriaCadastro/:galeria?"
+        component={GaleriaCadastro}
         isPrivate
       />
     </Switch>

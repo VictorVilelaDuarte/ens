@@ -20,7 +20,7 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function GaleriaAdm({ match }) {
+function GaleriaAdm() {
   const [galeria, setGaleria] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
   const [galeriaToDelete, setGaleriaToDelete] = useState({});
@@ -32,6 +32,7 @@ function GaleriaAdm({ match }) {
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
+              console.log(res);
               setGaleria((prevGalerias) => [...prevGalerias, item]);
             });
           }

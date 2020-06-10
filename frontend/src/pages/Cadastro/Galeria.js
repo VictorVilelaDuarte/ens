@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ImageUploader from 'react-images-upload';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import api from '../../services/api';
 import history from '../../services/history';
 
-import './ckeditor.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
@@ -17,107 +17,91 @@ import { Container, FormDiv, TitleDiv, FormInputs } from './styles';
 
 function GaleriaEvento({ match }) {
   const formRef = useRef(null);
-  const [text, setText] = useState('');
-  const [optionsTipo, setOptionsTipo] = useState([]);
-  const [CEvento, setCEvento] = useState();
+  const [picture, setPicture] = useState();
+  const [CGaleria, setCGaleria] = useState();
 
   useEffect(() => {
-    const { evento } = match.params;
-    function getCEvento() {
+    const { galeria } = match.params;
+    function getCGaleria() {
       api
-        .get(`/evento/${evento}`)
+        .get(`/galeria/${galeria}`)
         .then((res) => {
           const response = res.data.data[0];
-          const CEventoOBJ = {
-            id: response.Evento_ID,
-            data: response.Evento_Data,
-            descricao: response.Evento_Descricao,
-            equipe: response.Evento_EquipeResp,
-            hora: response.Evento_Horario,
-            local: response.Evento_Local,
-            tipo: response.Evento_TipoID,
-            text: response.Evento_Historico,
-            eventoDestaque: response.Evento_Destaque === 1,
+          const CGaleriaOBJ = {
+            id: response.Galeria_ID,
+            data: response.Galeria_Data,
+            titulo: response.Galeria_Titulo,
+            picture: [response.Capa_Path],
           };
-          setCEvento(CEventoOBJ);
-          setText(CEventoOBJ.text);
+          setCGaleria(CGaleriaOBJ);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-
-    function getOptionTipoEvento() {
-      api
-        .get('/tipoevento')
-        .then((res) => {
-          const OptionsOBJ = [];
-          res.data.data.map((item) => {
-            const draftOBJ = {
-              value: item.Evento_TipoID,
-              label: item.Evento_TipoDescricao,
-            };
-            OptionsOBJ.push(draftOBJ);
-          });
-          setOptionsTipo(OptionsOBJ);
-        })
-        .catch((err) => {
-          toast.error(err.data.message);
-        });
-    }
-
-    getOptionTipoEvento();
-    if (evento) {
-      getCEvento();
-    }
+    getCGaleria();
   }, []);
 
   async function handleSubmit(data) {
-    console.log(data);
-
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
-        data: Yup.string().required('A data do evento é obrigatória'),
-        descricao: Yup.string().required('A descrição é obrigatória'),
-        equipe: Yup.string().required('A equipe responsavel é obrigatória'),
-        hora: Yup.string().required('A hora do evento é obrigatória'),
-        local: Yup.string().required('O local do evento é obrigatório'),
-        tipo: Yup.string().required('O tipo do evento é obrigatório'),
-        eventoDestaque: Yup.bool(),
+        data: Yup.string().required('A data do album é obrigatória'),
+        titulo: Yup.string().required('O titulo do album é obrigatória'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
+      if (!picture && !CGaleria) {
+        toast.error('É necessário inserir capa no album');
+        return;
+      }
+
       const json = {
         data: data.data,
-        hora: data.hora,
-        local: data.local,
-        equipe: data.equipe,
-        descricao: data.descricao,
-        historico: text,
-        tipo: data.tipo,
-        destaque: data.eventoDestaque ? '1' : '0',
+        titulo: data.titulo,
       };
 
-      if (CEvento) {
+      if (CGaleria) {
+        console.log(CGaleria);
         api
-          .put(`/evento/${CEvento.id}`, json)
+          .put(`/galeria/${CGaleria.id}`, json)
           .then((res) => {
-            toast.info(res.data.message);
-            history.push('/eventoadm');
+            const formData = new FormData();
+            if (picture) {
+              formData.append('file', picture[0]);
+              formData.append('galeria', CGaleria.id);
+              api
+                .post(`/capa`, formData)
+                .then(() => {
+                  toast.info('Album alterado com sucesso!');
+                  history.push('/galeriaadm');
+                })
+                .catch((err) => console.log(err));
+            } else {
+              toast.info(res.data.message);
+              history.push('/galeriaadm');
+            }
           })
           .catch((err) => {
             toast.error(err.data.message);
           });
       } else {
         api
-          .post('/evento', json)
+          .post('/galeria', json)
           .then((res) => {
-            toast.info(res.data.message);
-            history.push('/eventoadm');
+            const formData = new FormData();
+            formData.append('file', picture[0]);
+            formData.append('galeria', res.data.data[0].Galeria_ID);
+            api
+              .post(`/capa`, formData)
+              .then(() => {
+                toast.info('Album salvo com sucesso!');
+                history.push('/galeriaadm');
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => {
             toast.error(err.data.message);
@@ -134,41 +118,36 @@ function GaleriaEvento({ match }) {
     }
   }
 
+  function onDrop(Cpicture) {
+    setPicture(Cpicture);
+  }
+
   return (
     <>
       <Header />
       <Container>
         <TitleDiv>
-          <Title>Cadastro de notícia</Title>
+          <Title>Cadastro de album</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs
             ref={formRef}
-            initialData={CEvento}
+            initialData={CGaleria}
             onSubmit={handleSubmit}
           >
-            <InputTexto
-              name="descricao"
-              placeholder="Digite a descrição do evento"
+            <InputTexto name="titulo" placeholder="Digite o titulo do album" />
+            <InputDate name="data" placeholder="Digite a data do do allbum" />
+            <ImageUploader
+              defaultImages={CGaleria ? CGaleria.picture : ''}
+              withIcon
+              withPreview
+              singleImage
+              label="Escolha capa do album (até 5Mb)"
+              buttonText="Escolher imagem"
+              onChange={onDrop}
+              imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
+              maxFileSize={5242880}
             />
-            <InputDate name="data" placeholder="Digite a data do evento" />
-            <InputTime name="hora" placeholder="Digite a hora do evento" />
-            <InputTexto name="local" placeholder="Digite o local do evento" />
-            <InputTexto
-              name="equipe"
-              placeholder="Digite a equipe responsável pelo evento"
-            />
-            <InputSelect name="tipo" opcoes={optionsTipo} />
-            <CKEditor
-              editor={ClassicEditor}
-              config={{ placeholder: 'Digite o histórico do evento' }}
-              data={CEvento ? CEvento.text : ''}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setText(data);
-              }}
-            />
-            <InputSwitch label="Evento destaque" name="eventoDestaque" />
             <Button type="submit">Enviar</Button>
           </FormInputs>
         </FormDiv>
