@@ -6,8 +6,6 @@ import api from '../../services/api';
 import history from '../../services/history';
 
 import './ckeditor.css';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import InputTexto from '../../components/InputTexto';
 import InputFile from '../../components/InputFile';
@@ -63,7 +61,6 @@ function InformensCadastro() {
 
   return (
     <>
-      <Header />
       <Container>
         <TitleDiv>
           <Title>Cadastro de Informens</Title>
@@ -84,7 +81,6 @@ function InformensCadastro() {
           </FormInputs>
         </FormDiv>
       </Container>
-      <Footer />
     </>
   );
 }

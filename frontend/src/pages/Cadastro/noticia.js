@@ -9,8 +9,6 @@ import api from '../../services/api';
 import history from '../../services/history';
 
 import './ckeditor.css';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import InputTexto from '../../components/InputTexto';
 import InputSwitch from '../../components/InputSwitch';
@@ -115,7 +113,6 @@ function NoticiaCadastro({ match }) {
 
   return (
     <>
-      <Header />
       <Container>
         <TitleDiv>
           <Title>Cadastro de notícia</Title>
@@ -152,7 +149,6 @@ function NoticiaCadastro({ match }) {
           </FormInputs>
         </FormDiv>
       </Container>
-      <Footer />
     </>
   );
 }

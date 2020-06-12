@@ -6,8 +6,6 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { Container, DivForm, FormLogin } from './styles';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Title from '../../components/Title';
@@ -45,7 +43,6 @@ export default function LoginAdm() {
 
   return (
     <>
-      <Header />
       <Container>
         <Title>Login de administrador do sistema</Title>
         <DivForm>
@@ -64,7 +61,6 @@ export default function LoginAdm() {
           </FormLogin>
         </DivForm>
       </Container>
-      <Footer />
     </>
   );
 }

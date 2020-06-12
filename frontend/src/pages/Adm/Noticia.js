@@ -14,8 +14,6 @@ import {
   TitleDiv,
 } from './styles';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
@@ -107,7 +105,6 @@ function NoticiaAdm({ match }) {
   }
   return (
     <>
-      <Header />
       <Container>
         <TitleDiv>
           <Title back="/painel">Notícias</Title>
@@ -209,7 +206,6 @@ function NoticiaAdm({ match }) {
           )}
         </Pagination>
       </Container>
-      <Footer />
       <Modal show={showDelete} onHide={handleShowDelete}>
         <Modal.Header
           style={{ backgroundColor: '#F54B30', color: '#fff' }}

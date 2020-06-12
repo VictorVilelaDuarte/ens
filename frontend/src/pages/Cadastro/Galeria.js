@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 import api from '../../services/api';
 import history from '../../services/history';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import InputTexto from '../../components/InputTexto';
 import InputDate from '../../components/InputDate';
@@ -124,7 +122,6 @@ function GaleriaEvento({ match }) {
 
   return (
     <>
-      <Header />
       <Container>
         <TitleDiv>
           <Title>Cadastro de album</Title>
@@ -152,7 +149,6 @@ function GaleriaEvento({ match }) {
           </FormInputs>
         </FormDiv>
       </Container>
-      <Footer />
     </>
   );
 }

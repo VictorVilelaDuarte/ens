@@ -4,9 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Evento, DivEvento } from './styles';
 import api from '../../services/api';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-
 export default function Home() {
   const [noticia, setNoticia] = useState([]);
   const [evento, setEvento] = useState([]);
@@ -58,7 +55,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <Container>
         <DivEvento>
           <ul>
@@ -88,7 +84,6 @@ export default function Home() {
           </ul>
         </DivEvento>
       </Container>
-      <Footer />
     </>
   );
 }

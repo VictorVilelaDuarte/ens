@@ -17,14 +17,11 @@ import { Link } from 'react-router-dom';
 
 import { Container, BigButtons, DivButtons } from './styles';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import AdmHeader from '../../components/AdmHeader';
 
 function Painel() {
   return (
     <>
-      <Header />
       <AdmHeader />
       <Container>
         <DivButtons>
@@ -74,7 +71,6 @@ function Painel() {
           </BigButtons>
         </DivButtons>
       </Container>
-      <Footer />
     </>
   );
 }

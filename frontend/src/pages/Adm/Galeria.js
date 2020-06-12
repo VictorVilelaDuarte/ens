@@ -14,8 +14,6 @@ import {
   TitleDiv,
 } from './styles';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
@@ -88,7 +86,6 @@ function GaleriaAdm() {
   }
   return (
     <>
-      <Header />
       <Container>
         <TitleDiv>
           <Title back="/painel">Galeria</Title>
@@ -134,7 +131,6 @@ function GaleriaAdm() {
           </tbody>
         </Table>
       </Container>
-      <Footer />
       <Modal show={showDelete} onHide={handleShowDelete}>
         <Modal.Header
           style={{ backgroundColor: '#F54B30', color: '#fff' }}
