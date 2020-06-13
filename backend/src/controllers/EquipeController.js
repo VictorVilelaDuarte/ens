@@ -2,18 +2,28 @@ import bd from '../../config/database';
 
 class EquipeController {
   lista(req, res) {
-    bd.query(`SELECT * FROM ens_equipe`, (err, result) => {
-      if (err) {
-        return res.status(400).json({
-          staus: false,
-          message: 'Não foi possível buscar as equipes.',
+    bd.query(
+      `SELECT ens_equipe.*, ens_conselheiro.Conselheiro_Nome, a.Casal_Nome as Casal_Ligacao,  b.Casal_Nome as Casal_Resp FROM ens_equipe
+    LEFT JOIN ens_conselheiro 
+    ON ens_equipe.Equipe_ConselheiroIDMENS = ens_conselheiro.Conselheiro_IDMENS
+    LEFT JOIN ens_casal AS a
+    ON ens_equipe.Equipe_CasalLigacaoAtualIDMENS = a.Casal_IDMENS
+    LEFT JOIN ens_casal AS b
+    ON ens_equipe.Equipe_CasalRespAtualIDMENS = b.Casal_IDMENS;
+    ;`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar as equipes.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
         });
       }
-      return res.status(200).json({
-        status: true,
-        data: result,
-      });
-    });
+    );
   }
 
   insere(req, res) {
