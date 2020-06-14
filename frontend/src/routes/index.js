@@ -12,11 +12,13 @@ import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
 import EventoAdm from '../pages/Adm/Eventos';
 import GaleriaAdm from '../pages/Adm/Galeria';
+import EquipeAdm from '../pages/Adm/Equipe';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
 import EventoCadastro from '../pages/Cadastro/Evento';
 import GaleriaCadastro from '../pages/Cadastro/Galeria';
+import EquipeCadastro from '../pages/Cadastro/Equipe';
 
 export default function Routes() {
   return (
@@ -30,6 +32,7 @@ export default function Routes() {
       <Router path="/informensadm/:page?" component={InformensAdm} isPrivate />
       <Router path="/eventoadm/:page?" component={EventoAdm} isPrivate />
       <Router path="/galeriaadm/:page?" component={GaleriaAdm} isPrivate />
+      <Router path="/equipeadm" component={EquipeAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"
@@ -49,6 +52,11 @@ export default function Routes() {
       <Router
         path="/galeriaCadastro/:galeria?"
         component={GaleriaCadastro}
+        isPrivate
+      />
+      <Router
+        path="/equipeCadastro/:equipe?"
+        component={EquipeCadastro}
         isPrivate
       />
     </Switch>

@@ -48,9 +48,11 @@ function Painel() {
           <BigButtons color="blue">
             <FaPrayingHands /> Orações
           </BigButtons>
-          <BigButtons color="orange">
-            <FaUsers /> Equipes
-          </BigButtons>
+          <Link to="/equipeadm">
+            <BigButtons color="orange">
+              <FaUsers /> Equipes
+            </BigButtons>
+          </Link>
           <BigButtons color="orange">
             <FaTh /> Quadrante
           </BigButtons>
