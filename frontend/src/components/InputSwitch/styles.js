@@ -3,6 +3,7 @@ import { FormCheck } from 'react-bootstrap';
 
 export const Container = styled.div`
   width: 100%;
+  margin-bottom: 10px;
 `;
 
 export const Check = styled(FormCheck)`

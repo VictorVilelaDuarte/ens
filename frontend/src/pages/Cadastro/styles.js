@@ -32,6 +32,7 @@ export const FormInputs = styled(Form)`
 export const Label = styled.label`
   align-self: flex-start;
   padding-left: 5px;
+  margin-top: 5px;
   margin-bottom: -8px;
   font-size: 15px;
   color: #222222;
