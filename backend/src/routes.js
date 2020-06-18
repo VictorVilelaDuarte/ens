@@ -17,6 +17,7 @@ import PadroeiraController from './controllers/PadroeiraController';
 import PaginaController from './controllers/PaginaController';
 import TipoEvento from './controllers/TipoEvento';
 import ConselheiroController from './controllers/ConselheiroController';
+import CasalController from './controllers/CasalController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -110,5 +111,7 @@ routes.get('/conselheiro', ConselheiroController.lista);
 routes.get('/tipoevento', TipoEvento.lista);
 
 routes.post('/session', SessionController.insere);
+
+routes.get('/casalOpcao', CasalController.listaOpcao);
 
 export default routes;
