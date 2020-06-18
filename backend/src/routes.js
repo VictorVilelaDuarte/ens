@@ -94,7 +94,11 @@ routes.delete('/noticia/:id', NoticiaController.deleta);
 routes.get('/equipe', EquipeController.lista);
 routes.post('/equipe', uploadEquipe.single('file'), EquipeController.insere);
 routes.get('/equipe/:id', EquipeController.busca);
-routes.put('/equipe/:id', EquipeController.altera);
+routes.post(
+  '/equipe/:id',
+  uploadEquipe.single('file'),
+  EquipeController.altera
+);
 routes.delete('/equipe/:id', EquipeController.deleta);
 
 routes.get('/padroeira', PadroeiraController.lista);

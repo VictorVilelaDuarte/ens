@@ -73,25 +73,33 @@ class EquipeController {
       Equipe_NecessRepilotagem,
       Equipe_Historico,
     } = req.body;
-    bd.query(
-      `UPDATE ens_equipe
-       SET Equipe_Nome='${Equipe_Nome}', Equipe_Descricao='${Equipe_Descricao}', Equipe_PadroeiraID='${Equipe_PadroeiraID}', Equipe_ConselheiroIDMENS='${Equipe_ConselheiroIDMENS}',
-       Equipe_CasalRespAtualIDMENS='${Equipe_CasalRespAtualIDMENS}', Equipe_DataFundacao='${Equipe_DataFundacao}', Equipe_CasalLigacaoAtualIDMENS='${Equipe_CasalLigacaoAtualIDMENS}',
-       Equipe_SetorID='${Equipe_SetorID}', Equipe_NecessRepilotagem='${Equipe_NecessRepilotagem}', Equipe_Historico='${Equipe_Historico}'
-       WHERE Equipe_ID='${id}'`,
-      (err) => {
-        if (err) {
-          return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível salvar a equipe.',
-          });
-        }
-        return res.status(200).json({
-          status: true,
-          message: 'Equipe atualizada com sucesso!',
+    let sql = `UPDATE ens_equipe
+     SET Equipe_Nome='${Equipe_Nome}', Equipe_Descricao='${Equipe_Descricao}', Equipe_PadroeiraID='${Equipe_PadroeiraID}', Equipe_ConselheiroIDMENS='${Equipe_ConselheiroIDMENS}',
+     Equipe_CasalRespAtualIDMENS='${Equipe_CasalRespAtualIDMENS}', Equipe_DataFundacao='${Equipe_DataFundacao}', Equipe_CasalLigacaoAtualIDMENS='${Equipe_CasalLigacaoAtualIDMENS}',
+     Equipe_SetorID='${Equipe_SetorID}', Equipe_NecessRepilotagem='${Equipe_NecessRepilotagem}', Equipe_Historico='${Equipe_Historico}'
+     WHERE Equipe_ID='${id}'`;
+    if (req.file) {
+      const { filename: path } = req.file;
+      const final_path = `${process.env.APP_URL}/files-equipe/${path}`;
+      sql = `UPDATE ens_equipe
+     SET Equipe_Nome='${Equipe_Nome}', Equipe_Descricao='${Equipe_Descricao}', Equipe_PadroeiraID='${Equipe_PadroeiraID}', Equipe_ConselheiroIDMENS='${Equipe_ConselheiroIDMENS}',
+     Equipe_CasalRespAtualIDMENS='${Equipe_CasalRespAtualIDMENS}', Equipe_DataFundacao='${Equipe_DataFundacao}', Equipe_CasalLigacaoAtualIDMENS='${Equipe_CasalLigacaoAtualIDMENS}',
+     Equipe_SetorID='${Equipe_SetorID}', Equipe_NecessRepilotagem='${Equipe_NecessRepilotagem}', Equipe_Historico='${Equipe_Historico}', Equipe_imagem='${final_path}'
+     WHERE Equipe_ID='${id}'`;
+    }
+    bd.query(sql, (err) => {
+      if (err) {
+        console.log(sql);
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível salvar a equipe.',
         });
       }
-    );
+      return res.status(200).json({
+        status: true,
+        message: 'Equipe atualizada com sucesso!',
+      });
+    });
   }
 
   busca(req, res) {
