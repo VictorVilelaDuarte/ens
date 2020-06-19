@@ -56,9 +56,11 @@ function Painel() {
           <BigButtons color="orange">
             <FaTh /> Quadrante
           </BigButtons>
-          <BigButtons color="orange">
-            <FaUserTie /> Conselheiro
-          </BigButtons>
+          <Link to="/conselheiroadm">
+            <BigButtons color="orange">
+              <FaUserTie /> Conselheiro
+            </BigButtons>
+          </Link>
           <BigButtons color="orange">
             <FaChurch /> Padroeira
           </BigButtons>

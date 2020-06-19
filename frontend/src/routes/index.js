@@ -13,12 +13,14 @@ import InformensAdm from '../pages/Adm/Informens';
 import EventoAdm from '../pages/Adm/Eventos';
 import GaleriaAdm from '../pages/Adm/Galeria';
 import EquipeAdm from '../pages/Adm/Equipe';
+import ConselheiroAdm from '../pages/Adm/Conselheiro';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
 import EventoCadastro from '../pages/Cadastro/Evento';
 import GaleriaCadastro from '../pages/Cadastro/Galeria';
 import EquipeCadastro from '../pages/Cadastro/Equipe';
+import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
 
 export default function Routes() {
   return (
@@ -33,6 +35,7 @@ export default function Routes() {
       <Router path="/eventoadm/:page?" component={EventoAdm} isPrivate />
       <Router path="/galeriaadm/:page?" component={GaleriaAdm} isPrivate />
       <Router path="/equipeadm" component={EquipeAdm} isPrivate />
+      <Router path="/conselheiroadm" component={ConselheiroAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"
@@ -57,6 +60,11 @@ export default function Routes() {
       <Router
         path="/equipeCadastro/:equipe?"
         component={EquipeCadastro}
+        isPrivate
+      />
+      <Router
+        path="/conselheiroCadastro/:conselheiro?"
+        component={ConselheiroCadastro}
         isPrivate
       />
     </Switch>

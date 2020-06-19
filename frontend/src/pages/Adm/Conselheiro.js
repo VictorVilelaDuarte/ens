@@ -18,18 +18,19 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function ConselheiroAdm() {
-  const [equipe, setEquipe] = useState([]);
+function ConselheiroAdm({ match }) {
+  const [conselheiro, setConselheiro] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
+  const [conselheiroToDelete, setConselheiroToDelete] = useState({});
 
   useEffect(() => {
-    function getEquipe() {
+    function getConselheiro() {
       api
-        .get(`/equipe`)
+        .get(`/conselheiro`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
-              setEquipe((prevEquipes) => [...prevEquipes, item]);
+              setConselheiro((prevConselheiros) => [...prevConselheiros, item]);
             });
           }
         })
@@ -37,7 +38,7 @@ function ConselheiroAdm() {
           toast.error(err.response.data.message);
         });
     }
-    getEquipe();
+    getConselheiro();
   }, []);
 
   function formatDate(date) {
@@ -56,43 +57,78 @@ function ConselheiroAdm() {
     return `${dt}/${month}/${year}`;
   }
 
+  function handleShowDelete(conselheiroDelete) {
+    if (conselheiroDelete) {
+      setConselheiroToDelete(conselheiroDelete);
+    } else {
+      setConselheiroToDelete({});
+    }
+    setShowDetele(!showDelete);
+  }
+
+  function handleDelete() {
+    api
+      .delete(`/conselheiro/${conselheiroToDelete.Conselheiro_IDMENS}`)
+      .then((res) => {
+        toast.info(res.data.message);
+        setConselheiro(
+          conselheiro.filter(
+            (item) =>
+              item.Conselheiro_IDMENS !== conselheiroToDelete.Conselheiro_IDMENS
+          )
+        );
+        handleShowDelete();
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+        handleShowDelete();
+      });
+  }
   return (
     <>
       <Container>
         <TitleDiv>
-          <Title back="/painel">Equipes</Title>
-          {/* <AddButton url="/equipeCadastro">Adicionar</AddButton> */}
+          <Title back="/painel">Conselheiros</Title>
+          <AddButton url="/conselheiroCadastro">Adicionar</AddButton>
         </TitleDiv>
 
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Perfil</th>
               <th>Nome</th>
-              <th>Conselheiro</th>
-              <th>Casal Resp.</th>
-              <th>Casal Ligação</th>
-              <th>Data</th>
+              <th>Data nascimento</th>
+              <th>Ano ingresso equipe</th>
               <th>Editar</th>
+              <th>Deletar</th>
             </tr>
           </thead>
           <tbody>
-            {equipe.map((item) => (
+            {conselheiro.map((item) => (
               <tr>
-                <td>{item.Equipe_ID}</td>
-                <td>{item.Equipe_Nome}</td>
+                <td>{item.Conselheiro_Perfil}</td>
                 <td>{item.Conselheiro_Nome}</td>
-                <td>{item.Casal_Resp}</td>
-                <td>{item.Casal_Ligacao}</td>
-                <td>{formatDate(item.Equipe_DataFundacao)}</td>
+                <td>{formatDate(item.Conselheiro_DataNascimento)}</td>
+                <td>{formatDate(item.Conselheiro_AnoIngressoEquipe)}</td>
                 <td>
                   <ButtonIconPointer>
                     <FaEdit
                       onClick={() =>
-                        history.push(`/equipeCadastro/${item.Equipe_ID}`)
+                        history.push(
+                          `/conselheiroCadastro/${item.Conselheiro_IDMENS}`
+                        )
                       }
                       size={18}
                       color="#326B97"
+                    />
+                  </ButtonIconPointer>
+                </td>
+                <td>
+                  <ButtonIconPointer>
+                    <FaTrash
+                      size={18}
+                      color="#F54B30"
+                      onClick={() => handleShowDelete(item)}
                     />
                   </ButtonIconPointer>
                 </td>
@@ -101,6 +137,24 @@ function ConselheiroAdm() {
           </tbody>
         </Table>
       </Container>
+      <Modal show={showDelete} onHide={handleShowDelete}>
+        <Modal.Header
+          style={{ backgroundColor: '#F54B30', color: '#fff' }}
+          closeButton
+        >
+          <Modal.Title>Tem certeza que deseja deletar?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza que deseja deletar o conselheiro:{' '}
+          {conselheiroToDelete.Conselheiro_Nome}
+        </Modal.Body>
+        <Modal.Footer>
+          <ButtonCancelDelete onClick={handleShowDelete}>
+            Cancelar
+          </ButtonCancelDelete>
+          <ButtonDelete onClick={handleDelete}>Deletar</ButtonDelete>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
