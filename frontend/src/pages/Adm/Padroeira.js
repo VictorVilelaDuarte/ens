@@ -18,19 +18,19 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function ConselheiroAdm({ match }) {
-  const [conselheiro, setConselheiro] = useState([]);
+function PadroeiraAdm({ match }) {
+  const [padroeira, setPadroeira] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
-  const [conselheiroToDelete, setConselheiroToDelete] = useState({});
+  const [padroeiraToDelete, setPadroeiraToDelete] = useState({});
 
   useEffect(() => {
-    function getConselheiro() {
+    function getPadroeira() {
       api
-        .get(`/conselheiro`)
+        .get(`/padroeira`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
-              setConselheiro((prevConselheiros) => [...prevConselheiros, item]);
+              setPadroeira((prevPadroeiras) => [...prevPadroeiras, item]);
             });
           }
         })
@@ -38,43 +38,26 @@ function ConselheiroAdm({ match }) {
           toast.error(err.response.data.message);
         });
     }
-    getConselheiro();
+    getPadroeira();
   }, []);
 
-  function formatDate(date) {
-    const nDate = new Date(date);
-    const year = nDate.getFullYear();
-    let month = nDate.getMonth() + 1;
-    let dt = nDate.getDate();
-
-    if (dt < 10) {
-      dt = `0${dt}`;
-    }
-    if (month < 10) {
-      month = `0${month}`;
-    }
-
-    return `${dt}/${month}/${year}`;
-  }
-
-  function handleShowDelete(conselheiroDelete) {
-    if (conselheiroDelete) {
-      setConselheiroToDelete(conselheiroDelete);
+  function handleShowDelete(padroeiraDelete) {
+    if (padroeiraDelete) {
+      setPadroeiraToDelete(padroeiraDelete);
     } else {
-      setConselheiroToDelete({});
+      setPadroeiraToDelete({});
     }
     setShowDetele(!showDelete);
   }
 
   function handleDelete() {
     api
-      .delete(`/conselheiro/${conselheiroToDelete.Conselheiro_IDMENS}`)
+      .delete(`/padroeira/${padroeiraToDelete.Padroeira_ID}`)
       .then((res) => {
         toast.info(res.data.message);
-        setConselheiro(
-          conselheiro.filter(
-            (item) =>
-              item.Conselheiro_IDMENS !== conselheiroToDelete.Conselheiro_IDMENS
+        setPadroeira(
+          padroeira.filter(
+            (item) => item.Padroeira_ID !== padroeiraToDelete.Padroeira_ID
           )
         );
         handleShowDelete();
@@ -88,35 +71,29 @@ function ConselheiroAdm({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title back="/painel">Conselheiros</Title>
-          <AddButton url="/conselheiroCadastro">Adicionar</AddButton>
+          <Title back="/painel">Padroeiras</Title>
+          <AddButton url="/padroeiraCadastro">Adicionar</AddButton>
         </TitleDiv>
 
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th>Perfil</th>
               <th>Nome</th>
-              <th>Data nascimento</th>
-              <th>Ano ingresso equipe</th>
+              <th>Descrição</th>
               <th>Editar</th>
               <th>Deletar</th>
             </tr>
           </thead>
           <tbody>
-            {conselheiro.map((item) => (
+            {padroeira.map((item) => (
               <tr>
-                <td>{item.Conselheiro_Perfil}</td>
-                <td>{item.Conselheiro_Nome}</td>
-                <td>{formatDate(item.Conselheiro_DataNascimento)}</td>
-                <td>{formatDate(item.Conselheiro_AnoIngressoEquipe)}</td>
+                <td>{item.Padroeira_Nome}</td>
+                <td>{item.Padroeira_Descricao}</td>
                 <td>
                   <ButtonIconPointer>
                     <FaEdit
                       onClick={() =>
-                        history.push(
-                          `/conselheiroCadastro/${item.Conselheiro_IDMENS}`
-                        )
+                        history.push(`/padroeiraCadastro/${item.Padroeira_ID}`)
                       }
                       size={18}
                       color="#326B97"
@@ -145,8 +122,8 @@ function ConselheiroAdm({ match }) {
           <Modal.Title>Tem certeza que deseja deletar?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Tem certeza que deseja deletar o conselheiro:{' '}
-          {conselheiroToDelete.Conselheiro_Nome}
+          Tem certeza que deseja deletar a padroeira:{' '}
+          {padroeiraToDelete.Padroeira_Nome}
         </Modal.Body>
         <Modal.Footer>
           <ButtonCancelDelete onClick={handleShowDelete}>
@@ -159,4 +136,4 @@ function ConselheiroAdm({ match }) {
   );
 }
 
-export default ConselheiroAdm;
+export default PadroeiraAdm;

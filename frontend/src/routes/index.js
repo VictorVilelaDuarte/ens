@@ -14,6 +14,7 @@ import EventoAdm from '../pages/Adm/Eventos';
 import GaleriaAdm from '../pages/Adm/Galeria';
 import EquipeAdm from '../pages/Adm/Equipe';
 import ConselheiroAdm from '../pages/Adm/Conselheiro';
+import PadroeiraAdm from '../pages/Adm/Padroeira';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -21,6 +22,7 @@ import EventoCadastro from '../pages/Cadastro/Evento';
 import GaleriaCadastro from '../pages/Cadastro/Galeria';
 import EquipeCadastro from '../pages/Cadastro/Equipe';
 import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
+import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
 
 export default function Routes() {
   return (
@@ -36,6 +38,7 @@ export default function Routes() {
       <Router path="/galeriaadm/:page?" component={GaleriaAdm} isPrivate />
       <Router path="/equipeadm" component={EquipeAdm} isPrivate />
       <Router path="/conselheiroadm" component={ConselheiroAdm} isPrivate />
+      <Router path="/padroeiraadm" component={PadroeiraAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"
@@ -65,6 +68,11 @@ export default function Routes() {
       <Router
         path="/conselheiroCadastro/:conselheiro?"
         component={ConselheiroCadastro}
+        isPrivate
+      />
+      <Router
+        path="/padroeiraCadastro/:padroeira?"
+        component={PadroeiraCadastro}
         isPrivate
       />
     </Switch>

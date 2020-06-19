@@ -61,9 +61,11 @@ function Painel() {
               <FaUserTie /> Conselheiro
             </BigButtons>
           </Link>
-          <BigButtons color="orange">
-            <FaChurch /> Padroeira
-          </BigButtons>
+          <Link to="/padroeiraadm">
+            <BigButtons color="orange">
+              <FaChurch /> Padroeira
+            </BigButtons>
+          </Link>
           <BigButtons color="green">
             <FaCode /> Páginas
           </BigButtons>
