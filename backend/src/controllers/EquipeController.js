@@ -89,7 +89,6 @@ class EquipeController {
     }
     bd.query(sql, (err) => {
       if (err) {
-        console.log(sql);
         return res.status(400).json({
           staus: false,
           message: 'Não foi possível salvar a equipe.',

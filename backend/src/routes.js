@@ -25,6 +25,7 @@ import multerInformens from '../config/multerInformens';
 import multerOracao from '../config/multerOracao';
 import multerNoticia from '../config/multerNoticia';
 import multerEquipe from '../config/multerEquipe';
+import multerConselheiro from '../config/multerConselheiro';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
@@ -33,6 +34,7 @@ const uploadInformens = multer(multerInformens);
 const uploadOracao = multer(multerOracao);
 const uploadNoticia = multer(multerNoticia);
 const uploadEquipe = multer(multerEquipe);
+const uploadConselheiro = multer(multerConselheiro);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -111,6 +113,19 @@ routes.get('/pagina/:id', PaginaController.busca);
 routes.put('/pagina/:id', PaginaController.altera);
 
 routes.get('/conselheiro', ConselheiroController.lista);
+routes.get('/conselheiro/:id', ConselheiroController.busca);
+routes.post(
+  '/conselheiro',
+  uploadConselheiro.single('file'),
+  ConselheiroController.insere
+);
+routes.post(
+  '/conselheiro/:idmens',
+  authMiddleware,
+  uploadConselheiro.single('file'),
+  ConselheiroController.altera
+);
+routes.delete('/conselheiro/:idmens', ConselheiroController.deleta);
 
 routes.get('/tipoevento', TipoEvento.lista);
 
