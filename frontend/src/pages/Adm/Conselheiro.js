@@ -1,19 +1,26 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
-import { FaEdit } from 'react-icons/fa';
+import { Table, Pagination, Modal } from 'react-bootstrap';
+import { FaEdit, FaTrash, FaTimesCircle, FaCheckCircle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
 import api from '../../services/api';
 
-import { Container, TitleDiv } from './styles';
+import {
+  Container,
+  ButtonDelete,
+  ButtonCancelDelete,
+  TitleDiv,
+} from './styles';
 
 import Title from '../../components/Title';
+import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function EquipeAdm() {
+function ConselheiroAdm() {
   const [equipe, setEquipe] = useState([]);
+  const [showDelete, setShowDetele] = useState(false);
 
   useEffect(() => {
     function getEquipe() {
@@ -98,4 +105,4 @@ function EquipeAdm() {
   );
 }
 
-export default EquipeAdm;
+export default ConselheiroAdm;
