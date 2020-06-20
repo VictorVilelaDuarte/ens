@@ -13,6 +13,7 @@ import {
   FaInfo,
   FaPhone,
 } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 import { Container, ImagemTopo, Menu, Item, Dropdown } from './styles';
 import topo from '../../assets/topo.png';
@@ -74,9 +75,11 @@ export default function Header() {
               <Item.Link href="#link">
                 <FaImages /> Galeria
               </Item.Link>
-              <Item.Link href="#link">
-                <FaTh /> Quadrante
-              </Item.Link>
+              <Link to="/login">
+                <Item.Link href="#link">
+                  <FaTh /> Quadrante
+                </Item.Link>
+              </Link>
               <Item.Link href="#link">
                 <FaInfo /> Informens
               </Item.Link>

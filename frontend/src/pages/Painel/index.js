@@ -73,7 +73,7 @@ function Painel() {
             <FaFileUpload /> Arquivos
           </BigButtons>
           <BigButtons color="red">
-            <FaUserShield /> Administradores
+            <FaUserShield /> Usuários
           </BigButtons>
         </DivButtons>
       </Container>

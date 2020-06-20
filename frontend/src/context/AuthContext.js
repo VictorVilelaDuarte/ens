@@ -25,6 +25,13 @@ export function AuthProvider({ children }) {
         senha: password,
       })
       .then((res) => {
+        if (res.data.new) {
+          const user = res.data.data;
+          history.push('/novasenha', {
+            user,
+          });
+          return;
+        }
         const { token, user } = res.data;
         toast.info('Login efetuado com sucesso!');
         localStorage.setItem('ensccpv:token', token);

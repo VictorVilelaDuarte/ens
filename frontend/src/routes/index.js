@@ -6,6 +6,8 @@ import Router from './Router';
 import Home from '../pages/Home';
 import Eventos from '../pages/Eventos';
 import LoginAdm from '../pages/LoginAdm';
+import Login from '../pages/Login';
+import NovaSenha from '../pages/NovaSenha';
 import Painel from '../pages/Painel';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
@@ -30,6 +32,8 @@ export default function Routes() {
       <Router path="/" exact component={Home} />
       <Router path="/register" component={Eventos} />
       <Router path="/loginadm" component={LoginAdm} />
+      <Router path="/login" component={Login} />
+      <Router path="/novasenha" component={NovaSenha} />
       <Router path="/painel" component={Painel} isPrivate />
 
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
