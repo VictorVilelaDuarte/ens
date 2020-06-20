@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
@@ -10,13 +11,25 @@ class SessionController {
     bd.query(
       `SELECT * FROM ens_siteacesso WHERE SiteAcesso_CasalIDMENS = ${idmens}`,
       async (err, result) => {
-        if (err || result.length == 0) {
-          return res.status(400).json({
-            status: false,
-            message: 'IDMENS inválido, tente novamente.',
-          });
+        if (err || result.length === 0) {
+          bd.query(
+            `SELECT Casal_nome, Casal_IDMENS FROM ens_casal WHERE Casal_IDMENS = ${idmens}`,
+            (error, results) => {
+              if (error || results.length === 0) {
+                return res.status(400).json({
+                  status: false,
+                  message: 'IDMENS inválido, tente novamente.',
+                });
+              }
+              return res.status(200).json({
+                status: true,
+                data: results,
+                new: true,
+              });
+            }
+          );
+          return;
         }
-
         const valido = await bcrypt.compare(
           senha,
           result[0].SiteAcesso_CasalSenha
