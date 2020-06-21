@@ -60,7 +60,6 @@ class ConselheiroController {
       VALUES ('${idmens}', '${id}', '${nome}', '${email}', '${celular}', '${telefone}', '${comercial}', '${endereco}', '${paroquia}', '${nascimento}', '${ordenacao}','${ingresso}','${funcao}','${perfil}','${text}', '${final_path}');`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar o conselheiro.',
@@ -131,7 +130,6 @@ class ConselheiroController {
 
     bd.query(sql, (err) => {
       if (err) {
-        console.log(err);
         return res.status(400).json({
           staus: false,
           message: 'Não foi possível salvar o conselheiro.',

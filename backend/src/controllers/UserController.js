@@ -19,8 +19,23 @@ class UserController {
   }
 
   async insere(req, res) {
-    const { idmens, nome, equipe, senha } = req.body;
+    const { idmens, senha } = req.body;
+    let nome = '';
+    let equipe = '';
 
+    bd.query(
+      `SELECT Casal_EquipeID, Casal_Nome FROM ens_Casal WHERE Casal_IDMENS = ${idmens}`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível criar o usuario.',
+          });
+        }
+        nome = result[0].Casal_Nome;
+        equipe = result[0].Casal_EquipeID;
+      }
+    );
     const novaSenha = await bcrypt.hash(senha, 8);
 
     bd.query(
@@ -30,12 +45,12 @@ class UserController {
         if (err) {
           return res.status(400).json({
             staus: false,
-            message: 'Não foi possível salvar o casal administrador.',
+            message: 'Não foi possível criar o usuario.',
           });
         }
         return res.status(200).json({
           status: true,
-          message: 'Casal administrador registrado com sucesso!',
+          message: 'Usuario registrado com sucesso!',
         });
       }
     );
