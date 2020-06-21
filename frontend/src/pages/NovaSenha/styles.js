@@ -21,3 +21,9 @@ export const FormLogin = styled(Form)`
   flex-direction: column;
   align-items: center;
 `;
+
+export const WelcomeText = styled.p`
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
+`;

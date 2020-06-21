@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { FaLock } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
-import { Container, DivForm, FormLogin } from './styles';
+import api from '../../services/api';
+import history from '../../services/history';
+import { Container, DivForm, WelcomeText } from './styles';
 
 import InputGeneric from '../../components/InputGeneric';
 import Button from '../../components/Button';
@@ -21,14 +24,28 @@ export default function NovaSenha(props) {
   }, []);
 
   function handleLogin() {
-    console.log('aqui');
+    api
+      .post(`/user`, {
+        idmens: user.idmens,
+        senha: password,
+      })
+      .then((res) => {
+        toast.info(res.data.message);
+        history.push(`/login`);
+      })
+      .catch(() => {
+        toast.error(`Erro, tente novamente mais tarde`);
+      });
   }
 
   return (
     <>
       <Container>
-        <Title>Nova senha</Title>
+        <Title>Nova senha - {user.name}</Title>
         <DivForm>
+          <WelcomeText>
+            Lembre-se que só poderá ser cadastra uma senha forte
+          </WelcomeText>
           <InputGeneric
             type="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -52,7 +69,7 @@ export default function NovaSenha(props) {
             password={password}
           />
           {score < 3 ? (
-            <Button disabled>Entrar2</Button>
+            <Button disabled>Entrar</Button>
           ) : (
             <Button onClick={() => handleLogin()}>Entrar</Button>
           )}

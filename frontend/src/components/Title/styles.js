@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: flex-start;
-  /* align-items: center; */
+  margin-top: 10px;
   width: 50%;
 `;
 export const TitleP = styled.p`
