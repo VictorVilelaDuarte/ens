@@ -199,7 +199,7 @@ function EquipeCadastro({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de Equipe</Title>
+          <Title back="/equipeadm">Cadastro de Equipe</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs

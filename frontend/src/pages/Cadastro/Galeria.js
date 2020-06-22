@@ -124,7 +124,7 @@ function GaleriaEvento({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de album</Title>
+          <Title back="/galeriaadm">Cadastro de album</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs

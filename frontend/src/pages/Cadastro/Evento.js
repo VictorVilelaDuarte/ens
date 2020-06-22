@@ -141,7 +141,7 @@ function EventoCadastro({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de notícia</Title>
+          <Title back="/eventoadm">Cadastro de notícia</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs

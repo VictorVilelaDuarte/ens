@@ -177,7 +177,7 @@ function EventoCadastro({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de conselheiro</Title>
+          <Title back="/conselheiroadm">Cadastro de conselheiro</Title>
         </TitleDiv>
         <FormDiv>
           {console.log(CConselheiro)}

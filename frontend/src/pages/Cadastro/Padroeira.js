@@ -95,7 +95,7 @@ function PadroeiraCadastro({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de Padroeira</Title>
+          <Title back="padroeiraadm">Cadastro de Padroeira</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs

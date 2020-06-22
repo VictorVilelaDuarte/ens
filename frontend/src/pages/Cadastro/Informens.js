@@ -63,7 +63,7 @@ function InformensCadastro() {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de Informens</Title>
+          <Title back="/informensadm">Cadastro de Informens</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs ref={formRef} onSubmit={handleSubmit}>

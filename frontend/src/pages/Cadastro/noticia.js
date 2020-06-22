@@ -115,7 +115,7 @@ function NoticiaCadastro({ match }) {
     <>
       <Container>
         <TitleDiv>
-          <Title>Cadastro de notícia</Title>
+          <Title back="/noticiaadm">Cadastro de notícia</Title>
         </TitleDiv>
         <FormDiv>
           <FormInputs
