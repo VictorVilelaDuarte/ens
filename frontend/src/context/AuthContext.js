@@ -33,12 +33,16 @@ export function AuthProvider({ children }) {
           return;
         }
         const { token, user } = res.data;
-        toast.info('Login efetuado com sucesso!');
-        localStorage.setItem('ensccpv:token', token);
-        localStorage.setItem('ensccpv:user', JSON.stringify(user));
-        setData({ token, user });
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        history.push('/painel');
+        if (user.Adm) {
+          toast.info('Login efetuado com sucesso!');
+          localStorage.setItem('ensccpv:token', token);
+          localStorage.setItem('ensccpv:user', JSON.stringify(user));
+          setData({ token, user });
+          api.defaults.headers.Authorization = `Bearer ${token}`;
+          history.push('/painel');
+          return;
+        }
+        console.log('AQUI NÃO É ADM');
       })
       .catch((err) => {
         toast.error(err.response.data.message);
