@@ -93,6 +93,26 @@ class UserController {
       }
     );
   }
+
+  alteraAdm(req, res) {
+    const { idmens } = req.params;
+    const { adm } = req.body;
+    bd.query(
+      `UPDATE ens_siteacesso SET SiteAcesso_Adm='${adm}' WHERE SiteAcesso_CasalIDMENS='${idmens}'`,
+      (err) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível tornar ADM.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          message: 'Usuario atualizado com sucesso!',
+        });
+      }
+    );
+  }
 }
 
 export default new UserController();

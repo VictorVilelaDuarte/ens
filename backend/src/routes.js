@@ -75,6 +75,7 @@ routes.get('/user', authMiddleware, UserController.lista);
 routes.get('/user/:idmens', UserController.busca);
 routes.post('/user', UserController.insere);
 routes.delete('/user/:idmens', UserController.deleta);
+routes.put('/user/:idmens', UserController.alteraAdm);
 
 routes.get('/noticia', NoticiaController.lista);
 routes.get('/noticia/:id', NoticiaController.busca);
