@@ -46,6 +46,7 @@ class SessionController {
           user: {
             IDMENS: result[0].SiteAcesso_CasalIDMENS,
             Nome: result[0].SiteAcesso_CasalNome,
+            Adm: result[0].SiteAcesso_Adm,
           },
           token: jwt.sign(
             { idmens, nome: result[0].SiteAcesso_CasalNome },
