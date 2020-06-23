@@ -133,5 +133,6 @@ routes.get('/tipoevento', TipoEvento.lista);
 routes.post('/session', SessionController.insere);
 
 routes.get('/casalOpcao', CasalController.listaOpcao);
+routes.get('/casal/:equipe', CasalController.lista);
 
 export default routes;
