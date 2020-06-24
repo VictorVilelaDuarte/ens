@@ -18,6 +18,7 @@ import PaginaController from './controllers/PaginaController';
 import TipoEvento from './controllers/TipoEvento';
 import ConselheiroController from './controllers/ConselheiroController';
 import CasalController from './controllers/CasalController';
+import ArquivoController from './controllers/ArquivoController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -26,6 +27,7 @@ import multerOracao from '../config/multerOracao';
 import multerNoticia from '../config/multerNoticia';
 import multerEquipe from '../config/multerEquipe';
 import multerConselheiro from '../config/multerConselheiro';
+import multerArquivo from '../config/multerArquivo';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
@@ -35,6 +37,7 @@ const uploadOracao = multer(multerOracao);
 const uploadNoticia = multer(multerNoticia);
 const uploadEquipe = multer(multerEquipe);
 const uploadConselheiro = multer(multerConselheiro);
+const uploadArquivo = multer(multerArquivo);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -67,6 +70,10 @@ routes.post(
 );
 routes.delete('/informens/:id', InformensController.deleta);
 routes.get('/informens', InformensController.lista);
+
+routes.post('/arquivo', uploadArquivo.single('file'), ArquivoController.insere);
+routes.delete('/arquivo/:id', ArquivoController.deleta);
+routes.get('/arquivo', ArquivoController.lista);
 
 routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
