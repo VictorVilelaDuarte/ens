@@ -18,6 +18,7 @@ import EquipeAdm from '../pages/Adm/Equipe';
 import ConselheiroAdm from '../pages/Adm/Conselheiro';
 import PadroeiraAdm from '../pages/Adm/Padroeira';
 import UsuarioAdm from '../pages/Adm/Usuario';
+import QuadranteAdm from '../pages/Adm/Quadrante';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -46,6 +47,7 @@ export default function Routes() {
       <Router path="/padroeiraadm" component={PadroeiraAdm} isPrivate />
       <Router path="/padroeiraadm" component={PadroeiraAdm} isPrivate />
       <Router path="/usuarioadm" component={UsuarioAdm} isPrivate />
+      <Router path="/quadranteadm" component={QuadranteAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"

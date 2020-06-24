@@ -53,9 +53,11 @@ function Painel() {
               <FaUsers /> Equipes
             </BigButtons>
           </Link>
-          <BigButtons color="orange">
-            <FaTh /> Quadrante
-          </BigButtons>
+          <Link to="/quadranteadm">
+            <BigButtons color="orange">
+              <FaTh /> Quadrante
+            </BigButtons>
+          </Link>
           <Link to="/conselheiroadm">
             <BigButtons color="orange">
               <FaUserTie /> Conselheiro
