@@ -19,6 +19,7 @@ import ConselheiroAdm from '../pages/Adm/Conselheiro';
 import PadroeiraAdm from '../pages/Adm/Padroeira';
 import UsuarioAdm from '../pages/Adm/Usuario';
 import QuadranteAdm from '../pages/Adm/Quadrante';
+import ArquivoAdm from '../pages/Adm/Arquivo';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -27,6 +28,7 @@ import GaleriaCadastro from '../pages/Cadastro/Galeria';
 import EquipeCadastro from '../pages/Cadastro/Equipe';
 import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
 import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
+import ArquivoCadastro from '../pages/Cadastro/Arquivo';
 
 export default function Routes() {
   return (
@@ -48,6 +50,7 @@ export default function Routes() {
       <Router path="/padroeiraadm" component={PadroeiraAdm} isPrivate />
       <Router path="/usuarioadm" component={UsuarioAdm} isPrivate />
       <Router path="/quadranteadm" component={QuadranteAdm} isPrivate />
+      <Router path="/arquivoadm" component={ArquivoAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"
@@ -84,6 +87,8 @@ export default function Routes() {
         component={PadroeiraCadastro}
         isPrivate
       />
+
+      <Router path="/arquivoCadastro" component={ArquivoCadastro} isPrivate />
     </Switch>
   );
 }

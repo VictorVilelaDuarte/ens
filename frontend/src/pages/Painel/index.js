@@ -71,9 +71,11 @@ function Painel() {
           <BigButtons color="green">
             <FaCode /> Páginas
           </BigButtons>
-          <BigButtons color="green">
-            <FaFileUpload /> Arquivos
-          </BigButtons>
+          <Link to="/arquivoadm">
+            <BigButtons color="green">
+              <FaFileUpload /> Arquivos
+            </BigButtons>
+          </Link>
           <Link to="/usuarioadm">
             <BigButtons color="red">
               <FaUserShield /> Usuários
