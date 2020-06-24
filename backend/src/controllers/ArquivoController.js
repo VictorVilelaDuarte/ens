@@ -19,7 +19,7 @@ class ArquivoController {
   insere(req, res) {
     const { titulo } = req.body;
     const { filename: path } = req.file;
-    const final_path = `${process.env.APP_URL}/files-arquivos/${path}`;
+    const final_path = `${process.env.APP_URL}/files-arquivo/${path}`;
 
     bd.query(
       `INSERT INTO ens_arquivo (Arquivo_Titulo, Arquivo_Path)
