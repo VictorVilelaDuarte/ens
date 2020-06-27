@@ -42,8 +42,7 @@ function InformensCadastro() {
           history.push('/arquivoadm');
         })
         .catch((err) => {
-          console.log(err);
-          // toast.error(err.data.message);
+          toast.error(err.data.message);
         });
     } catch (err) {
       const validationErrors = {};

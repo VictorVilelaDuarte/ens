@@ -64,8 +64,7 @@ function QuadranteAdm({ match }) {
           <AddButton url="/quadranteCadastro">Adicionar</AddButton>
         </TitleDiv>
         <Tabs
-          defaultActiveKey="profile"
-          id="uncontrolled-tab-example"
+          defaultActiveKey={1}
           onSelect={(key) => {
             setEquipe(key);
           }}
