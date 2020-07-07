@@ -63,7 +63,6 @@ function GaleriaEvento({ match }) {
       };
 
       if (CGaleria) {
-        console.log(CGaleria);
         api
           .put(`/galeria/${CGaleria.id}`, json)
           .then((res) => {

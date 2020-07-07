@@ -76,8 +76,6 @@ function EventoCadastro({ match }) {
   }, []);
 
   async function handleSubmit(data) {
-    console.log(data);
-
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({

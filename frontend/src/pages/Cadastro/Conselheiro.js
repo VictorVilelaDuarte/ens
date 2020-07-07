@@ -69,8 +69,6 @@ function EventoCadastro({ match }) {
   }
 
   async function handleSubmit(data) {
-    console.log(data);
-
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
@@ -180,7 +178,6 @@ function EventoCadastro({ match }) {
           <Title back="/conselheiroadm">Cadastro de conselheiro</Title>
         </TitleDiv>
         <FormDiv>
-          {console.log(CConselheiro)}
           <FormInputs
             ref={formRef}
             initialData={CConselheiro}
