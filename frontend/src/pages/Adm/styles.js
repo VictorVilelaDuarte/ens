@@ -35,3 +35,20 @@ export const TitleDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const QuadranteDiv = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: start;
+`;
+
+export const CasalDiv = styled.div`
+  width: 284px;
+  height: 350px;
+  margin: 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid red;
+`;

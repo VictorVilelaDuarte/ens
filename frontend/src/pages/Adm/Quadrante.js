@@ -12,6 +12,8 @@ import {
   ButtonDelete,
   ButtonCancelDelete,
   TitleDiv,
+  QuadranteDiv,
+  CasalDiv,
 } from './styles';
 
 import Title from '../../components/Title';
@@ -75,6 +77,11 @@ function QuadranteAdm({ match }) {
             </Tab>
           ))}
         </Tabs>
+        <QuadranteDiv>
+          {casal.map((item) => (
+            <CasalDiv />
+          ))}
+        </QuadranteDiv>
       </Container>
       <Modal show={showDelete} onHide={handleShowDelete}>
         <Modal.Header
