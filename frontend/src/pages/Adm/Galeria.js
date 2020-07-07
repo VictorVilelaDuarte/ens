@@ -30,7 +30,6 @@ function GaleriaAdm() {
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
-              console.log(res);
               setGaleria((prevGalerias) => [...prevGalerias, item]);
             });
           }
