@@ -1,6 +1,25 @@
 import bd from '../../config/database';
 
 class EventoController {
+  listaCompleta(req, res) {
+    const year = new Date().getFullYear();
+    bd.query(
+      `SELECT * FROM ens_evento WHERE YEAR(Evento_Data) = ${year} ORDER BY Evento_Data`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o evento.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
+
   lista(req, res) {
     let { page } = req.query;
     let offset = 0;

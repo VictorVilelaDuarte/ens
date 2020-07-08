@@ -28,7 +28,7 @@ class ArquivoController {
         if (err) {
           return res.status(400).json({
             staus: false,
-            message: 'Não foi possível o arquivo.',
+            message: 'Não foi possível salvar o arquivo.',
           });
         }
         return res.status(200).json({

@@ -44,6 +44,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/evento', EventoController.lista);
+routes.get('/eventoCompleto', EventoController.listaCompleta);
 routes.get('/evento/:id', EventoController.busca);
 routes.get('/eventohome', EventoController.home);
 routes.post('/evento', EventoController.insere);
