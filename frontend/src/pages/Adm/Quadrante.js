@@ -1,11 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Modal } from 'react-bootstrap';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
 import api from '../../services/api';
+import CasalDefault from '../../assets/casal.png';
 
 import {
   Container,
@@ -14,6 +15,10 @@ import {
   TitleDiv,
   QuadranteDiv,
   CasalDiv,
+  CasalFoto,
+  CasalFotoDiv,
+  CasalNome,
+  CasalTelefone,
 } from './styles';
 
 import Title from '../../components/Title';
@@ -72,14 +77,27 @@ function QuadranteAdm({ match }) {
           }}
         >
           {equipes.map((item) => (
-            <Tab eventKey={item} title={item}>
-              <p>{item}</p>
-            </Tab>
+            <Tab eventKey={item} title={item} />
           ))}
         </Tabs>
         <QuadranteDiv>
           {casal.map((item) => (
-            <CasalDiv />
+            <CasalDiv>
+              <CasalFotoDiv>
+                {item.Casal_imagem ? (
+                  <CasalFoto src={CasalDefault} />
+                ) : (
+                  <CasalFoto src={CasalDefault} />
+                )}
+              </CasalFotoDiv>
+              <CasalNome>{item.Casal_Nome}</CasalNome>
+              <CasalTelefone>
+                <FaPhone color="#000" size={14} /> {item.Casal_HomemTelCel}
+              </CasalTelefone>
+              <CasalTelefone>
+                <FaPhone color="#f041e1" size={14} /> {item.Casal_MulherTelCel}
+              </CasalTelefone>
+            </CasalDiv>
           ))}
         </QuadranteDiv>
       </Container>

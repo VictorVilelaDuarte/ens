@@ -37,7 +37,6 @@ export const TitleDiv = styled.div`
 `;
 
 export const QuadranteDiv = styled.div`
-  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -46,9 +45,40 @@ export const QuadranteDiv = styled.div`
 
 export const CasalDiv = styled.div`
   width: 284px;
-  height: 350px;
+  height: 400px;
   margin: 5px;
   border-radius: 4px;
   box-sizing: border-box;
-  border: 1px solid red;
+  background: #0875d1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CasalFotoDiv = styled.div`
+  height: 250px;
+  width: 250px;
+  margin-top: 15px;
+  background: #fff;
+  border-radius: 4px;
+`;
+
+export const CasalFoto = styled.img`
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+`;
+
+export const CasalNome = styled.p`
+  margin-top: 15px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+`;
+
+export const CasalTelefone = styled.p`
+  margin-top: 5px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
 `;
