@@ -34,7 +34,7 @@ export default function Routes() {
   return (
     <Switch>
       <Router path="/" exact component={Home} />
-      <Router path="/register" component={Eventos} />
+      <Router path="/eventos" component={Eventos} />
       <Router path="/loginadm" component={LoginAdm} />
       <Router path="/login" component={Login} />
       <Router path="/novasenha" component={NovaSenha} />
