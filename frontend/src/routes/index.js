@@ -5,6 +5,7 @@ import Router from './Router';
 
 import Home from '../pages/Home';
 import Eventos from '../pages/Eventos';
+import Noticias from '../pages/Noticias';
 import LoginAdm from '../pages/LoginAdm';
 import Login from '../pages/Login';
 import NovaSenha from '../pages/NovaSenha';
@@ -35,11 +36,12 @@ export default function Routes() {
     <Switch>
       <Router path="/" exact component={Home} />
       <Router path="/eventos" component={Eventos} />
+      <Router path="/noticias" component={Noticias} />
       <Router path="/loginadm" component={LoginAdm} />
       <Router path="/login" component={Login} />
       <Router path="/novasenha" component={NovaSenha} />
-      <Router path="/painel" component={Painel} isPrivate />
 
+      <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
       <Router path="/informensadm/:page?" component={InformensAdm} isPrivate />
       <Router path="/eventoadm/:page?" component={EventoAdm} isPrivate />

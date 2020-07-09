@@ -49,7 +49,9 @@ export default function Header() {
                   </>
                 }
               >
-                <Dropdown.Item href="#action/3.1">Noticias</Dropdown.Item>
+                <Link to="/noticias">
+                  <Dropdown.Item href="#noticias">Notícias</Dropdown.Item>
+                </Link>
                 <Link to="/eventos">
                   <Dropdown.Item href="#eventos">Eventos</Dropdown.Item>
                 </Link>
