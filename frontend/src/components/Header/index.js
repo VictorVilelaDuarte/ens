@@ -42,11 +42,19 @@ export default function Header() {
               <Item.Link href="#link">
                 <FaChurch /> Movimento
               </Item.Link>
-              <Link to="/eventos">
-                <Item.Link href="#link">
-                  <FaCalendarAlt /> Noticias/Eventos
-                </Item.Link>
-              </Link>
+              <Dropdown
+                title={
+                  <>
+                    <FaCalendarAlt /> Noticias/Eventos
+                  </>
+                }
+              >
+                <Dropdown.Item href="#action/3.1">Noticias</Dropdown.Item>
+                <Link to="/eventos">
+                  <Dropdown.Item href="#eventos">Eventos</Dropdown.Item>
+                </Link>
+              </Dropdown>
+
               <Item.Link href="#link">
                 <FaBook /> Liturgia
               </Item.Link>
