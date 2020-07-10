@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination } from 'react-bootstrap';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -69,7 +70,9 @@ function Noticias() {
                 ellipsis="..."
                 basedOn="letters"
               />
-              <LerMais>Ler mais</LerMais>
+              <Link to={`/noticia/${item.noticia_cod}`}>
+                <LerMais>Ler mais</LerMais>
+              </Link>
             </DivNoticiaDetalhe>
           </DivNoticia>
         ))}
