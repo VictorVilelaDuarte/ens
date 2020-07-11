@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
+import { Carousel } from 'react-bootstrap';
 
-import { Container, Evento, DivEvento } from './styles';
+import { Container, Evento, DivEvento, CarouselDiv } from './styles';
 import api from '../../services/api';
+import history from '../../services/history';
 
 export default function Home() {
   const [noticia, setNoticia] = useState([]);
@@ -37,6 +39,10 @@ export default function Home() {
     getEventos();
   }, []);
 
+  function toNoticia(id) {
+    history.push(`/noticia/${id}`);
+  }
+
   function formatDate(date) {
     const d = new Date(date);
     let mes = `${d.getMonth() + 1}`;
@@ -56,6 +62,30 @@ export default function Home() {
   return (
     <>
       <Container>
+        <CarouselDiv>
+          <Carousel
+            style={{
+              width: 800,
+              maxHeight: 450,
+            }}
+            interval={3000}
+            indicators={false}
+            keyboard={false}
+          >
+            {noticia.map((item) => (
+              <Carousel.Item
+                onClick={() => toNoticia(item.noticia_cod)}
+                style={{ maxHeight: 450 }}
+              >
+                <img
+                  className="d-block w-100"
+                  src={item.noticia_imagem}
+                  alt={item.noticia_titulo}
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </CarouselDiv>
         <DivEvento>
           <ul>
             {evento.map((item) => (

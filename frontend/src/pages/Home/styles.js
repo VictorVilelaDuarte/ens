@@ -7,6 +7,15 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const CarouselDiv = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+`;
+
 export const DivEvento = styled.div`
   display: flex;
   flex-direction: column;
