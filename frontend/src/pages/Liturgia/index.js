@@ -11,11 +11,21 @@ function Liturgia() {
       <SubTitle>1. Liturgia Diária:</SubTitle>
       <Item>
         (Fonte:
-        <a href="https://enscacapava.com.br/liturgia.php"> Católico Orante </a>)
+        <a
+          target="_blank"
+          href="http://catolicoorante.com.br/liturgia_diaria.html"
+        >
+          {' '}
+          Católico Orante{' '}
+        </a>
+        )
       </Item>
       <Item>
         (Fonte:
-        <a href="http://liturgiadiaria.cnbb.org.br/app/user/user/UserView.php">
+        <a
+          target="_blank"
+          href="http://liturgiadiaria.cnbb.org.br/app/user/user/UserView.php"
+        >
           {' '}
           CNBB{' '}
         </a>
@@ -24,12 +34,19 @@ function Liturgia() {
       <SubTitle>2. Notícias do Vaticano:</SubTitle>
       <Item>
         (Fonte:
-        <a href="https://pt.zenit.org/"> Zenit.org</a>)
+        <a target="_blank" href="https://pt.zenit.org/">
+          {' '}
+          Zenit.org
+        </a>
+        )
       </Item>
       <SubTitle>3. Nossa Diocese</SubTitle>
       <Item>
         (Fonte:
-        <a href="http://diocesedetaubate.org.br/categoria/paroquias/cacapava/">
+        <a
+          target="_blank"
+          href="http://diocesedetaubate.org.br/categoria/paroquias/cacapava/"
+        >
           {' '}
           Diocese de Taubaté - Caçapava
         </a>
