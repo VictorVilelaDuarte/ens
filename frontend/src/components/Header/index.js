@@ -85,9 +85,11 @@ export default function Header() {
                 <Dropdown.Item href="#action/3.1">Equipe XV</Dropdown.Item>
                 <Dropdown.Item href="#action/3.1">Equipe XVI</Dropdown.Item>
               </Dropdown>
-              <Item.Link href="#link">
-                <FaImages /> Galeria
-              </Item.Link>
+              <Link to="/galeria">
+                <Item.Link href="#galeria">
+                  <FaImages /> Galeria
+                </Item.Link>
+              </Link>
               <Link to="/login">
                 <Item.Link href="#link">
                   <FaTh /> Quadrante

@@ -5,6 +5,7 @@ import Router from './Router';
 
 import Home from '../pages/Home';
 import Liturgia from '../pages/Liturgia';
+import Galeria from '../pages/Galeria';
 import Eventos from '../pages/Eventos';
 import Noticias from '../pages/Noticias';
 import Noticia from '../pages/Noticia';
@@ -38,6 +39,7 @@ export default function Routes() {
     <Switch>
       <Router path="/" exact component={Home} />
       <Router path="/liturgia" component={Liturgia} />
+      <Router path="/galeria" component={Galeria} />
       <Router path="/eventos" component={Eventos} />
       <Router path="/noticias" component={Noticias} />
       <Router path="/noticia/:noticia?" component={Noticia} />
