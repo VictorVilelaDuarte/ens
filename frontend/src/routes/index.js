@@ -4,6 +4,7 @@ import { Switch } from 'react-router-dom';
 import Router from './Router';
 
 import Home from '../pages/Home';
+import Liturgia from '../pages/Liturgia';
 import Eventos from '../pages/Eventos';
 import Noticias from '../pages/Noticias';
 import Noticia from '../pages/Noticia';
@@ -36,6 +37,7 @@ export default function Routes() {
   return (
     <Switch>
       <Router path="/" exact component={Home} />
+      <Router path="/liturgia" component={Liturgia} />
       <Router path="/eventos" component={Eventos} />
       <Router path="/noticias" component={Noticias} />
       <Router path="/noticia/:noticia?" component={Noticia} />

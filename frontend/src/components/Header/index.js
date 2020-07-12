@@ -56,10 +56,11 @@ export default function Header() {
                   <Dropdown.Item href="#eventos">Eventos</Dropdown.Item>
                 </Link>
               </Dropdown>
-
-              <Item.Link href="#link">
-                <FaBook /> Liturgia
-              </Item.Link>
+              <Link to="/liturgia">
+                <Item.Link href="#liturgia">
+                  <FaBook /> Liturgia
+                </Item.Link>
+              </Link>
               <Dropdown
                 title={
                   <>
