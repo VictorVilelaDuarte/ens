@@ -91,12 +91,12 @@ function QuadranteAdm({ match }) {
                 )}
               </CasalFotoDiv>
               <CasalNome>{item.Casal_Nome}</CasalNome>
-              <CasalTelefone>
+              {/* <CasalTelefone>
                 <FaPhone color="#000" size={14} /> {item.Casal_HomemTelCel}
               </CasalTelefone>
               <CasalTelefone>
                 <FaPhone color="#f041e1" size={14} /> {item.Casal_MulherTelCel}
-              </CasalTelefone>
+              </CasalTelefone> */}
             </CasalDiv>
           ))}
         </QuadranteDiv>

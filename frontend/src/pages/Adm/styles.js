@@ -45,7 +45,7 @@ export const QuadranteDiv = styled.div`
 
 export const CasalDiv = styled.div`
   width: 284px;
-  height: 400px;
+  height: 350px;
   margin: 5px;
   border-radius: 4px;
   box-sizing: border-box;
@@ -67,6 +67,7 @@ export const CasalFoto = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 4px;
+  padding: 5px;
 `;
 
 export const CasalNome = styled.p`
