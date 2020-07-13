@@ -12,6 +12,10 @@ import {
   FaUserShield,
   FaUserTie,
   FaChurch,
+  FaUserPlus,
+  FaEnvelope,
+  FaUserSlash,
+  FaChartLine,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -63,6 +67,16 @@ function Painel() {
               <FaUserTie /> Conselheiro
             </BigButtons>
           </Link>
+          <Link to="/quadranteadm">
+            <BigButtons color="orange">
+              <FaUserPlus /> Pilotagem
+            </BigButtons>
+          </Link>
+          <Link to="/quadranteadm">
+            <BigButtons color="orange">
+              <FaUserSlash /> Ex-equipista
+            </BigButtons>
+          </Link>
           <Link to="/padroeiraadm">
             <BigButtons color="orange">
               <FaChurch /> Padroeira
@@ -76,9 +90,19 @@ function Painel() {
               <FaFileUpload /> Arquivos
             </BigButtons>
           </Link>
+          <Link to="/arquivoadm">
+            <BigButtons color="green">
+              <FaEnvelope /> Mensagens
+            </BigButtons>
+          </Link>
           <Link to="/usuarioadm">
             <BigButtons color="red">
               <FaUserShield /> Usuários
+            </BigButtons>
+          </Link>
+          <Link to="/quadranteadm">
+            <BigButtons color="red">
+              <FaChartLine /> Estatisticas
             </BigButtons>
           </Link>
         </DivButtons>
