@@ -19,6 +19,7 @@ import TipoEvento from './controllers/TipoEvento';
 import ConselheiroController from './controllers/ConselheiroController';
 import CasalController from './controllers/CasalController';
 import ArquivoController from './controllers/ArquivoController';
+import PilotagemController from './controllers/PilotagemController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -142,5 +143,7 @@ routes.post('/session', SessionController.insere);
 
 routes.get('/casalOpcao', CasalController.listaOpcao);
 routes.get('/casal/:equipe', CasalController.lista);
+
+routes.get('/pilotagem', PilotagemController.lista);
 
 export default routes;
