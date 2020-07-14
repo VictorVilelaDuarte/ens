@@ -145,5 +145,6 @@ routes.get('/casalOpcao', CasalController.listaOpcao);
 routes.get('/casal/:equipe', CasalController.lista);
 
 routes.get('/pilotagem', PilotagemController.lista);
+routes.post('/pilotagem', PilotagemController.insere);
 
 export default routes;
