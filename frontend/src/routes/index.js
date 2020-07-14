@@ -34,6 +34,7 @@ import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
 import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
 import ArquivoCadastro from '../pages/Cadastro/Arquivo';
 import AlbumCadastro from '../pages/Cadastro/Album';
+import PilotagemCadastro from '../pages/Cadastro/Pilotagem';
 
 export default function Routes() {
   return (
@@ -100,6 +101,11 @@ export default function Routes() {
       <Router
         path="/albumCadastro/:album?"
         component={AlbumCadastro}
+        isPrivate
+      />
+      <Router
+        path="/pilotagemCadastro/:pilotagem?"
+        component={PilotagemCadastro}
         isPrivate
       />
     </Switch>

@@ -67,7 +67,7 @@ function Painel() {
               <FaUserTie /> Conselheiro
             </BigButtons>
           </Link>
-          <Link to="/quadranteadm">
+          <Link to="/pilotagemCadastro">
             <BigButtons color="orange">
               <FaUserPlus /> Pilotagem
             </BigButtons>
