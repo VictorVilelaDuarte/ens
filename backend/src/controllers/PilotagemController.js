@@ -1,24 +1,6 @@
 import bd from '../../config/database';
 
 class PilotagemController {
-  listaOpcao(req, res) {
-    bd.query(
-      `SELECT Casal_IDMENS, Casal_Nome FROM ens_casal`,
-      (err, result) => {
-        if (err) {
-          return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível buscar os casais.',
-          });
-        }
-        return res.status(200).json({
-          status: true,
-          data: result,
-        });
-      }
-    );
-  }
-
   lista(req, res) {
     bd.query(`SELECT * FROM ens_pilotagem`, (err, result) => {
       if (err) {
@@ -101,6 +83,25 @@ class PilotagemController {
         return res.status(200).json({
           status: true,
           message: 'Casal registrado com sucesso!',
+        });
+      }
+    );
+  }
+
+  busca(req, res) {
+    const { idmens } = req.params;
+    bd.query(
+      `SELECT * FROM ens_pilotagem WHERE Pilot_IDMENS=${idmens}`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o casal.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
         });
       }
     );
