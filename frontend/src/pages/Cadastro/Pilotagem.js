@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
@@ -14,9 +14,23 @@ import { Container, FormDiv, TitleDiv, FormInputs, Label } from './styles';
 
 function PilotagemCadastro({ match }) {
   const formRef = useRef(null);
+  const [CPilotagem, setCPilotagem] = useState({});
+
+  useEffect(() => {
+    const { pilotagem } = match.params;
+
+    api
+      .get(`/pilotagem/${pilotagem}`)
+      .then((res) => {
+        const response = res.data.data[0];
+        setCPilotagem(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   async function handleSubmit(data) {
-    console.log(data);
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
@@ -118,41 +132,50 @@ function PilotagemCadastro({ match }) {
         Pilot_TelResid: data.Pilot_TelResid,
         Pilot_DataInicioENS: data.Pilot_DataInicioENS,
         Pilot_NomeFilho1: data.Pilot_NomeFilho1 ? data.Pilot_NomeFilho1 : null,
-        Pilot_DataNascFilho1: data.Pilot_DataNascFilho1,
-        Pilot_NomeFilho2: data.Pilot_NomeFilho2,
-        Pilot_DataNascFilho2: data.Pilot_DataNascFilho2,
-        Pilot_NomeFilho3: data.Pilot_NomeFilho3,
-        Pilot_DataNascFilho3: data.Pilot_DataNascFilho3,
-        Pilot_NomeFilho4: data.Pilot_NomeFilho4,
-        Pilot_DataNascFilho4: data.Pilot_DataNascFilho4,
-        Pilot_NomeFilho5: data.Pilot_NomeFilho5,
-        Pilot_DataNascFilho5: data.Pilot_DataNascFilho5,
-        Pilot_ExpComID: data.Pilot_ExpComID,
-        Pilot_AnoExpCom: data.Pilot_AnoExpCom,
+        Pilot_DataNascFilho1: data.Pilot_DataNascFilho1
+          ? data.Pilot_DataNascFilho1
+          : null,
+        Pilot_NomeFilho2: data.Pilot_NomeFilho2 ? data.Pilot_NomeFilho2 : null,
+        Pilot_DataNascFilho2: data.Pilot_DataNascFilho2
+          ? data.Pilot_DataNascFilho2
+          : null,
+        Pilot_NomeFilho3: data.Pilot_NomeFilho3 ? data.Pilot_NomeFilho3 : null,
+        Pilot_DataNascFilho3: data.Pilot_DataNascFilho3
+          ? data.Pilot_DataNascFilho3
+          : null,
+        Pilot_NomeFilho4: data.Pilot_NomeFilho4 ? data.Pilot_NomeFilho4 : null,
+        Pilot_DataNascFilho4: data.Pilot_DataNascFilho4
+          ? data.Pilot_DataNascFilho4
+          : null,
+        Pilot_NomeFilho5: data.Pilot_NomeFilho5 ? data.Pilot_NomeFilho5 : null,
+        Pilot_DataNascFilho5: data.Pilot_DataNascFilho5
+          ? data.Pilot_DataNascFilho5
+          : null,
+        Pilot_ExpComID: data.Pilot_ExpComID ? data.Pilot_ExpComID : null,
+        Pilot_AnoExpCom: data.Pilot_AnoExpCom ? data.Pilot_AnoExpCom : null,
       };
-      console.log(json);
 
-      // if (CEvento) {
-      //   api
-      //     .put(`/evento/${CEvento.id}`, json)
-      //     .then((res) => {
-      //       toast.info(res.data.message);
-      //       history.push('/eventoadm');
-      //     })
-      //     .catch((err) => {
-      //       toast.error(err.data.message);
-      //     });
-      // } else {
-      api
-        .post('/pilotagem', json)
-        .then((res) => {
-          toast.info(res.data.message);
-          // history.push('/eventoadm');
-        })
-        .catch((err) => {
-          toast.error(err.data.message);
-        });
-      // }
+      if (CPilotagem) {
+        api
+          .put(`/pilotagem/${CPilotagem.IDMENS}`, json)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/pilotagemadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      } else {
+        api
+          .post('/pilotagem', json)
+          .then((res) => {
+            toast.info(res.data.message);
+            history.push('/pilotagemadm');
+          })
+          .catch((err) => {
+            toast.error(err.data.message);
+          });
+      }
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -171,7 +194,11 @@ function PilotagemCadastro({ match }) {
           <Title back="/pilotagemadm">Cadastro de casal pilotagem</Title>
         </TitleDiv>
         <FormDiv>
-          <FormInputs ref={formRef} onSubmit={handleSubmit}>
+          <FormInputs
+            ref={formRef}
+            initialData={CPilotagem}
+            onSubmit={handleSubmit}
+          >
             <Label>IDMENS</Label>
             <InputTexto
               name="Pilot_IDMENS"
