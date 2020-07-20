@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { Table, Modal } from 'react-bootstrap';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaArrowAltCircleRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
@@ -81,6 +81,7 @@ function PilotagemAdm({ match }) {
             <tr>
               <th>IDMENS</th>
               <th>Nome Casal</th>
+              <th>Promover</th>
               <th>Editar</th>
               <th>Deletar</th>
             </tr>
@@ -90,6 +91,17 @@ function PilotagemAdm({ match }) {
               <tr>
                 <td>{item.Pilot_IDMENS}</td>
                 <td>{item.Pilot_Nome}</td>
+                <td>
+                  <ButtonIconPointer>
+                    <FaArrowAltCircleRight
+                      // onClick={() =>
+                      //   history.push(`/pilotagemCadastro/${item.Pilot_IDMENS}`)
+                      // }
+                      size={18}
+                      color="#326B97"
+                    />
+                  </ButtonIconPointer>
+                </td>
                 <td>
                   <ButtonIconPointer>
                     <FaEdit

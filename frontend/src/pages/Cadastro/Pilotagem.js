@@ -157,7 +157,7 @@ function PilotagemCadastro({ match }) {
 
       if (CPilotagem) {
         api
-          .put(`/pilotagem/${CPilotagem.IDMENS}`, json)
+          .put(`/pilotagem/${CPilotagem.Pilot_IDMENS}`, json)
           .then((res) => {
             toast.info(res.data.message);
             history.push('/pilotagemadm');
@@ -204,6 +204,7 @@ function PilotagemCadastro({ match }) {
               name="Pilot_IDMENS"
               type="number"
               placeholder="Digite o IDMENS do casal"
+              disabled={!!CPilotagem.Pilot_IDMENS}
             />
             <Label>ID homem</Label>
             <InputTexto
