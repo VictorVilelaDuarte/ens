@@ -147,6 +147,7 @@ routes.get('/casal/:equipe', CasalController.lista);
 routes.get('/pilotagem', PilotagemController.lista);
 routes.get('/pilotagem/:idmens', PilotagemController.busca);
 routes.post('/pilotagem', PilotagemController.insere);
+routes.post('/pilotagemPromove', PilotagemController.promove);
 routes.put('/pilotagem/:idmens', PilotagemController.altera);
 routes.delete('/pilotagem/:idmens', PilotagemController.deleta);
 
