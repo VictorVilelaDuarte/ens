@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Table, Modal } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaArrowAltCircleRight } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { Form } from '@unform/web';
+import * as Yup from 'yup';
 
 import history from '../../services/history';
 import api from '../../services/api';
@@ -12,16 +14,22 @@ import {
   ButtonDelete,
   ButtonCancelDelete,
   TitleDiv,
+  Label,
 } from './styles';
 
 import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
+import InputSelect from '../../components/InputSelect';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function PilotagemAdm({ match }) {
+  const formRef = useRef(null);
   const [pilotagem, setPilotagem] = useState([]);
+  const [equipe, setEquipe] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [pilotagemToDelete, setPilotagemToDelete] = useState({});
+  const [pilotagemToPromove, setPilotagemToPromove] = useState({});
 
   useEffect(() => {
     function getPilotagem() {
@@ -38,6 +46,27 @@ function PilotagemAdm({ match }) {
           toast.error(err.response.data.message);
         });
     }
+
+    function getEquipes() {
+      api
+        .get(`/equipe`)
+        .then((res) => {
+          if (res.data.status === true) {
+            res.data.data.map((item) => {
+              const equipeOBJ = {
+                value: item.Equipe_ID,
+                label: `${item.Equipe_ID} - ${item.Equipe_Nome}`,
+              };
+              setEquipe((prevEquipes) => [...prevEquipes, equipeOBJ]);
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
+    }
+
+    getEquipes();
     getPilotagem();
   }, []);
 
@@ -48,6 +77,15 @@ function PilotagemAdm({ match }) {
       setPilotagemToDelete({});
     }
     setShowDetele(!showDelete);
+  }
+
+  function handleShowModal(pilotagemPromove) {
+    if (pilotagemPromove) {
+      setPilotagemToPromove(pilotagemPromove);
+    } else {
+      setPilotagemToPromove({});
+    }
+    setShowModal(!showModal);
   }
 
   function handleDelete() {
@@ -66,6 +104,55 @@ function PilotagemAdm({ match }) {
         toast.error(err.response.data.message);
         handleShowDelete();
       });
+  }
+
+  async function handlePromove(data) {
+    try {
+      formRef.current.setErrors({});
+      const schema = Yup.object().shape({
+        equipe: Yup.string().required('A equipe é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      const json = {
+        idmens: pilotagemToPromove.Pilot_IDMENS,
+        equipe: data.equipe,
+      };
+      api
+        .post(`/pilotagemPromove`, json)
+        .then((res) => {
+          toast.info(res.data.message);
+          api
+            .get(`/pilotagem`)
+            .then((res) => {
+              setPilotagem([]);
+              if (res.data.status === true) {
+                res.data.data.map((item) => {
+                  setPilotagem((prevPilotagens) => [...prevPilotagens, item]);
+                });
+              }
+            })
+            .catch((err) => {
+              toast.error(err.response.data.message);
+            });
+          handleShowModal();
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+          handleShowModal();
+        });
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+    }
   }
 
   return (
@@ -94,9 +181,7 @@ function PilotagemAdm({ match }) {
                 <td>
                   <ButtonIconPointer>
                     <FaArrowAltCircleRight
-                      // onClick={() =>
-                      //   history.push(`/pilotagemCadastro/${item.Pilot_IDMENS}`)
-                      // }
+                      onClick={() => handleShowModal(item)}
                       size={18}
                       color="#326B97"
                     />
@@ -143,6 +228,24 @@ function PilotagemAdm({ match }) {
           </ButtonCancelDelete>
           <ButtonDelete onClick={handleDelete}>Deletar</ButtonDelete>
         </Modal.Footer>
+      </Modal>
+
+      <Modal show={showModal} onHide={handleShowModal}>
+        <Modal.Header
+          style={{ backgroundColor: '#326B97', color: '#fff' }}
+          closeButton
+        >
+          <Modal.Title>Tem certeza que deseja promover?</Modal.Title>
+        </Modal.Header>
+        <Form ref={formRef} onSubmit={handlePromove}>
+          <Modal.Body>
+            <Label>Selecione a equipe de destino</Label>
+            <InputSelect name="equipe" opcoes={equipe} />
+          </Modal.Body>
+          <Modal.Footer>
+            <ButtonCancelDelete type="submit">Promover</ButtonCancelDelete>
+          </Modal.Footer>
+        </Form>
       </Modal>
     </>
   );

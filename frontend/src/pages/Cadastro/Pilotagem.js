@@ -18,16 +18,17 @@ function PilotagemCadastro({ match }) {
 
   useEffect(() => {
     const { pilotagem } = match.params;
-
-    api
-      .get(`/pilotagem/${pilotagem}`)
-      .then((res) => {
-        const response = res.data.data[0];
-        setCPilotagem(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (pilotagem) {
+      api
+        .get(`/pilotagem/${pilotagem}`)
+        .then((res) => {
+          const response = res.data.data[0];
+          setCPilotagem(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   async function handleSubmit(data) {
@@ -129,7 +130,7 @@ function PilotagemCadastro({ match }) {
         Pilot_Cidade: data.Pilot_Cidade,
         Pilot_Estado: data.Pilot_Estado,
         Pilot_Pais: data.Pilot_Pais,
-        Pilot_TelResid: data.Pilot_TelResid,
+        Pilot_TelResid: data.Pilot_TelResid ? data.Pilot_TelResid : null,
         Pilot_DataInicioENS: data.Pilot_DataInicioENS,
         Pilot_NomeFilho1: data.Pilot_NomeFilho1 ? data.Pilot_NomeFilho1 : null,
         Pilot_DataNascFilho1: data.Pilot_DataNascFilho1
@@ -155,7 +156,7 @@ function PilotagemCadastro({ match }) {
         Pilot_AnoExpCom: data.Pilot_AnoExpCom ? data.Pilot_AnoExpCom : null,
       };
 
-      if (CPilotagem) {
+      if (CPilotagem.Pilot_IDMENS) {
         api
           .put(`/pilotagem/${CPilotagem.Pilot_IDMENS}`, json)
           .then((res) => {
