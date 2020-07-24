@@ -27,9 +27,11 @@ export default function Header() {
           <Menu.Toggle aria-controls="basic-navbar-nav" />
           <Menu.Collapse id="basic-navbar-nav">
             <Item className="mr-auto">
-              <Item.Link href="#home">
-                <FaHome /> Inicio
-              </Item.Link>
+              <Link to="/">
+                <Item.Link href="#home">
+                  <FaHome />
+                </Item.Link>
+              </Link>
               <Item.Link href="#home">
                 <FaCross /> Pe Caffarel
               </Item.Link>
