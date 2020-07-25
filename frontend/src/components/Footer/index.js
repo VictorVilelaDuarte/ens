@@ -28,7 +28,7 @@ export default function Footer() {
             </Link>
           </DivImages>
           <DivServile>
-            <img src={Servile} />
+            <img src={Servile} alt="servile" />
             <p>Desenvolvido por Servile</p>
           </DivServile>
         </Content>
