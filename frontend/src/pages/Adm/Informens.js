@@ -20,8 +20,6 @@ import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function InformensAdm({ match }) {
   const [informens, setInformens] = useState([]);
-  const [pagination, setPagination] = useState({});
-  const [changePage, setChangePage] = useState(0);
   const [showDelete, setShowDetele] = useState(false);
   const [informensToDelete, setInformensToDelete] = useState({});
 
@@ -32,19 +30,11 @@ function InformensAdm({ match }) {
     }
     function getNoticias() {
       api
-        .get(`/informens?page=${thisPage}`)
+        .get(`/informens`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
               setInformens((prevInformens) => [...prevInformens, item]);
-            });
-
-            const { lastpage, page, nextpage, prevpage } = res.headers;
-            setPagination({
-              lastpage,
-              page,
-              nextpage,
-              prevpage,
             });
           }
         })
@@ -53,13 +43,7 @@ function InformensAdm({ match }) {
         });
     }
     getNoticias();
-  }, [changePage]);
-
-  function handleChangePagination(nPage) {
-    history.push(`/informensadm/${nPage}`);
-    setInformens([]);
-    setChangePage(nPage);
-  }
+  }, []);
 
   function formatDate(date) {
     const nDate = new Date(date);
@@ -138,52 +122,6 @@ function InformensAdm({ match }) {
             ))}
           </tbody>
         </Table>
-
-        <Pagination>
-          {pagination.lastpage === '1' ? (
-            <></>
-          ) : pagination.page === pagination.prevpage ? (
-            <>
-              <Pagination.Item active>{pagination.page}</Pagination.Item>
-              <Pagination.Item
-                onClick={() => handleChangePagination(pagination.nextpage)}
-              >
-                {pagination.nextpage}
-              </Pagination.Item>
-              <Pagination.Last
-                onClick={() => handleChangePagination(pagination.lastpage)}
-              />
-            </>
-          ) : pagination.page === pagination.lastpage ? (
-            <>
-              <Pagination.First onClick={() => handleChangePagination(1)} />
-              <Pagination.Item
-                onClick={() => handleChangePagination(pagination.prevpage)}
-              >
-                {pagination.prevpage}
-              </Pagination.Item>
-              <Pagination.Item active>{pagination.page}</Pagination.Item>
-            </>
-          ) : (
-            <>
-              <Pagination.First onClick={() => handleChangePagination(1)} />
-              <Pagination.Item
-                onClick={() => handleChangePagination(pagination.prevpage)}
-              >
-                {pagination.prevpage}
-              </Pagination.Item>
-              <Pagination.Item active>{pagination.page}</Pagination.Item>
-              <Pagination.Item
-                onClick={() => handleChangePagination(pagination.nextpage)}
-              >
-                {pagination.nextpage}
-              </Pagination.Item>
-              <Pagination.Last
-                onClick={() => handleChangePagination(pagination.lastpage)}
-              />
-            </>
-          )}
-        </Pagination>
       </Container>
       <Modal show={showDelete} onHide={handleShowDelete}>
         <Modal.Header
