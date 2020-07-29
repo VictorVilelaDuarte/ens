@@ -92,7 +92,6 @@ function QuadranteAdm() {
       <Container>
         <TitleDiv>
           <Title back="/painel">Quadrante</Title>
-          <AddButton url="/quadranteCadastro">Adicionar</AddButton>
         </TitleDiv>
         <Tabs
           defaultActiveKey={1}
@@ -115,12 +114,6 @@ function QuadranteAdm() {
                 )}
               </CasalFotoDiv>
               <CasalNome>{item.Casal_Nome}</CasalNome>
-              {/* <CasalTelefone>
-                <FaPhone color="#000" size={14} /> {item.Casal_HomemTelCel}
-              </CasalTelefone>
-              <CasalTelefone>
-                <FaPhone color="#f041e1" size={14} /> {item.Casal_MulherTelCel}
-              </CasalTelefone> */}
             </CasalDiv>
           ))}
         </QuadranteDiv>
