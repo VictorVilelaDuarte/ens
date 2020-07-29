@@ -36,6 +36,7 @@ import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
 import ArquivoCadastro from '../pages/Cadastro/Arquivo';
 import AlbumCadastro from '../pages/Cadastro/Album';
 import PilotagemCadastro from '../pages/Cadastro/Pilotagem';
+import QuadranteCadastro from '../pages/Cadastro/Quadrante';
 
 export default function Routes() {
   return (
@@ -108,6 +109,11 @@ export default function Routes() {
       <Router
         path="/pilotagemCadastro/:pilotagem?"
         component={PilotagemCadastro}
+        isPrivate
+      />
+      <Router
+        path="/quadranteCadastro/:idmens?"
+        component={QuadranteCadastro}
         isPrivate
       />
     </Switch>

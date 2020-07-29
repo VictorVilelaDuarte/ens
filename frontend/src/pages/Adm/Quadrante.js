@@ -23,7 +23,6 @@ import {
 } from './styles';
 
 import Title from '../../components/Title';
-import AddButton from '../../components/AddButton';
 
 function QuadranteAdm() {
   const [casal, setCasal] = useState([]);
@@ -241,7 +240,11 @@ function QuadranteAdm() {
           )}
         </Modal.Body>
         <Modal.Footer>
-          <ButtonCancelDelete onClick={handleShowDetail}>
+          <ButtonCancelDelete
+            onClick={() =>
+              history.push(`/quadranteCadastro/${casalToDetail.Casal_IDMENS}`)
+            }
+          >
             Editar
           </ButtonCancelDelete>
           <ButtonDelete>Deletar</ButtonDelete>
