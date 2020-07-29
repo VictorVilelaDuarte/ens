@@ -92,3 +92,8 @@ export const Label = styled.label`
   font-size: 15px;
   color: #222222;
 `;
+
+export const CasalDetailText = styled.div`
+  margin-top: 3px;
+  margin-bottom: 3px;
+`;
