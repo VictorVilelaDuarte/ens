@@ -37,6 +37,25 @@ class CasalController {
       }
     );
   }
+
+  busca(req, res) {
+    const { idmens } = req.params;
+    bd.query(
+      `SELECT * FROM ens_casal WHERE Casal_IDMENS=${idmens}`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o casal.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
 }
 
 export default new CasalController();
