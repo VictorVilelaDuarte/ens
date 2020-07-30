@@ -144,6 +144,7 @@ routes.post('/session', SessionController.insere);
 routes.get('/casalOpcao', CasalController.listaOpcao);
 routes.get('/casal/:equipe', CasalController.lista);
 routes.get('/casalBusca/:idmens', CasalController.busca);
+routes.put('/casal/:idmens', CasalController.altera);
 
 routes.get('/pilotagem', PilotagemController.lista);
 routes.get('/pilotagem/:idmens', PilotagemController.busca);
