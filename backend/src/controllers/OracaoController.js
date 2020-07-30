@@ -39,6 +39,21 @@ class OracaoController {
       });
     });
   }
+
+  async lista(req, res) {
+    bd.query(`SELECT * FROM ens_oracao`, (error, results) => {
+      if (error) {
+        return res.status(400).json({
+          staus: false,
+          message: 'Não foi possível buscar as orações.',
+        });
+      }
+      return res.status(200).json({
+        status: true,
+        data: results,
+      });
+    });
+  }
 }
 
 export default new OracaoController();
