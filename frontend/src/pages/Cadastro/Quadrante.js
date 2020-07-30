@@ -12,7 +12,7 @@ import Button from '../../components/Button';
 
 import { Container, FormDiv, TitleDiv, FormInputs, Label } from './styles';
 
-function PilotagemCadastro({ match }) {
+function CasalagemCadastro({ match }) {
   const formRef = useRef(null);
   const [CCasal, setCCasal] = useState({});
 
@@ -31,162 +31,146 @@ function PilotagemCadastro({ match }) {
     }
   }, []);
 
-  // async function handleSubmit(data) {
-  //   try {
-  //     formRef.current.setErrors({});
-  //     const schema = Yup.object().shape({
-  //       Pilot_IDMENS: Yup.string()
-  //         .required('O IDMENS é obrigatório')
-  //         .length(12, 'O IDMENS deve ter 12 dígitos'),
-  //       Pilot_HomemID: Yup.string().required('O ID do homem é obrigatório'),
-  //       Pilot_HomemNome: Yup.string().required('O nome do homem é obrigatório'),
-  //       Pilot_HomemEmail: Yup.string().required(
-  //         'O e-mail do homem é obrigatório'
-  //       ),
-  //       Pilot_HomemTelCel: Yup.string().required(
-  //         'O celular do homem é obrigatório'
-  //       ),
-  //       Pilot_HomemTelCom: Yup.string(),
-  //       Pilot_HomemDataNascimento: Yup.string().required(
-  //         'A data de nascimento do homem é obrigatória'
-  //       ),
-  //       Pilot_MulherID: Yup.string().required('O ID da mulher é obrigatório'),
-  //       Pilot_MulherNome: Yup.string().required(
-  //         'O nome da mulher é obrigatório'
-  //       ),
-  //       Pilot_MulherEmail: Yup.string().required(
-  //         'O e-mail da mulher é obrigatório'
-  //       ),
-  //       Pilot_MulherTelCel: Yup.string().required(
-  //         'O celular da mulher é obrigatório'
-  //       ),
-  //       Pilot_MulherTelCom: Yup.string(),
-  //       Pilot_MulherDataNascimento: Yup.string().required(
-  //         'A data de nascimento da mulher é obrigatória'
-  //       ),
-  //       Pilot_Nome: Yup.string().required('O nome do casal é obrigatório'),
-  //       Pilot_DataCasamento: Yup.string().required(
-  //         'A data de casamento do casal é obrigatória'
-  //       ),
-  //       Pilot_ParoquiaCasamento: Yup.string().required(
-  //         'A paróquia do casal é obrigatória'
-  //       ),
-  //       Pilot_IgrejaCasamento: Yup.string().required(
-  //         'A igreja do casal é obrigatória'
-  //       ),
-  //       Pilot_Endereco: Yup.string().required(
-  //         'O endereço do casal é obrigatório'
-  //       ),
-  //       Pilot_EndBairro: Yup.string().required(
-  //         'O bairro do casal é obrigatório'
-  //       ),
-  //       Pilot_EndCEP: Yup.string().required('O CEP do casal é obrigatório'),
-  //       Pilot_Cidade: Yup.string().required('A cidade do casal é obrigatória'),
-  //       Pilot_Estado: Yup.string().required('O estado do casal é obrigatório'),
-  //       Pilot_Pais: Yup.string().required('O país do casal é obrigatório'),
-  //       Pilot_TelResid: Yup.string(),
-  //       Pilot_DataInicioENS: Yup.string().required(
-  //         'A data de inicio é obrigatória'
-  //       ),
-  //       Pilot_NomeFilho1: Yup.string(),
-  //       Pilot_DataNascFilho1: Yup.string(),
-  //       Pilot_NomeFilho2: Yup.string(),
-  //       Pilot_DataNascFilho2: Yup.string(),
-  //       Pilot_NomeFilho3: Yup.string(),
-  //       Pilot_DataNascFilho3: Yup.string(),
-  //       Pilot_NomeFilho4: Yup.string(),
-  //       Pilot_DataNascFilho4: Yup.string(),
-  //       Pilot_NomeFilho5: Yup.string(),
-  //       Pilot_DataNascFilho5: Yup.string(),
-  //       Pilot_ExpComID: Yup.string(),
-  //       Pilot_AnoExpCom: Yup.string(),
-  //     });
+  async function handleSubmit(data) {
+    try {
+      formRef.current.setErrors({});
+      const schema = Yup.object().shape({
+        Casal_IDMENS: Yup.string()
+          .required('O IDMENS é obrigatório')
+          .length(12, 'O IDMENS deve ter 12 dígitos'),
+        Casal_HomemID: Yup.string().required('O ID do homem é obrigatório'),
+        Casal_HomemNome: Yup.string().required('O nome do homem é obrigatório'),
+        Casal_HomemEmail: Yup.string().required(
+          'O e-mail do homem é obrigatório'
+        ),
+        Casal_HomemTelCel: Yup.string().required(
+          'O celular do homem é obrigatório'
+        ),
+        Casal_HomemTelCom: Yup.string(),
+        Casal_HomemDataNascimento: Yup.string().required(
+          'A data de nascimento do homem é obrigatória'
+        ),
+        Casal_MulherID: Yup.string().required('O ID da mulher é obrigatório'),
+        Casal_MulherNome: Yup.string().required(
+          'O nome da mulher é obrigatório'
+        ),
+        Casal_MulherEmail: Yup.string().required(
+          'O e-mail da mulher é obrigatório'
+        ),
+        Casal_MulherTelCel: Yup.string().required(
+          'O celular da mulher é obrigatório'
+        ),
+        Casal_MulherTelCom: Yup.string(),
+        Casal_MulherDataNascimento: Yup.string().required(
+          'A data de nascimento da mulher é obrigatória'
+        ),
+        Casal_Nome: Yup.string().required('O nome do casal é obrigatório'),
+        Casal_DataCasamento: Yup.string().required(
+          'A data de casamento do casal é obrigatória'
+        ),
+        Casal_ParoquiaCasamento: Yup.string().required(
+          'A paróquia do casal é obrigatória'
+        ),
+        Casal_IgrejaCasamento: Yup.string().required(
+          'A igreja do casal é obrigatória'
+        ),
+        Casal_Endereco: Yup.string().required(
+          'O endereço do casal é obrigatório'
+        ),
+        Casal_EndBairro: Yup.string().required(
+          'O bairro do casal é obrigatório'
+        ),
+        Casal_EndCEP: Yup.string().required('O CEP do casal é obrigatório'),
+        Casal_Cidade: Yup.string().required('A cidade do casal é obrigatória'),
+        Casal_Estado: Yup.string().required('O estado do casal é obrigatório'),
+        Casal_Pais: Yup.string().required('O país do casal é obrigatório'),
+        Casal_TelResid: Yup.string(),
+        Casal_DataInicioENS: Yup.string().required(
+          'A data de inicio é obrigatória'
+        ),
+        Casal_NomeFilho1: Yup.string(),
+        Casal_DataNascFilho1: Yup.string(),
+        Casal_NomeFilho2: Yup.string(),
+        Casal_DataNascFilho2: Yup.string(),
+        Casal_NomeFilho3: Yup.string(),
+        Casal_DataNascFilho3: Yup.string(),
+        Casal_NomeFilho4: Yup.string(),
+        Casal_DataNascFilho4: Yup.string(),
+        Casal_NomeFilho5: Yup.string(),
+        Casal_DataNascFilho5: Yup.string(),
+      });
 
-  //     await schema.validate(data, {
-  //       abortEarly: false,
-  //     });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
 
-  //     const json = {
-  //       Pilot_IDMENS: data.Pilot_IDMENS,
-  //       Pilot_HomemID: data.Pilot_HomemID,
-  //       Pilot_HomemNome: data.Pilot_HomemNome,
-  //       Pilot_HomemEmail: data.Pilot_HomemEmail,
-  //       Pilot_HomemTelCel: data.Pilot_HomemTelCel,
-  //       Pilot_HomemTelCom: data.Pilot_HomemTelCom,
-  //       Pilot_HomemDataNascimento: data.Pilot_HomemDataNascimento,
-  //       Pilot_MulherID: data.Pilot_MulherID,
-  //       Pilot_MulherNome: data.Pilot_MulherNome,
-  //       Pilot_MulherEmail: data.Pilot_MulherEmail,
-  //       Pilot_MulherTelCel: data.Pilot_MulherTelCel,
-  //       Pilot_MulherTelCom: data.Pilot_MulherTelCom,
-  //       Pilot_MulherDataNascimento: data.Pilot_MulherDataNascimento,
-  //       Pilot_Nome: data.Pilot_Nome,
-  //       Pilot_DataCasamento: data.Pilot_DataCasamento,
-  //       Pilot_ParoquiaCasamento: data.Pilot_ParoquiaCasamento,
-  //       Pilot_IgrejaCasamento: data.Pilot_IgrejaCasamento,
-  //       Pilot_Endereco: data.Pilot_Endereco,
-  //       Pilot_EndBairro: data.Pilot_EndBairro,
-  //       Pilot_EndCEP: data.Pilot_EndCEP,
-  //       Pilot_Cidade: data.Pilot_Cidade,
-  //       Pilot_Estado: data.Pilot_Estado,
-  //       Pilot_Pais: data.Pilot_Pais,
-  //       Pilot_TelResid: data.Pilot_TelResid ? data.Pilot_TelResid : null,
-  //       Pilot_DataInicioENS: data.Pilot_DataInicioENS,
-  //       Pilot_NomeFilho1: data.Pilot_NomeFilho1 ? data.Pilot_NomeFilho1 : null,
-  //       Pilot_DataNascFilho1: data.Pilot_DataNascFilho1
-  //         ? data.Pilot_DataNascFilho1
-  //         : null,
-  //       Pilot_NomeFilho2: data.Pilot_NomeFilho2 ? data.Pilot_NomeFilho2 : null,
-  //       Pilot_DataNascFilho2: data.Pilot_DataNascFilho2
-  //         ? data.Pilot_DataNascFilho2
-  //         : null,
-  //       Pilot_NomeFilho3: data.Pilot_NomeFilho3 ? data.Pilot_NomeFilho3 : null,
-  //       Pilot_DataNascFilho3: data.Pilot_DataNascFilho3
-  //         ? data.Pilot_DataNascFilho3
-  //         : null,
-  //       Pilot_NomeFilho4: data.Pilot_NomeFilho4 ? data.Pilot_NomeFilho4 : null,
-  //       Pilot_DataNascFilho4: data.Pilot_DataNascFilho4
-  //         ? data.Pilot_DataNascFilho4
-  //         : null,
-  //       Pilot_NomeFilho5: data.Pilot_NomeFilho5 ? data.Pilot_NomeFilho5 : null,
-  //       Pilot_DataNascFilho5: data.Pilot_DataNascFilho5
-  //         ? data.Pilot_DataNascFilho5
-  //         : null,
-  //       Pilot_ExpComID: data.Pilot_ExpComID ? data.Pilot_ExpComID : null,
-  //       Pilot_AnoExpCom: data.Pilot_AnoExpCom ? data.Pilot_AnoExpCom : null,
-  //     };
+      const json = {
+        Casal_IDMENS: data.Casal_IDMENS,
+        Casal_HomemID: data.Casal_HomemID,
+        Casal_HomemNome: data.Casal_HomemNome,
+        Casal_HomemEmail: data.Casal_HomemEmail,
+        Casal_HomemTelCel: data.Casal_HomemTelCel,
+        Casal_HomemTelCom: data.Casal_HomemTelCom,
+        Casal_HomemDataNascimento: data.Casal_HomemDataNascimento,
+        Casal_MulherID: data.Casal_MulherID,
+        Casal_MulherNome: data.Casal_MulherNome,
+        Casal_MulherEmail: data.Casal_MulherEmail,
+        Casal_MulherTelCel: data.Casal_MulherTelCel,
+        Casal_MulherTelCom: data.Casal_MulherTelCom,
+        Casal_MulherDataNascimento: data.Casal_MulherDataNascimento,
+        Casal_Nome: data.Casal_Nome,
+        Casal_DataCasamento: data.Casal_DataCasamento,
+        Casal_ParoquiaCasamento: data.Casal_ParoquiaCasamento,
+        Casal_IgrejaCasamento: data.Casal_IgrejaCasamento,
+        Casal_Endereco: data.Casal_Endereco,
+        Casal_EndBairro: data.Casal_EndBairro,
+        Casal_EndCEP: data.Casal_EndCEP,
+        Casal_Cidade: data.Casal_Cidade,
+        Casal_Estado: data.Casal_Estado,
+        Casal_Pais: data.Casal_Pais,
+        Casal_TelResid: data.Casal_TelResid ? data.Casal_TelResid : null,
+        Casal_DataInicioENS: data.Casal_DataInicioENS,
+        Casal_NomeFilho1: data.Casal_NomeFilho1 ? data.Casal_NomeFilho1 : null,
+        Casal_DataNascFilho1: data.Casal_DataNascFilho1
+          ? data.Casal_DataNascFilho1
+          : null,
+        Casal_NomeFilho2: data.Casal_NomeFilho2 ? data.Casal_NomeFilho2 : null,
+        Casal_DataNascFilho2: data.Casal_DataNascFilho2
+          ? data.Casal_DataNascFilho2
+          : null,
+        Casal_NomeFilho3: data.Casal_NomeFilho3 ? data.Casal_NomeFilho3 : null,
+        Casal_DataNascFilho3: data.Casal_DataNascFilho3
+          ? data.Casal_DataNascFilho3
+          : null,
+        Casal_NomeFilho4: data.Casal_NomeFilho4 ? data.Casal_NomeFilho4 : null,
+        Casal_DataNascFilho4: data.Casal_DataNascFilho4
+          ? data.Casal_DataNascFilho4
+          : null,
+        Casal_NomeFilho5: data.Casal_NomeFilho5 ? data.Casal_NomeFilho5 : null,
+        Casal_DataNascFilho5: data.Casal_DataNascFilho5
+          ? data.Casal_DataNascFilho5
+          : null,
+      };
 
-  //     if (CPilotagem.Pilot_IDMENS) {
-  //       api
-  //         .put(`/pilotagem/${CPilotagem.Pilot_IDMENS}`, json)
-  //         .then((res) => {
-  //           toast.info(res.data.message);
-  //           history.push('/pilotagemadm');
-  //         })
-  //         .catch((err) => {
-  //           toast.error(err.data.message);
-  //         });
-  //     } else {
-  //       api
-  //         .post('/pilotagem', json)
-  //         .then((res) => {
-  //           toast.info(res.data.message);
-  //           history.push('/pilotagemadm');
-  //         })
-  //         .catch((err) => {
-  //           toast.error(err.data.message);
-  //         });
-  //     }
-  //   } catch (err) {
-  //     const validationErrors = {};
-  //     if (err instanceof Yup.ValidationError) {
-  //       err.inner.forEach((error) => {
-  //         validationErrors[error.path] = error.message;
-  //       });
-  //       formRef.current.setErrors(validationErrors);
-  //     }
-  //   }
-  // }
+      api
+        .put(`/casal/${CCasal.Casal_IDMENS}`, json)
+        .then((res) => {
+          toast.info(res.data.message);
+          history.push('/quadranteadm');
+        })
+        .catch((err) => {
+          toast.error(err.data.message);
+        });
+    } catch (err) {
+      const validationErrors = {};
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        formRef.current.setErrors(validationErrors);
+      }
+    }
+  }
 
   return (
     <>
@@ -198,7 +182,7 @@ function PilotagemCadastro({ match }) {
           <FormInputs
             ref={formRef}
             initialData={CCasal}
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
           >
             <Label>IDMENS</Label>
             <InputTexto
@@ -265,7 +249,7 @@ function PilotagemCadastro({ match }) {
               placeholder="Digite o telefone da mulher"
             />
             <Label>Data de nascimento da mulher</Label>
-            <InputDate name="Pilot_MulherDataNascimento" />
+            <InputDate name="Casal_MulherDataNascimento" />
             <hr />
             <Label>Nome do casal</Label>
             <InputTexto
@@ -320,7 +304,7 @@ function PilotagemCadastro({ match }) {
               placeholder="Digite o telefone do casal"
             />
             <Label>Data de inicio ENS</Label>
-            <InputDate name="Pilot_DataInicioENS" />
+            <InputDate name="Casal_DataInicioENS" />
             <Label>Nome do filho 1</Label>
             <InputTexto
               name="Casal_NomeFilho1"
@@ -341,7 +325,7 @@ function PilotagemCadastro({ match }) {
               placeholder="Digite o nome do terceiro filho do casal"
             />
             <Label>Data de nascimento filho 3</Label>
-            <InputDate name="Pilot_DataNascFilho3" />
+            <InputDate name="Casal_DataNascFilho3" />
             <Label>Nome do filho 4</Label>
             <InputTexto
               name="Casal_NomeFilho4"
@@ -365,4 +349,4 @@ function PilotagemCadastro({ match }) {
   );
 }
 
-export default PilotagemCadastro;
+export default CasalagemCadastro;
