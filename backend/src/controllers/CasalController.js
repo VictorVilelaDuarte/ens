@@ -159,6 +159,28 @@ class CasalController {
       }
     );
   }
+
+  alteraFoto(req, res) {
+    const { idmens } = req.params;
+    const { filename: path } = req.file;
+    const final_path = `${process.env.APP_URL}/files-casal/${path}`;
+
+    bd.query(
+      `UPDATE ens_casal SET Casal_imagem='${final_path}' WHERE Casal_IDMENS='${idmens}'`,
+      (err) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível salvar a foto.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          message: 'Foto atualizada com sucesso!',
+        });
+      }
+    );
+  }
 }
 
 export default new CasalController();

@@ -29,6 +29,7 @@ import multerNoticia from '../config/multerNoticia';
 import multerEquipe from '../config/multerEquipe';
 import multerConselheiro from '../config/multerConselheiro';
 import multerArquivo from '../config/multerArquivo';
+import multerCasal from '../config/multerCasal';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);
@@ -39,6 +40,7 @@ const uploadNoticia = multer(multerNoticia);
 const uploadEquipe = multer(multerEquipe);
 const uploadConselheiro = multer(multerConselheiro);
 const uploadArquivo = multer(multerArquivo);
+const uploadCasal = multer(multerCasal);
 
 routes.get('/', (req, res) => {
   return res.json({ server_status: 'ok' });
@@ -145,6 +147,11 @@ routes.get('/casalOpcao', CasalController.listaOpcao);
 routes.get('/casal/:equipe', CasalController.lista);
 routes.get('/casalBusca/:idmens', CasalController.busca);
 routes.put('/casal/:idmens', CasalController.altera);
+routes.put(
+  '/casalFoto/:idmens',
+  uploadCasal.single('file'),
+  CasalController.alteraFoto
+);
 
 routes.get('/pilotagem', PilotagemController.lista);
 routes.get('/pilotagem/:idmens', PilotagemController.busca);
