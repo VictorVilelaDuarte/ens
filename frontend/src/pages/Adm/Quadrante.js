@@ -18,7 +18,7 @@ import {
   CasalFoto,
   CasalFotoDiv,
   CasalNome,
-  CasalTelefone,
+  ButtonExtra,
   CasalDetailText,
 } from './styles';
 
@@ -240,6 +240,13 @@ function QuadranteAdm() {
           )}
         </Modal.Body>
         <Modal.Footer>
+          <ButtonExtra
+            onClick={() =>
+              history.push(`/CasalFoto/${casalToDetail.Casal_IDMENS}`)
+            }
+          >
+            Alterar foto
+          </ButtonExtra>
           <ButtonCancelDelete
             onClick={() =>
               history.push(`/quadranteCadastro/${casalToDetail.Casal_IDMENS}`)

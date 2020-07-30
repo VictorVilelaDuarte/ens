@@ -31,6 +31,18 @@ export const ButtonCancelDelete = styled.button`
   color: #fff;
 `;
 
+export const ButtonExtra = styled.button`
+  height: 46px;
+  background-color: transparent;
+  border: 1px solid #326b97;
+  border-radius: 4px;
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  color: #326b97;
+`;
+
 export const TitleDiv = styled.div`
   display: flex;
   flex-direction: row;
