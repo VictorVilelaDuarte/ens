@@ -1,8 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Modal } from 'react-bootstrap';
-import { FaPhone } from 'react-icons/fa';
-import { toast } from 'react-toastify';
 
 import history from '../../services/history';
 import api from '../../services/api';
@@ -107,7 +105,7 @@ function QuadranteAdm() {
             <CasalDiv onClick={() => handleShowDetail(item)}>
               <CasalFotoDiv>
                 {item.Casal_imagem ? (
-                  <CasalFoto src={CasalDefault} />
+                  <CasalFoto src={item.Casal_imagem} />
                 ) : (
                   <CasalFoto src={CasalDefault} />
                 )}
