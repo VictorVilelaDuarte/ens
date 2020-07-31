@@ -49,9 +49,11 @@ function Painel() {
               <FaImages /> Galeria
             </BigButtons>
           </Link>
-          <BigButtons color="blue">
-            <FaPrayingHands /> Orações
-          </BigButtons>
+          <Link to="/oracaoadm">
+            <BigButtons color="blue">
+              <FaPrayingHands /> Orações
+            </BigButtons>
+          </Link>
           <Link to="/equipeadm">
             <BigButtons color="orange">
               <FaUsers /> Equipes
