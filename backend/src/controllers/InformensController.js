@@ -3,7 +3,7 @@ import bd from '../../config/database';
 class InformensController {
   async lista(req, res) {
     bd.query(
-      `SELECT * FROM ens_informens ORDER BY informens_data`,
+      `SELECT * FROM ens_informens ORDER BY informens_data DESC`,
       (error, results) => {
         if (error) {
           return res.status(400).json({

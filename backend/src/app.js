@@ -54,6 +54,10 @@ class App {
       '/files-arquivo',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'arquivo'))
     );
+    this.server.use(
+      '/files-casal',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'casal'))
+    );
   }
 
   routes() {

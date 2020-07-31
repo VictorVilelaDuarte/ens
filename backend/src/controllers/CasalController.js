@@ -164,11 +164,12 @@ class CasalController {
     const { idmens } = req.params;
     const { filename: path } = req.file;
     const final_path = `${process.env.APP_URL}/files-casal/${path}`;
-
+    console.log(req.params);
     bd.query(
       `UPDATE ens_casal SET Casal_imagem='${final_path}' WHERE Casal_IDMENS='${idmens}'`,
       (err) => {
         if (err) {
+          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar a foto.',

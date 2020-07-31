@@ -147,7 +147,7 @@ routes.get('/casalOpcao', CasalController.listaOpcao);
 routes.get('/casal/:equipe', CasalController.lista);
 routes.get('/casalBusca/:idmens', CasalController.busca);
 routes.put('/casal/:idmens', CasalController.altera);
-routes.put(
+routes.post(
   '/casalFoto/:idmens',
   uploadCasal.single('file'),
   CasalController.alteraFoto
