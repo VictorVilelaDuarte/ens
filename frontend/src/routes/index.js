@@ -9,6 +9,7 @@ import Galeria from '../pages/Galeria';
 import Eventos from '../pages/Eventos';
 import Noticias from '../pages/Noticias';
 import Noticia from '../pages/Noticia';
+import Informens from '../pages/Informens';
 import LoginAdm from '../pages/LoginAdm';
 import Login from '../pages/Login';
 import NovaSenha from '../pages/NovaSenha';
@@ -48,6 +49,7 @@ export default function Routes() {
       <Router path="/eventos" component={Eventos} />
       <Router path="/noticias" component={Noticias} />
       <Router path="/noticia/:noticia?" component={Noticia} />
+      <Router path="/informens" component={Informens} />
       <Router path="/loginadm" component={LoginAdm} />
       <Router path="/login" component={Login} />
       <Router path="/novasenha" component={NovaSenha} />

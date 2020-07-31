@@ -24,6 +24,7 @@
     "react-images-upload": "^1.2.8",
     "react-lines-ellipsis": "^0.14.1",
     "react-password-strength-bar": "^0.3.2",
+    "react-pdf": "^4.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-toastify": "^6.0.4",

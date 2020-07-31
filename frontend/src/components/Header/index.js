@@ -97,9 +97,11 @@ export default function Header() {
                   <FaTh /> Quadrante
                 </Item.Link>
               </Link>
-              <Item.Link href="#link">
-                <FaInfo /> Informens
-              </Item.Link>
+              <Link to="/informens">
+                <Item.Link href="#informens">
+                  <FaInfo /> Informens
+                </Item.Link>
+              </Link>
               <Item.Link href="#link">
                 <FaPhone /> Contato
               </Item.Link>
