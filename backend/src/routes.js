@@ -81,6 +81,7 @@ routes.get('/arquivo', ArquivoController.lista);
 
 routes.post('/oracao', uploadOracao.single('file'), OracaoController.insere);
 routes.delete('/oracao/:id', OracaoController.deleta);
+routes.get('/oracao', OracaoController.lista);
 
 routes.get('/user', authMiddleware, UserController.lista);
 routes.get('/user/:idmens', UserController.busca);
