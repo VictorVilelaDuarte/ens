@@ -1,10 +1,9 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { Table, Pagination, Modal } from 'react-bootstrap';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { Table, Modal } from 'react-bootstrap';
+import { FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-import history from '../../services/history';
 import api from '../../services/api';
 
 import {
@@ -18,17 +17,13 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function InformensAdm({ match }) {
+function InformensAdm() {
   const [informens, setInformens] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
   const [informensToDelete, setInformensToDelete] = useState({});
 
   useEffect(() => {
-    let thisPage = match.params.page;
-    if (!thisPage) {
-      thisPage = 1;
-    }
-    function getNoticias() {
+    function getInformens() {
       api
         .get(`/informens`)
         .then((res) => {
@@ -42,7 +37,7 @@ function InformensAdm({ match }) {
           toast.error(err.response.data.message);
         });
     }
-    getNoticias();
+    getInformens();
   }, []);
 
   function formatDate(date) {
