@@ -18,7 +18,7 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function InformensAdm({ match }) {
+function ArquivoAdm({ match }) {
   const [arquivo, setArquivo] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
   const [arquivoToDelete, setArquivoToDelete] = useState({});
@@ -125,4 +125,4 @@ function InformensAdm({ match }) {
   );
 }
 
-export default InformensAdm;
+export default ArquivoAdm;
