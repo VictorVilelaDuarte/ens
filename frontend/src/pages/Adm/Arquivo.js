@@ -80,6 +80,7 @@ function InformensAdm({ match }) {
           <thead>
             <tr>
               <th>Titulo</th>
+              <th>Link</th>
               <th>Deletar</th>
             </tr>
           </thead>
@@ -87,6 +88,7 @@ function InformensAdm({ match }) {
             {arquivo.map((item) => (
               <tr>
                 <td>{item.Arquivo_Titulo}</td>
+                <td>{item.Arquivo_Path}</td>
                 <td>
                   <ButtonIconPointer>
                     <FaTrash
