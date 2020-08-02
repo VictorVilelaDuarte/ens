@@ -2,18 +2,21 @@ import bd from '../../config/database';
 
 class MensagemController {
   lista(req, res) {
-    bd.query(`SELECT * FROM ens_mensagem`, (error, results) => {
-      if (error) {
-        return res.status(400).json({
-          staus: false,
-          message: 'Não foi possível buscar as mensagens.',
+    bd.query(
+      `SELECT * FROM ens_mensagem ORDER BY Mensagem_ID DESC`,
+      (error, results) => {
+        if (error) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar as mensagens.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: results,
         });
       }
-      return res.status(200).json({
-        status: true,
-        data: results,
-      });
-    });
+    );
   }
 
   insere(req, res) {
