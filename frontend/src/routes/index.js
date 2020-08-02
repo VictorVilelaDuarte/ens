@@ -14,6 +14,7 @@ import LoginAdm from '../pages/LoginAdm';
 import Login from '../pages/Login';
 import NovaSenha from '../pages/NovaSenha';
 import Painel from '../pages/Painel';
+import Contato from '../pages/Contato';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
@@ -55,6 +56,7 @@ export default function Routes() {
       <Router path="/loginadm" component={LoginAdm} />
       <Router path="/login" component={Login} />
       <Router path="/novasenha" component={NovaSenha} />
+      <Router path="/contato" component={Contato} />
 
       <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />

@@ -11,7 +11,7 @@ import {
   FaImages,
   FaTh,
   FaInfo,
-  FaPhone,
+  FaEnvelope,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -102,9 +102,11 @@ export default function Header() {
                   <FaInfo /> Informens
                 </Item.Link>
               </Link>
-              <Item.Link href="#link">
-                <FaPhone /> Contato
-              </Item.Link>
+              <Link to="/contato">
+                <Item.Link href="#contato">
+                  <FaEnvelope /> Contato
+                </Item.Link>
+              </Link>
             </Item>
           </Menu.Collapse>
         </Menu>
