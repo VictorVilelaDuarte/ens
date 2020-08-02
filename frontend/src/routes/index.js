@@ -28,6 +28,7 @@ import QuadranteAdm from '../pages/Adm/Quadrante';
 import ArquivoAdm from '../pages/Adm/Arquivo';
 import PilotagemAdm from '../pages/Adm/Pilotagem';
 import OracaoAdm from '../pages/Adm/Oracao';
+import MensagemAdm from '../pages/Adm/Mensagem';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -72,6 +73,7 @@ export default function Routes() {
       <Router path="/arquivoadm" component={ArquivoAdm} isPrivate />
       <Router path="/pilotagemadm" component={PilotagemAdm} isPrivate />
       <Router path="/oracaoadm" component={OracaoAdm} isPrivate />
+      <Router path="/mensagemadm" component={MensagemAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"

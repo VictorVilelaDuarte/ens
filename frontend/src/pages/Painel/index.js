@@ -92,7 +92,7 @@ function Painel() {
               <FaFileUpload /> Arquivos
             </BigButtons>
           </Link>
-          <Link to="/arquivoadm">
+          <Link to="/mensagemadm">
             <BigButtons color="green">
               <FaEnvelope /> Mensagens
             </BigButtons>
