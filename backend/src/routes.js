@@ -163,5 +163,6 @@ routes.put('/pilotagem/:idmens', PilotagemController.altera);
 routes.delete('/pilotagem/:idmens', PilotagemController.deleta);
 
 routes.post('/mensagem', MensagemController.insere);
+routes.get('/mensagem', MensagemController.lista);
 
 export default routes;
