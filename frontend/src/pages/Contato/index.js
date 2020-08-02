@@ -1,8 +1,16 @@
-import React, { useRef, useContext } from 'react';
-import { FaUser, FaLock, FaMobile, FaEnvelope, FaFile } from 'react-icons/fa';
+import React, { useRef } from 'react';
+import {
+  FaUser,
+  FaMobile,
+  FaEnvelope,
+  FaFile,
+  FaCommentDots,
+} from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
-import { AuthContext } from '../../context/AuthContext';
+import api from '../../services/api';
+import history from '../../services/history';
 
 import { Container, DivForm, FormLogin } from './styles';
 
@@ -13,25 +21,42 @@ import Button from '../../components/Button';
 import Title from '../../components/Title';
 
 export default function Contato() {
-  const { signIn } = useContext(AuthContext);
-
   const formRef = useRef(null);
-  async function handleLogin(data) {
+  async function handleSubmit(data) {
     try {
       formRef.current.setErrors({});
       const schema = Yup.object().shape({
-        idmens: Yup.string()
-          .required('O IDMENS é obrigatório')
-          .length(12, 'O IDMENS deve ter 12 dígitos'),
-        password: Yup.string()
-          .min(6, 'Minimo 6 caracteres')
-          .required('A senha é obrigatória'),
+        nome: Yup.string().required('O Nome é obrigatório'),
+        telefone: Yup.string().required('O telefone é obrigatório'),
+        email: Yup.string().required('O e-mail é obrigatório'),
+        assunto: Yup.string().test(
+          'is-selecione',
+          'O assunto obrigatório',
+          (value) => value !== '0'
+        ),
+        conteudo: Yup.string().required('A mensagem é obrigatória'),
       });
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      signIn(data);
+      const json = {
+        nome: data.nome,
+        assunto: data.assunto,
+        conteudo: data.conteudo,
+        telefone: data.telefone,
+        email: data.email,
+      };
+
+      api
+        .post('/mensagem', json)
+        .then((res) => {
+          toast.info(res.data.message);
+          history.push('/');
+        })
+        .catch((err) => {
+          toast.error(err.data.message);
+        });
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {
@@ -48,7 +73,7 @@ export default function Contato() {
       <Container>
         <Title>Contato</Title>
         <DivForm>
-          <FormLogin ref={formRef} onSubmit={handleLogin}>
+          <FormLogin ref={formRef} onSubmit={handleSubmit}>
             <InputTexto name="nome" placeholder="Digite seu Nome">
               <FaUser size={20} />
             </InputTexto>
@@ -66,12 +91,16 @@ export default function Contato() {
                   label: 'Selecione o assunto',
                 },
                 {
-                  value: 'Informens',
-                  label: 'Informens',
-                },
-                {
                   value: 'Acervo',
                   label: 'Acervo',
+                },
+                {
+                  value: 'Comunicação',
+                  label: 'Comunicação',
+                },
+                {
+                  value: 'Informens',
+                  label: 'Informens',
                 },
                 {
                   value: 'Site',
@@ -86,7 +115,7 @@ export default function Contato() {
               name="conteudo"
               placeholder="Digite aqui sua mensagem..."
             >
-              <FaLock size={20} />
+              <FaCommentDots size={20} />
             </InputTextArea>
             <Button type="submit">Entrar</Button>
           </FormLogin>
