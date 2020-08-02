@@ -20,6 +20,7 @@ import ConselheiroController from './controllers/ConselheiroController';
 import CasalController from './controllers/CasalController';
 import ArquivoController from './controllers/ArquivoController';
 import PilotagemController from './controllers/PilotagemController';
+import MensagemController from './controllers/MensagemController';
 
 import multerCapa from '../config/multerCapa';
 import multerAlbum from '../config/multerAlbum';
@@ -160,5 +161,7 @@ routes.post('/pilotagem', PilotagemController.insere);
 routes.post('/pilotagemPromove', PilotagemController.promove);
 routes.put('/pilotagem/:idmens', PilotagemController.altera);
 routes.delete('/pilotagem/:idmens', PilotagemController.deleta);
+
+routes.post('/mensagem', MensagemController.insere);
 
 export default routes;
