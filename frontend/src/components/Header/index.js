@@ -29,20 +29,26 @@ export default function Header() {
             <Item className="mr-auto">
               <Link to="/">
                 <Item.Link href="#home">
-                  <FaHome />
+                  <FaHome /> Início
                 </Item.Link>
               </Link>
               <Item.Link href="#home">
                 <FaCross /> Pe Caffarel
               </Item.Link>
-              <Item.Link href="#link">
-                <FaPray /> Quem Somos
-              </Item.Link>
+              <Dropdown
+                title={
+                  <>
+                    <FaPray /> Movimento
+                  </>
+                }
+              >
+                <Dropdown.Item href="#action/3.1">Quem somos</Dropdown.Item>
+                <Dropdown.Item href="#action/3.1">Região</Dropdown.Item>
+                <Dropdown.Item href="#action/3.1">Setor Caçapava</Dropdown.Item>
+                <Dropdown.Item href="#action/3.1">Siglas</Dropdown.Item>
+              </Dropdown>
               <Item.Link href="#link">
                 <FaHeart /> PCEs
-              </Item.Link>
-              <Item.Link href="#link">
-                <FaChurch /> Movimento
               </Item.Link>
               <Dropdown
                 title={

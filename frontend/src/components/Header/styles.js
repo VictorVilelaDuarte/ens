@@ -22,7 +22,7 @@ export const Menu = styled(Navbar)`
 
 export const Item = styled(Nav)`
   a {
-    font-size: 14px;
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.8) !important;
   }
 
