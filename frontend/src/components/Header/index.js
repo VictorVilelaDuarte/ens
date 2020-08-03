@@ -49,9 +49,11 @@ export default function Header() {
                 <Dropdown.Item href="#action/3.1">Setor Caçapava</Dropdown.Item>
                 <Dropdown.Item href="#action/3.1">Siglas</Dropdown.Item>
               </Dropdown>
-              <Item.Link href="#link">
-                <FaHeart /> PCEs
-              </Item.Link>
+              <Link to="/pce">
+                <Item.Link href="#link">
+                  <FaHeart /> PCEs
+                </Item.Link>
+              </Link>
               <Dropdown
                 title={
                   <>
