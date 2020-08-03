@@ -32,9 +32,11 @@ export default function Header() {
                   <FaHome /> Início
                 </Item.Link>
               </Link>
-              <Item.Link href="#home">
-                <FaCross /> Pe Caffarel
-              </Item.Link>
+              <Link to="/padre">
+                <Item.Link href="#padre">
+                  <FaCross /> Pe Caffarel
+                </Item.Link>
+              </Link>
               <Dropdown
                 title={
                   <>
