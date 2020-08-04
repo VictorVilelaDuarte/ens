@@ -44,10 +44,18 @@ export default function Header() {
                   </>
                 }
               >
-                <Dropdown.Item href="#action/3.1">Quem somos</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Região</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Setor Caçapava</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Siglas</Dropdown.Item>
+                <Link to="/quemSomos">
+                  <Dropdown.Item href="#quemSomos">Quem somos</Dropdown.Item>
+                </Link>
+                <Link to="/regiao">
+                  <Dropdown.Item href="#regiao">Região</Dropdown.Item>
+                </Link>
+                <Link to="/setor">
+                  <Dropdown.Item href="#setor">Setor Caçapava</Dropdown.Item>
+                </Link>
+                <Link to="/siglas">
+                  <Dropdown.Item href="#siglas">Siglas</Dropdown.Item>
+                </Link>
               </Dropdown>
               <Link to="/pce">
                 <Item.Link href="#link">

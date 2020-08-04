@@ -17,6 +17,10 @@ import Painel from '../pages/Painel';
 import Contato from '../pages/Contato';
 import Padre from '../pages/Padre';
 import Pce from '../pages/Pce';
+import QuemSomos from '../pages/QuemSomos';
+import Regiao from '../pages/Regiao';
+import Setor from '../pages/Setor';
+import Siglas from '../pages/Siglas';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
@@ -62,6 +66,10 @@ export default function Routes() {
       <Router path="/contato" component={Contato} />
       <Router path="/padre" component={Padre} />
       <Router path="/pce" component={Pce} />
+      <Router path="/quemSomos" component={QuemSomos} />
+      <Router path="/regiao" component={Regiao} />
+      <Router path="/setor" component={Setor} />
+      <Router path="/siglas" component={Siglas} />
 
       <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
