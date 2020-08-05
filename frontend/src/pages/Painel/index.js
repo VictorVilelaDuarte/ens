@@ -84,9 +84,11 @@ function Painel() {
               <FaChurch /> Padroeira
             </BigButtons>
           </Link>
-          <BigButtons color="green">
-            <FaCode /> Páginas
-          </BigButtons>
+          <Link to="/paginaadm">
+            <BigButtons color="green">
+              <FaCode /> Páginas
+            </BigButtons>
+          </Link>
           <Link to="/arquivoadm">
             <BigButtons color="green">
               <FaFileUpload /> Arquivos
