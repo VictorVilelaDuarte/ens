@@ -50,6 +50,7 @@ import PilotagemCadastro from '../pages/Cadastro/Pilotagem';
 import QuadranteCadastro from '../pages/Cadastro/Quadrante';
 import CasalFtoto from '../pages/Cadastro/CasalFtoto';
 import OracaoCadastro from '../pages/Cadastro/Oracao';
+import PaginaCadastro from '../pages/Cadastro/Pagina';
 
 export default function Routes() {
   return (
@@ -142,6 +143,11 @@ export default function Routes() {
       />
       <Router path="/casalFoto/:casal?" component={CasalFtoto} isPrivate />
       <Router path="/oracaoCadastro/" component={OracaoCadastro} isPrivate />
+      <Router
+        path="/paginaCadastro/:pagina?"
+        component={PaginaCadastro}
+        isPrivate
+      />
     </Switch>
   );
 }
