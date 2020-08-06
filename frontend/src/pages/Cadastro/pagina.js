@@ -15,7 +15,7 @@ import Button from '../../components/Button';
 
 import { Container, FormDiv, TitleDiv, FormInputs } from './styles';
 
-function NoticiaCadastro({ match }) {
+function PaginaCadastro({ match }) {
   const formRef = useRef(null);
   const [picture, setPicture] = useState();
   const [text, setText] = useState('');
@@ -152,4 +152,4 @@ function NoticiaCadastro({ match }) {
   );
 }
 
-export default NoticiaCadastro;
+export default PaginaCadastro;
