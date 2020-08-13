@@ -23,7 +23,7 @@ class PaginaController {
   altera(req, res) {
     const { id } = req.params;
     const { texto, titulo } = req.body;
-
+    console.log('aqui');
     bd.query(
       `UPDATE ens_pagina SET pagina_nome='${titulo}', pagina_conteudo='${texto}' WHERE pagina_id='${id}'`,
       (err) => {
