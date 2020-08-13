@@ -1,4 +1,4 @@
-import bd from '../../config/database';
+import bd from '../config/database';
 
 class ArquivoController {
   async lista(req, res) {

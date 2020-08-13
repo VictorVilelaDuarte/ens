@@ -2,8 +2,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-import bd from '../../config/database';
-import authConfig from '../../config/authConfig';
+import bd from '../config/database';
+import authConfig from '../config/authConfig';
 
 class SessionController {
   insere(req, res) {

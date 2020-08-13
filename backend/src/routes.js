@@ -22,15 +22,15 @@ import ArquivoController from './controllers/ArquivoController';
 import PilotagemController from './controllers/PilotagemController';
 import MensagemController from './controllers/MensagemController';
 
-import multerCapa from '../config/multerCapa';
-import multerAlbum from '../config/multerAlbum';
-import multerInformens from '../config/multerInformens';
-import multerOracao from '../config/multerOracao';
-import multerNoticia from '../config/multerNoticia';
-import multerEquipe from '../config/multerEquipe';
-import multerConselheiro from '../config/multerConselheiro';
-import multerArquivo from '../config/multerArquivo';
-import multerCasal from '../config/multerCasal';
+import multerCapa from './config/multerCapa';
+import multerAlbum from './config/multerAlbum';
+import multerInformens from './config/multerInformens';
+import multerOracao from './config/multerOracao';
+import multerNoticia from './config/multerNoticia';
+import multerEquipe from './config/multerEquipe';
+import multerConselheiro from './config/multerConselheiro';
+import multerArquivo from './config/multerArquivo';
+import multerCasal from './config/multerCasal';
 
 const routes = new Router();
 const uploadCapa = multer(multerCapa);

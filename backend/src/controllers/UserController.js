@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 
-import bd from '../../config/database';
+import bd from '../config/database';
 
 class UserController {
   lista(req, res) {

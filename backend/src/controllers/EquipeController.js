@@ -1,10 +1,10 @@
-import bd from '../../config/database';
+import bd from '../config/database';
 
 class EquipeController {
   lista(req, res) {
     bd.query(
       `SELECT ens_equipe.*, ens_conselheiro.Conselheiro_Nome, a.Casal_Nome as Casal_Ligacao,  b.Casal_Nome as Casal_Resp FROM ens_equipe
-    LEFT JOIN ens_conselheiro 
+    LEFT JOIN ens_conselheiro
     ON ens_equipe.Equipe_ConselheiroIDMENS = ens_conselheiro.Conselheiro_IDMENS
     LEFT JOIN ens_casal AS a
     ON ens_equipe.Equipe_CasalLigacaoAtualIDMENS = a.Casal_IDMENS
