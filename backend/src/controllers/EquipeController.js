@@ -26,6 +26,25 @@ class EquipeController {
     );
   }
 
+  detalhe(req, res) {
+    const { id } = req.params;
+    bd.query(
+      `SELECT e.*, c.Conselheiro_Perfil, l.Casal_Nome FROM ens_equipe e INNER JOIN ens_conselheiro c ON c.Conselheiro_IDMENS = e.Equipe_ConselheiroIDMENS INNER JOIN ens_casal l ON e.Equipe_CasalLigacaoAtualIDMENS = l.Casal_IDMENS WHERE e.Equipe_ID = ${id};`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar a equipe.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
+
   insere(req, res) {
     const { filename: path } = req.file;
     const final_path = `${process.env.APP_URL}/files-equipe/${path}`;
