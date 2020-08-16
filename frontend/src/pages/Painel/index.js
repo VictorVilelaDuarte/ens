@@ -74,11 +74,11 @@ function Painel() {
               <FaUserPlus /> Pilotagem
             </BigButtons>
           </Link>
-          <Link to="/quadranteadm">
-            <BigButtons color="orange">
-              <FaUserSlash /> Ex-equipista
-            </BigButtons>
-          </Link>
+          {/* <Link to="/quadranteadm"> */}
+          <BigButtons color="orange">
+            <FaUserSlash /> Ex-equipista
+          </BigButtons>
+          {/* </Link> */}
           <Link to="/padroeiraadm">
             <BigButtons color="orange">
               <FaChurch /> Padroeira
