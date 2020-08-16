@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://167.172.157.226:3333',
+  baseURL: 'https://apiens.servile.com.br',
 });
 
 api.interceptors.request.use(async (config) => {
