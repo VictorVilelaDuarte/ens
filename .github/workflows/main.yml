@@ -49,6 +49,22 @@ jobs:
 
 
     # Executar NPM I na Digital Ocean
+    - name: Runnning NPM i on Digital Ocean
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{secrets.SSH_KEY}}
+        script: cd ens/backend && npm i
+      
     # Restart servidor Node
-        
+    - name: Runnning NPM i on Digital Ocean
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{secrets.SSH_KEY}}
+        script: pm2 restart server
       
