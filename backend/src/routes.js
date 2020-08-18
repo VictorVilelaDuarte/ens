@@ -44,7 +44,7 @@ const uploadArquivo = multer(multerArquivo);
 const uploadCasal = multer(multerCasal);
 
 routes.get('/', (req, res) => {
-  return res.json({ server_status: 'ok' });
+  return res.json({ server_status: 'Servidor e CI/CD ok.' });
 });
 
 routes.get('/evento', EventoController.lista);
