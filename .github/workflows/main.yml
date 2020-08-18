@@ -45,7 +45,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         key: ${{secrets.SSH_KEY}}
         source: "backend/"
-        target: "~/ens/backend"
+        target: "~/ens/"
     
     # Substituir codigo existente na pasta Dist pelas novas
     # Executar NPM I na Digital Ocean
