@@ -44,8 +44,9 @@ class UserController {
       (err) => {
         if (err) {
           return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível criar o usuario.',
+            err,
+            // staus: false,
+            // message: 'Não foi possível criar o usuario.',
           });
         }
         return res.status(200).json({
