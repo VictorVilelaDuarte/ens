@@ -28,8 +28,7 @@ class UserController {
       (err, result) => {
         if (err) {
           return res.status(400).json({
-            staus: false,
-            message: 'Não foi possível criar o usuario.',
+            err,
           });
         }
         nome = result[0].Casal_Nome;
