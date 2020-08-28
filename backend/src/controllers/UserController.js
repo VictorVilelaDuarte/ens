@@ -24,7 +24,7 @@ class UserController {
     let equipe = '';
 
     bd.query(
-      `SELECT Casal_EquipeID, Casal_Nome FROM ens_Casal WHERE Casal_IDMENS = ${idmens}`,
+      `SELECT Casal_EquipeID, Casal_Nome FROM ens_casal WHERE Casal_IDMENS = ${idmens}`,
       (err, result) => {
         if (err) {
           return res.status(400).json({
