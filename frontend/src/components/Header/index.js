@@ -3,7 +3,6 @@ import {
   FaHome,
   FaPray,
   FaCross,
-  FaChurch,
   FaHeart,
   FaCalendarAlt,
   FaBook,
@@ -88,22 +87,54 @@ export default function Header() {
                   </>
                 }
               >
-                <Dropdown.Item href="#action/3.1">Equipe I</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe II</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe III</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe IV</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe V</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe VI</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe VII</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe VIII</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe IX</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe X</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XI</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XII</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XIII</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XIV</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XV</Dropdown.Item>
-                <Dropdown.Item href="#action/3.1">Equipe XVI</Dropdown.Item>
+                <Link to="/equipe/1">
+                  <Dropdown.Item href="#equipe/1">Equipe I</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/2">
+                  <Dropdown.Item href="#equipe/2">Equipe II</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/3">
+                  <Dropdown.Item href="#equipe/3">Equipe III</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/4">
+                  <Dropdown.Item href="#equipe/4">Equipe IV</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/5">
+                  <Dropdown.Item href="#equipe/5">Equipe V</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/6">
+                  <Dropdown.Item href="#equipe/6">Equipe VI</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/7">
+                  <Dropdown.Item href="#equipe/7">Equipe VII</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/8">
+                  <Dropdown.Item href="#equipe/8">Equipe VIII</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/9">
+                  <Dropdown.Item href="#equipe/9">Equipe IX</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/10">
+                  <Dropdown.Item href="#equipe/10">Equipe X</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/11">
+                  <Dropdown.Item href="#equipe/11">Equipe XI</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/12">
+                  <Dropdown.Item href="#equipe/12">Equipe XII</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/13">
+                  <Dropdown.Item href="#equipe/13">Equipe XIII</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/14">
+                  <Dropdown.Item href="#equipe/14">Equipe XIV</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/15">
+                  <Dropdown.Item href="#equipe/15">Equipe XV</Dropdown.Item>
+                </Link>
+                <Link to="/equipe/16">
+                  <Dropdown.Item href="#equipe/16">Equipe XVI</Dropdown.Item>
+                </Link>
               </Dropdown>
               <Link to="/galeria">
                 <Item.Link href="#galeria">
