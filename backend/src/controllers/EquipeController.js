@@ -45,6 +45,25 @@ class EquipeController {
     );
   }
 
+  casais(req, res) {
+    const { id } = req.params;
+    bd.query(
+      `SELECT Casal_Nome FROM ens_casal WHERE Casal_EquipeID = ${id};`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar a equipe.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
+
   insere(req, res) {
     const { filename: path } = req.file;
     const final_path = `${process.env.APP_URL}/files-equipe/${path}`;

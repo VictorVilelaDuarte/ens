@@ -117,6 +117,7 @@ routes.post(
 );
 routes.delete('/equipe/:id', EquipeController.deleta);
 routes.get('/equipeDetalhe/:id', EquipeController.detalhe);
+routes.get('/equipeCasais/:id', EquipeController.casais);
 
 routes.get('/padroeira', PadroeiraController.lista);
 routes.post('/padroeira', PadroeiraController.insere);
