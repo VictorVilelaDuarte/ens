@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -82,7 +83,14 @@ function Liturgia() {
           <Title> Orações </Title>
           {oracao.map((item) => (
             <Item>
-              <a>{item.Oracao_Titulo}</a>
+              <Link
+                to={{
+                  pathname: '/pdf',
+                  state: item.Oracao_Path,
+                }}
+              >
+                {item.Oracao_Titulo}
+              </Link>
             </Item>
           ))}
         </OracaoDiv>
