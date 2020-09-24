@@ -13,7 +13,7 @@ import {
 import Servile from '../../assets/Servile.png';
 import Cadeado from '../../assets/cadeado.png';
 import Logo from '../../assets/logo.png';
-import Ens from '../../assets/ENS.png';
+import Ens from '../../assets/logo-ens.png';
 
 export default function Footer() {
   return (
