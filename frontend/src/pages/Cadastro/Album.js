@@ -109,16 +109,11 @@ function AlbumCadastro({ match }) {
   //   }
   // }
 
-  useEffect(() => {
-    console.log(picture);
-    console.log('lteriu');
-  }, [picture]);
+  useEffect(() => {}, [picture]);
 
   function onDrop(Cpicture) {
-    console.log(Cpicture);
     // setPicture(Cpicture);
     if (Cpicture.length > 0) {
-      console.log('entro');
       setPicture((oldPictures) => [...oldPictures, Cpicture]);
     }
   }
@@ -134,18 +129,12 @@ function AlbumCadastro({ match }) {
             ref={formRef}
             // onSubmit={handleSubmit}
           >
-            {/* {console.log(picture)} */}
-            <ImageUploader
-              defaultImages={picture}
-              withIcon
-              withPreview
-              singleImage
-              label="Escolha capa do album (até 5Mb)"
-              buttonText="Escolher imagem"
-              onChange={onDrop}
-              imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}
-              maxFileSize={5242880}
-            />
+            {console.log(picture)}
+
+            {picture.map((item) => (
+              <img src={item} alt={item} />
+            ))}
+
             <Button type="submit">Enviar</Button>
           </FormInputs>
         </FormDiv>
