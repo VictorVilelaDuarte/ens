@@ -48,6 +48,7 @@ import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
 import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
 import ArquivoCadastro from '../pages/Cadastro/Arquivo';
 import AlbumCadastro from '../pages/Cadastro/Album';
+import DeleteAlbum from '../pages/Cadastro/DeleteAlbum';
 import PilotagemCadastro from '../pages/Cadastro/Pilotagem';
 import QuadranteCadastro from '../pages/Cadastro/Quadrante';
 import CasalFtoto from '../pages/Cadastro/CasalFtoto';
@@ -135,6 +136,7 @@ export default function Routes() {
         component={AlbumCadastro}
         isPrivate
       />
+      <Router path="/deletarFoto/:album?" component={DeleteAlbum} isPrivate />
       <Router
         path="/pilotagemCadastro/:pilotagem?"
         component={PilotagemCadastro}

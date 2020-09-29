@@ -97,7 +97,7 @@ function GaleriaAdm() {
               <th>Titulo</th>
               <th>Data</th>
               <th>Adicionar fotos</th>
-              <th>Excluir fotos</th>
+              {/* <th>Excluir fotos</th> */}
               <th>Editar</th>
               <th>Excluir</th>
             </tr>
@@ -118,17 +118,17 @@ function GaleriaAdm() {
                     />
                   </ButtonIconPointer>
                 </td>
-                <td>
+                {/* <td>
                   <ButtonIconPointer>
                     <FaMinus
                       onClick={() =>
-                        history.push(`/albumCadastro/${item.Galeria_ID}`)
+                        history.push(`/deletarFoto/${item.Galeria_ID}`)
                       }
                       size={18}
                       color="#F54B30"
                     />
                   </ButtonIconPointer>
-                </td>
+                </td> */}
                 <td>
                   <ButtonIconPointer>
                     <FaEdit
