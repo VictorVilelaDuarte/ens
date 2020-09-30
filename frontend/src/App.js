@@ -5,6 +5,7 @@ import defaultLayout from './pages/_layout';
 import Routes from './routes';
 import history from './services/history';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-bnb-gallery/dist/style.css';
 
 import { AuthProvider } from './context/AuthContext';
 import GlobalStyle from './styles/global';
