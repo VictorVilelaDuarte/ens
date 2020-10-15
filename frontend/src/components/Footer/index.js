@@ -13,7 +13,7 @@ import {
 import Servile from '../../assets/Servile.png';
 import Cadeado from '../../assets/cadeado.png';
 import Logo from '../../assets/logo.png';
-import Ens from '../../assets/logo-ens.png';
+import Ens from '../../assets/ENS.png';
 
 export default function Footer() {
   return (
@@ -28,7 +28,7 @@ export default function Footer() {
             </Link>
           </DivImages>
           <DivServile>
-            <img src={Servile} alt="servile" />
+            <img src={Servile} />
             <p>Desenvolvido por Servile</p>
           </DivServile>
         </Content>

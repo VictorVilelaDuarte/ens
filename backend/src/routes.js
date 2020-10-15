@@ -75,6 +75,7 @@ routes.post(
 );
 routes.delete('/informens/:id', InformensController.deleta);
 routes.get('/informens', InformensController.lista);
+routes.get('/informensAno/:year', InformensController.listaAno);
 
 routes.post('/arquivo', uploadArquivo.single('file'), ArquivoController.insere);
 routes.delete('/arquivo/:id', ArquivoController.deleta);

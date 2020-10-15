@@ -1,9 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { Table, Modal } from 'react-bootstrap';
-import { FaTrash } from 'react-icons/fa';
+import { Table, Pagination, Modal } from 'react-bootstrap';
+import { FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
+import history from '../../services/history';
 import api from '../../services/api';
 
 import {
@@ -17,19 +18,33 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function InformensAdm() {
+function InformensAdm({ match }) {
   const [informens, setInformens] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [changePage, setChangePage] = useState(0);
   const [showDelete, setShowDetele] = useState(false);
   const [informensToDelete, setInformensToDelete] = useState({});
 
   useEffect(() => {
-    function getInformens() {
+    let thisPage = match.params.page;
+    if (!thisPage) {
+      thisPage = 1;
+    }
+    function getNoticias() {
       api
-        .get(`/informens`)
+        .get(`/informens?page=${thisPage}`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
               setInformens((prevInformens) => [...prevInformens, item]);
+            });
+
+            const { lastpage, page, nextpage, prevpage } = res.headers;
+            setPagination({
+              lastpage,
+              page,
+              nextpage,
+              prevpage,
             });
           }
         })
@@ -37,8 +52,14 @@ function InformensAdm() {
           toast.error(err.response.data.message);
         });
     }
-    getInformens();
-  }, []);
+    getNoticias();
+  }, [changePage]);
+
+  function handleChangePagination(nPage) {
+    history.push(`/informensadm/${nPage}`);
+    setInformens([]);
+    setChangePage(nPage);
+  }
 
   function formatDate(date) {
     const nDate = new Date(date);
@@ -117,6 +138,52 @@ function InformensAdm() {
             ))}
           </tbody>
         </Table>
+
+        <Pagination>
+          {pagination.lastpage === '1' ? (
+            <></>
+          ) : pagination.page === pagination.prevpage ? (
+            <>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.nextpage)}
+              >
+                {pagination.nextpage}
+              </Pagination.Item>
+              <Pagination.Last
+                onClick={() => handleChangePagination(pagination.lastpage)}
+              />
+            </>
+          ) : pagination.page === pagination.lastpage ? (
+            <>
+              <Pagination.First onClick={() => handleChangePagination(1)} />
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.prevpage)}
+              >
+                {pagination.prevpage}
+              </Pagination.Item>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+            </>
+          ) : (
+            <>
+              <Pagination.First onClick={() => handleChangePagination(1)} />
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.prevpage)}
+              >
+                {pagination.prevpage}
+              </Pagination.Item>
+              <Pagination.Item active>{pagination.page}</Pagination.Item>
+              <Pagination.Item
+                onClick={() => handleChangePagination(pagination.nextpage)}
+              >
+                {pagination.nextpage}
+              </Pagination.Item>
+              <Pagination.Last
+                onClick={() => handleChangePagination(pagination.lastpage)}
+              />
+            </>
+          )}
+        </Pagination>
       </Container>
       <Modal show={showDelete} onHide={handleShowDelete}>
         <Modal.Header

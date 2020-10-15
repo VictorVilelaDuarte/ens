@@ -9,20 +9,10 @@ import Galeria from '../pages/Galeria';
 import Eventos from '../pages/Eventos';
 import Noticias from '../pages/Noticias';
 import Noticia from '../pages/Noticia';
-import Informens from '../pages/Informens';
 import LoginAdm from '../pages/LoginAdm';
 import Login from '../pages/Login';
 import NovaSenha from '../pages/NovaSenha';
 import Painel from '../pages/Painel';
-import Contato from '../pages/Contato';
-import Padre from '../pages/Padre';
-import Pce from '../pages/Pce';
-import QuemSomos from '../pages/QuemSomos';
-import Regiao from '../pages/Regiao';
-import Setor from '../pages/Setor';
-import Siglas from '../pages/Siglas';
-import Equipe from '../pages/Equipe';
-import Pdf from '../pages/Pdf';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
@@ -34,10 +24,6 @@ import PadroeiraAdm from '../pages/Adm/Padroeira';
 import UsuarioAdm from '../pages/Adm/Usuario';
 import QuadranteAdm from '../pages/Adm/Quadrante';
 import ArquivoAdm from '../pages/Adm/Arquivo';
-import PilotagemAdm from '../pages/Adm/Pilotagem';
-import OracaoAdm from '../pages/Adm/Oracao';
-import MensagemAdm from '../pages/Adm/Mensagem';
-import PaginasAdm from '../pages/Adm/Paginas';
 
 import NoticiaCadastro from '../pages/Cadastro/Noticia';
 import InformensCadastro from '../pages/Cadastro/Informens';
@@ -48,12 +34,7 @@ import ConselheiroCadastro from '../pages/Cadastro/Conselheiro';
 import PadroeiraCadastro from '../pages/Cadastro/Padroeira';
 import ArquivoCadastro from '../pages/Cadastro/Arquivo';
 import AlbumCadastro from '../pages/Cadastro/Album';
-import DeleteAlbum from '../pages/Cadastro/DeleteAlbum';
 import PilotagemCadastro from '../pages/Cadastro/Pilotagem';
-import QuadranteCadastro from '../pages/Cadastro/Quadrante';
-import CasalFtoto from '../pages/Cadastro/CasalFtoto';
-import OracaoCadastro from '../pages/Cadastro/Oracao';
-import PaginaCadastro from '../pages/Cadastro/Pagina';
 
 export default function Routes() {
   return (
@@ -64,19 +45,9 @@ export default function Routes() {
       <Router path="/eventos" component={Eventos} />
       <Router path="/noticias" component={Noticias} />
       <Router path="/noticia/:noticia?" component={Noticia} />
-      <Router path="/informens" component={Informens} />
       <Router path="/loginadm" component={LoginAdm} />
       <Router path="/login" component={Login} />
       <Router path="/novasenha" component={NovaSenha} />
-      <Router path="/contato" component={Contato} />
-      <Router path="/padre" component={Padre} />
-      <Router path="/pce" component={Pce} />
-      <Router path="/quemSomos" component={QuemSomos} />
-      <Router path="/regiao" component={Regiao} />
-      <Router path="/setor" component={Setor} />
-      <Router path="/siglas" component={Siglas} />
-      <Router path="/equipe/:equipe?" component={Equipe} />
-      <Router path="/pdf/:pdf?" component={Pdf} />
 
       <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />
@@ -90,10 +61,6 @@ export default function Routes() {
       <Router path="/usuarioadm" component={UsuarioAdm} isPrivate />
       <Router path="/quadranteadm" component={QuadranteAdm} isPrivate />
       <Router path="/arquivoadm" component={ArquivoAdm} isPrivate />
-      <Router path="/pilotagemadm" component={PilotagemAdm} isPrivate />
-      <Router path="/oracaoadm" component={OracaoAdm} isPrivate />
-      <Router path="/mensagemadm" component={MensagemAdm} isPrivate />
-      <Router path="/paginaadm" component={PaginasAdm} isPrivate />
 
       <Router
         path="/noticiaCadastro/:noticia?"
@@ -136,22 +103,9 @@ export default function Routes() {
         component={AlbumCadastro}
         isPrivate
       />
-      <Router path="/deletarFoto/:album?" component={DeleteAlbum} isPrivate />
       <Router
         path="/pilotagemCadastro/:pilotagem?"
         component={PilotagemCadastro}
-        isPrivate
-      />
-      <Router
-        path="/quadranteCadastro/:idmens?"
-        component={QuadranteCadastro}
-        isPrivate
-      />
-      <Router path="/casalFoto/:casal?" component={CasalFtoto} isPrivate />
-      <Router path="/oracaoCadastro/" component={OracaoCadastro} isPrivate />
-      <Router
-        path="/paginaCadastro/:pagina?"
-        component={PaginaCadastro}
         isPrivate
       />
     </Switch>

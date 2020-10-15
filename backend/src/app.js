@@ -22,53 +22,39 @@ class App {
     if (process.env.APP_URL === 'http://localhost:3333') {
       this.server.use(
         '/files-capa',
-        express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'capa'))
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'capa'))
       );
       this.server.use(
         '/files-galeria',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'galeria')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'galeria'))
       );
       this.server.use(
         '/files-informens',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'informens')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'informens'))
       );
       this.server.use(
         '/files-oracao',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'oracao')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'oracao'))
       );
       this.server.use(
         '/files-noticia',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'noticia')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'noticia'))
       );
       this.server.use(
         '/files-equipe',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'equipe')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'equipe'))
       );
       this.server.use(
         '/files-conselheiro',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'conselheiro')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'conselheiro'))
       );
       this.server.use(
         '/files-arquivo',
-        express.static(
-          path.resolve(__dirname, '..', 'tmp', 'uploads', 'arquivo')
-        )
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'arquivo'))
       );
       this.server.use(
         '/files-casal',
-        express.static(path.resolve(__dirname, '..', 'tmp', 'uploads', 'casal'))
+        express.static(path.resolve(__dirname, 'tmp', 'uploads', 'casal'))
       );
     } else {
       this.server.use(

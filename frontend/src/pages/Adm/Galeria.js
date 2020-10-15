@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { Table, Modal } from 'react-bootstrap';
-import { FaEdit, FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import history from '../../services/history';
@@ -97,7 +97,6 @@ function GaleriaAdm() {
               <th>Titulo</th>
               <th>Data</th>
               <th>Adicionar fotos</th>
-              {/* <th>Excluir fotos</th> */}
               <th>Editar</th>
               <th>Excluir</th>
             </tr>
@@ -118,17 +117,6 @@ function GaleriaAdm() {
                     />
                   </ButtonIconPointer>
                 </td>
-                {/* <td>
-                  <ButtonIconPointer>
-                    <FaMinus
-                      onClick={() =>
-                        history.push(`/deletarFoto/${item.Galeria_ID}`)
-                      }
-                      size={18}
-                      color="#F54B30"
-                    />
-                  </ButtonIconPointer>
-                </td> */}
                 <td>
                   <ButtonIconPointer>
                     <FaEdit
