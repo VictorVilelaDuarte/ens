@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { Document, pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom';
 import { Form } from '@unform/web';
 
 import {
@@ -61,10 +62,17 @@ function Informens() {
       <Title>Informens</Title>
       <PrincipalItens>
         {informensDestaque.map((item) => (
-          <Document loading="Carregando o PDF..." file={item.Informens_Path}>
-            <Principal scale={0.7} pageNumber={1} />
-            <SubTitle>{item.Informens_Titulo}</SubTitle>
-          </Document>
+          <Link
+            to={{
+              pathname: '/pdf',
+              state: item.Informens_Path,
+            }}
+          >
+            <Document loading="Carregando o PDF..." file={item.Informens_Path}>
+              <Principal scale={0.7} pageNumber={1} />
+              <SubTitle>{item.Informens_Titulo}</SubTitle>
+            </Document>
+          </Link>
         ))}
       </PrincipalItens>
       <SelectDiv>
@@ -85,10 +93,17 @@ function Informens() {
       </SelectDiv>
       <Itens>
         {informens.map((item) => (
-          <Document loading="Carregando o PDF..." file={item.Informens_Path}>
-            <Principal scale={0.4} pageNumber={1} />
-            <SubTitle>{item.Informens_Titulo}</SubTitle>
-          </Document>
+          <Link
+            to={{
+              pathname: '/pdf',
+              state: item.Informens_Path,
+            }}
+          >
+            <Document loading="Carregando o PDF..." file={item.Informens_Path}>
+              <Principal scale={0.4} pageNumber={1} />
+              <SubTitle>{item.Informens_Titulo}</SubTitle>
+            </Document>
+          </Link>
         ))}
       </Itens>
     </Container>
