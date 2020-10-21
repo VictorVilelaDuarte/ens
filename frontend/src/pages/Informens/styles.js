@@ -38,3 +38,13 @@ export const SubTitle = styled.p`
   margin-top: 5px;
   text-align: center;
 `;
+
+export const SelectDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const FilterDiv = styled.div`
+  width: 300px;
+`;

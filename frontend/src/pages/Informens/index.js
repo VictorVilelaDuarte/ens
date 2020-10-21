@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { Link } from 'react-router-dom';
+import { Document, pdfjs } from 'react-pdf';
+import { Form } from '@unform/web';
 
 import {
   Container,
@@ -9,10 +9,13 @@ import {
   Principal,
   SubTitle,
   Itens,
+  SelectDiv,
+  FilterDiv,
 } from './styles';
 
 import api from '../../services/api';
 
+import InputSelect from '../../components/InputSelect';
 import Title from '../../components/Title';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -26,12 +29,8 @@ function Informens() {
       api
         .get(`/informens`)
         .then((res) => {
-          res.data.data.map((item, index) => {
-            if (index < 4) {
-              setInformensDestaque((prevInformens) => [...prevInformens, item]);
-            } else {
-              setInformens((prevInformens) => [...prevInformens, item]);
-            }
+          res.data.data.map((item) => {
+            setInformensDestaque((prevInformens) => [...prevInformens, item]);
           });
         })
         .catch((err) => {
@@ -41,6 +40,21 @@ function Informens() {
 
     getInformens();
   }, []);
+
+  function filterInformens(e) {
+    const year = e.target.value;
+    setInformens([]);
+    api
+      .get(`/informensAno/${year}`)
+      .then((res) => {
+        res.data.data.map((item) => {
+          setInformens((prevInformens) => [...prevInformens, item]);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <Container>
@@ -53,6 +67,22 @@ function Informens() {
           </Document>
         ))}
       </PrincipalItens>
+      <SelectDiv>
+        <FilterDiv>
+          <Form>
+            <InputSelect
+              name="ano"
+              opcoes={[
+                { value: 0, label: 'Selecione um ano para filtrar' },
+                { value: 2020, label: '2020' },
+                { value: 2019, label: '2019' },
+                { value: 2018, label: '2018' },
+              ]}
+              onChange={(e) => filterInformens(e)}
+            />
+          </Form>
+        </FilterDiv>
+      </SelectDiv>
       <Itens>
         {informens.map((item) => (
           <Document loading="Carregando o PDF..." file={item.Informens_Path}>
