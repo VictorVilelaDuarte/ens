@@ -6,14 +6,14 @@ import { AuthContext } from '../../context/AuthContext';
 import { Container, Profile, Image, Name, Exit } from './styles';
 
 function AdmHeader() {
-  const { loggedUser } = useContext(AuthContext);
+  const { loggedUser, signOut } = useContext(AuthContext);
   return (
     <Container>
       <Profile>
         <Image />
         <Name>{loggedUser.user.Nome}</Name>
       </Profile>
-      <Exit>
+      <Exit onClick={() => signOut()}>
         <FaSignOutAlt style={{ marginRight: 8 }} />
         Sair
       </Exit>
