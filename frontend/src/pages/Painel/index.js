@@ -49,9 +49,11 @@ function Painel() {
               <FaImages /> Galeria
             </BigButtons>
           </Link>
-          <BigButtons color="blue">
-            <FaPrayingHands /> Orações
-          </BigButtons>
+          <Link to="/oracaoadm">
+            <BigButtons color="blue">
+              <FaPrayingHands /> Orações
+            </BigButtons>
+          </Link>
           <Link to="/equipeadm">
             <BigButtons color="orange">
               <FaUsers /> Equipes
@@ -67,30 +69,32 @@ function Painel() {
               <FaUserTie /> Conselheiro
             </BigButtons>
           </Link>
-          <Link to="/pilotagemCadastro">
+          <Link to="/pilotagemadm">
             <BigButtons color="orange">
               <FaUserPlus /> Pilotagem
             </BigButtons>
           </Link>
-          <Link to="/quadranteadm">
-            <BigButtons color="orange">
-              <FaUserSlash /> Ex-equipista
-            </BigButtons>
-          </Link>
+          {/* <Link to="/quadranteadm"> */}
+          <BigButtons color="orange">
+            <FaUserSlash /> Ex-equipista
+          </BigButtons>
+          {/* </Link> */}
           <Link to="/padroeiraadm">
             <BigButtons color="orange">
               <FaChurch /> Padroeira
             </BigButtons>
           </Link>
-          <BigButtons color="green">
-            <FaCode /> Páginas
-          </BigButtons>
+          <Link to="/paginaadm">
+            <BigButtons color="green">
+              <FaCode /> Páginas
+            </BigButtons>
+          </Link>
           <Link to="/arquivoadm">
             <BigButtons color="green">
               <FaFileUpload /> Arquivos
             </BigButtons>
           </Link>
-          <Link to="/arquivoadm">
+          <Link to="/mensagemadm">
             <BigButtons color="green">
               <FaEnvelope /> Mensagens
             </BigButtons>

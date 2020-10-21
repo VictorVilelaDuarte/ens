@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ImageUploader from 'react-images-upload';
 import { toast } from 'react-toastify';
-import * as Yup from 'yup';
 
 import api from '../../services/api';
 import history from '../../services/history';
@@ -18,129 +17,41 @@ function AlbumCadastro({ match }) {
 
   useEffect(() => {
     const { album } = match.params;
-    function getCAlbum() {
-      api
-        .get(`/album/${album}`)
-        .then((res) => {
-          setCAlbum(album);
-          res.data.data.map((item) => {
-            setPicture((oldPictures) => [...oldPictures, item.Foto_Path]);
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    getCAlbum();
+    setCAlbum(album);
   }, []);
 
-  // async function handleSubmit(data) {
-  //   try {
-  //     formRef.current.setErrors({});
-  //     const schema = Yup.object().shape({
-  //       data: Yup.string().required('A data do album é obrigatória'),
-  //       titulo: Yup.string().required('O titulo do album é obrigatória'),
-  //     });
+  async function handleSubmit() {
+    const formData = new FormData();
+    formData.append('galeria', CAlbum);
+    picture.map((item) => {
+      formData.append('file', item);
+    });
 
-  //     await schema.validate(data, {
-  //       abortEarly: false,
-  //     });
-
-  //     if (!picture && !CGaleria) {
-  //       toast.error('É necessário inserir capa no album');
-  //       return;
-  //     }
-
-  //     const json = {
-  //       data: data.data,
-  //       titulo: data.titulo,
-  //     };
-
-  //     if (CGaleria) {
-  //       api
-  //         .put(`/galeria/${CGaleria.id}`, json)
-  //         .then((res) => {
-  //           const formData = new FormData();
-  //           if (picture) {
-  //             formData.append('file', picture[0]);
-  //             formData.append('galeria', CGaleria.id);
-  //             api
-  //               .post(`/capa`, formData)
-  //               .then(() => {
-  //                 toast.info('Album alterado com sucesso!');
-  //                 history.push('/galeriaadm');
-  //               })
-  //               .catch((err) => console.log(err));
-  //           } else {
-  //             toast.info(res.data.message);
-  //             history.push('/galeriaadm');
-  //           }
-  //         })
-  //         .catch((err) => {
-  //           toast.error(err.data.message);
-  //         });
-  //     } else {
-  //       api
-  //         .post('/galeria', json)
-  //         .then((res) => {
-  //           const formData = new FormData();
-  //           formData.append('file', picture[0]);
-  //           formData.append('galeria', res.data.data[0].Galeria_ID);
-  //           api
-  //             .post(`/capa`, formData)
-  //             .then(() => {
-  //               toast.info('Album salvo com sucesso!');
-  //               history.push('/galeriaadm');
-  //             })
-  //             .catch((err) => console.log(err));
-  //         })
-  //         .catch((err) => {
-  //           toast.error(err.data.message);
-  //         });
-  //     }
-  //   } catch (err) {
-  //     const validationErrors = {};
-  //     if (err instanceof Yup.ValidationError) {
-  //       err.inner.forEach((error) => {
-  //         validationErrors[error.path] = error.message;
-  //       });
-  //       formRef.current.setErrors(validationErrors);
-  //     }
-  //   }
-  // }
-
-  useEffect(() => {
-    console.log(picture);
-    console.log('lteriu');
-  }, [picture]);
+    api
+      .post('/album', formData)
+      .then(() => {
+        toast.info('Fotos salvas com sucesso!');
+        history.push('/galeriaadm');
+      })
+      .catch('Erro ao salvar as fotos');
+  }
 
   function onDrop(Cpicture) {
-    console.log(Cpicture);
-    // setPicture(Cpicture);
-    if (Cpicture.length > 0) {
-      console.log('entro');
-      setPicture((oldPictures) => [...oldPictures, Cpicture]);
-    }
+    setPicture(Cpicture);
   }
 
   return (
     <>
       <Container>
         <TitleDiv>
-          <Title back="/galeriaadm">Cadastro de album</Title>
+          <Title back="/galeriaadm">Adição de fotos</Title>
         </TitleDiv>
         <FormDiv>
-          <FormInputs
-            ref={formRef}
-            // onSubmit={handleSubmit}
-          >
-            {/* {console.log(picture)} */}
+          <FormInputs ref={formRef} onSubmit={handleSubmit}>
             <ImageUploader
-              defaultImages={picture}
               withIcon
               withPreview
-              singleImage
-              label="Escolha capa do album (até 5Mb)"
+              label="Escolha fotos para adicionar ao album (até 5Mb)"
               buttonText="Escolher imagem"
               onChange={onDrop}
               imgExtension={['.jpg', '.gif', '.png', '.gif', '.jpeg']}

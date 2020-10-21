@@ -1,7 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap');
+
+  @font-face {
+    font-family: "Frutiger";
+    src: url("../assets/font/FrutigerLTStd-Cn") format("otf"),
+  }
 
   *{
     margin: 0;
@@ -23,7 +27,7 @@ export default createGlobalStyle`
   }
 
   body, input, button{
-    font: 14px 'Roboto', sans-serif;
+    font: 14px 'Frutiger', sans-serif;
   }
 
   a{

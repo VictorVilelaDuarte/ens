@@ -18,7 +18,7 @@ import Title from '../../components/Title';
 import AddButton from '../../components/AddButton';
 import ButtonIconPointer from '../../components/ButtonIconPointer';
 
-function InformensAdm({ match }) {
+function ArquivoAdm({ match }) {
   const [arquivo, setArquivo] = useState([]);
   const [showDelete, setShowDetele] = useState(false);
   const [arquivoToDelete, setArquivoToDelete] = useState({});
@@ -80,6 +80,7 @@ function InformensAdm({ match }) {
           <thead>
             <tr>
               <th>Titulo</th>
+              <th>Link</th>
               <th>Deletar</th>
             </tr>
           </thead>
@@ -87,6 +88,7 @@ function InformensAdm({ match }) {
             {arquivo.map((item) => (
               <tr>
                 <td>{item.Arquivo_Titulo}</td>
+                <td>{item.Arquivo_Path}</td>
                 <td>
                   <ButtonIconPointer>
                     <FaTrash
@@ -123,4 +125,4 @@ function InformensAdm({ match }) {
   );
 }
 
-export default InformensAdm;
+export default ArquivoAdm;

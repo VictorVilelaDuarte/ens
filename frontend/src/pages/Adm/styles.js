@@ -31,6 +31,18 @@ export const ButtonCancelDelete = styled.button`
   color: #fff;
 `;
 
+export const ButtonExtra = styled.button`
+  height: 46px;
+  background-color: transparent;
+  border: 1px solid #326b97;
+  border-radius: 4px;
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  color: #326b97;
+`;
+
 export const TitleDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -82,4 +94,18 @@ export const CasalTelefone = styled.p`
   color: #fff;
   font-size: 18px;
   text-align: center;
+`;
+
+export const Label = styled.label`
+  align-self: flex-start;
+  padding-left: 5px;
+  margin-top: 5px;
+  margin-bottom: -8px;
+  font-size: 15px;
+  color: #222222;
+`;
+
+export const CasalDetailText = styled.div`
+  margin-top: 3px;
+  margin-bottom: 3px;
 `;
