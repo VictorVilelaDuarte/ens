@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import history from '../../services/history';
 import api from '../../services/api';
 import CasalDefault from '../../assets/casal.png';
+import ConselheiroDefault from '../../assets/padre.png';
 
 import {
   Container,
@@ -17,6 +18,7 @@ import {
   CasalFoto,
   CasalFotoDiv,
   CasalNome,
+  ConselheiroDiv,
   ButtonExtra,
   CasalDetailText,
 } from './styles';
@@ -25,11 +27,14 @@ import Title from '../../components/Title';
 
 function QuadranteAdm() {
   const [casal, setCasal] = useState([]);
+  const [conselheiro, setConselheiro] = useState([]);
   const [equipe, setEquipe] = useState(1);
   const [showDelete, setShowDetele] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
+  const [showConselheiroDetail, setShowConselheiroDetail] = useState(false);
   const [casalToDelete, setCasalToDelete] = useState({});
   const [casalToDetail, setCasalToDetail] = useState({});
+  const [conselheiroToDetail, setConselheiroToDetail] = useState({});
   const equipes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
   useEffect(() => {
@@ -48,7 +53,24 @@ function QuadranteAdm() {
           toast.error(err.response.data.message);
         });
     }
+
+    function getConselheiro() {
+      api
+        .get(`/conselheiroQuadrante/${equipe}`)
+        .then((res) => {
+          setConselheiro([]);
+          if (res.data.status === true) {
+            res.data.data.map((item) => {
+              setConselheiro((prevConselheiro) => [...prevConselheiro, item]);
+            });
+          }
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        });
+    }
     getCasal();
+    getConselheiro();
   }, [equipe]);
 
   function handleShowDelete(casalDelete) {
@@ -67,6 +89,15 @@ function QuadranteAdm() {
       setCasalToDetail({});
     }
     setShowDetail(!showDetail);
+  }
+
+  function handleShowConselheiroDetail(conselheiroDetail) {
+    if (conselheiroDetail) {
+      setConselheiroToDetail(conselheiroDetail);
+    } else {
+      setConselheiroToDetail({});
+    }
+    setShowConselheiroDetail(!showConselheiroDetail);
   }
 
   function formatDate(date) {
@@ -113,6 +144,18 @@ function QuadranteAdm() {
               </CasalFotoDiv>
               <CasalNome>{item.Casal_Nome}</CasalNome>
             </CasalDiv>
+          ))}
+          {conselheiro.map((item) => (
+            <ConselheiroDiv onClick={() => handleShowConselheiroDetail(item)}>
+              <CasalFotoDiv>
+                {item.Conselheiro_Imagem ? (
+                  <CasalFoto src={item.Conselheiro_Imagem} />
+                ) : (
+                  <CasalFoto src={ConselheiroDefault} />
+                )}
+              </CasalFotoDiv>
+              <CasalNome>{item.Conselheiro_Perfil}</CasalNome>
+            </ConselheiroDiv>
           ))}
         </QuadranteDiv>
       </Container>
@@ -255,6 +298,53 @@ function QuadranteAdm() {
           </ButtonCancelDelete>
           <ButtonDelete>Deletar</ButtonDelete>
         </Modal.Footer>
+      </Modal>
+
+      <Modal
+        size="lg"
+        show={showConselheiroDetail}
+        onHide={handleShowConselheiroDetail}
+      >
+        <Modal.Header
+          style={{ backgroundColor: '#326B97', color: '#fff' }}
+          closeButton
+        >
+          <Modal.Title>{conselheiroToDetail.Conselheiro_Perfil}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <CasalDetailText>
+            <b>Nome do conselheiro: </b> {conselheiroToDetail.Conselheiro_Nome}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>E-mail do conselheiro: </b>{' '}
+            {conselheiroToDetail.conselheiroToDetail}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Celular do conselheiro: </b>{' '}
+            {conselheiroToDetail.Conselheiro_TelCel}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Telefone do conselheiro: </b>{' '}
+            {conselheiroToDetail.Conselheiro_TelRes}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Data de nascimento do conselheiro: </b>
+            {formatDate(conselheiroToDetail.Conselheiro_DataNascimento)}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Data de ordenação do conselheiro: </b>
+            {formatDate(conselheiroToDetail.Conselheiro_DataOrdenacao)}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Data de ingresso na equipe: </b>
+            {formatDate(conselheiroToDetail.Conselheiro_AnoIngressoEquipe)}
+          </CasalDetailText>
+          <CasalDetailText>
+            <b>Endereço do conselheiro: </b>
+            {conselheiroToDetail.Conselheiro_Endereco}
+          </CasalDetailText>
+        </Modal.Body>
+        <Modal.Footer />
       </Modal>
     </>
   );

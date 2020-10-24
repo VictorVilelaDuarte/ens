@@ -67,6 +67,18 @@ export const CasalDiv = styled.div`
   align-items: center;
 `;
 
+export const ConselheiroDiv = styled.div`
+  width: 284px;
+  height: 350px;
+  margin: 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #0830d1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const CasalFotoDiv = styled.div`
   height: 250px;
   width: 250px;
