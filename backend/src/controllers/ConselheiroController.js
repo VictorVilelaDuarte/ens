@@ -35,6 +35,25 @@ class ConselheiroController {
     );
   }
 
+  buscaQuadrante(req, res) {
+    const { id } = req.params;
+    bd.query(
+      `SELECT * from ens_conselheiro where Conselheiro_IDMENS = (SELECT Equipe_ConselheiroIDMENS from ens_equipe where Equipe_ID = ${id})`,
+      (err, result) => {
+        if (err) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar o conselheiro.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: result,
+        });
+      }
+    );
+  }
+
   insere(req, res) {
     const { filename: path } = req.file;
     const final_path = `${process.env.APP_URL}/files-conselheiro/${path}`;

@@ -131,6 +131,7 @@ routes.put('/pagina/:id', PaginaController.altera);
 
 routes.get('/conselheiro', ConselheiroController.lista);
 routes.get('/conselheiro/:id', ConselheiroController.busca);
+routes.get('/conselheiroQuadrante/:id', ConselheiroController.buscaQuadrante);
 routes.post(
   '/conselheiro',
   uploadConselheiro.single('file'),
