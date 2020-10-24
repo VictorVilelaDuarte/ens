@@ -80,6 +80,7 @@ export const CasalFoto = styled.img`
   object-fit: cover;
   border-radius: 4px;
   padding: 5px;
+  max-height: 100%;
 `;
 
 export const CasalNome = styled.p`
