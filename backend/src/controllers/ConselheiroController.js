@@ -43,7 +43,7 @@ class ConselheiroController {
         if (err) {
           return res.status(400).json({
             staus: false,
-            message: 'Não foi possível buscar o conselheiro.',
+            message: 'Não foi possível buscar o conselheiro',
           });
         }
         return res.status(200).json({
