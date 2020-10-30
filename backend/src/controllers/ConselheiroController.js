@@ -76,7 +76,7 @@ class ConselheiroController {
     } = req.body;
     bd.query(
       `INSERT INTO ens_conselheiro (Conselheiro_IDMENS, Conselheiro_ID, Conselheiro_Nome, Conselheiro_Email, Conselheiro_TelCel, Conselheiro_TelRes, Conselheiro_TelCom, Conselheiro_Endereco, Conselheiro_Paroquia, Conselheiro_DataNascimento, Conselheiro_DataOrdenacao, Conselheiro_AnoIngressoEquipe, Conselheiro_FuncaoID, Conselheiro_Perfil, Conselheiro_Historico, Conselheiro_Imagem )
-      VALUES ('${idmens}','${id}', '${nome}', '${email}', '${celular}', '${telefone}', '${comercial}', '${endereco}', '${paroquia}', '${nascimento}', '${ordenacao}','${ingresso}','${funcao}','${perfil}','${text}', '${final_path}');`,
+      VALUES ('${idmens}', '${id}', '${nome}', '${email}', '${celular}', '${telefone}', '${comercial}', '${endereco}', '${paroquia}', '${nascimento}', '${ordenacao}','${ingresso}','${funcao}','${perfil}','${text}', '${final_path}');`,
       (err) => {
         if (err) {
           return res.status(400).json({
