@@ -24,7 +24,7 @@ export default async (req, res, next) => {
   } catch (err) {
     return res.status(401).json({
       status: false,
-      message: 'Usuario não autenticado.',
+      message: 'Usuario não autenticado!',
     });
   }
 
