@@ -218,7 +218,7 @@ class PilotagemController {
         if (err) {
           return res.status(400).json({
             staus: false,
-            message: 'Não foi possível salvar o casal.',
+            message: 'Não foi possível salvar o casal pilotagem.',
           });
         }
         return res.status(200).json({
