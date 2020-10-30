@@ -6,7 +6,7 @@ class ArquivoController {
       if (err) {
         return res.status(400).json({
           status: false,
-          message: 'Não foi possivel buscar os informens.',
+          message: 'Não foi possivel buscar os arquivos.',
         });
       }
       return res.status(200).json({
