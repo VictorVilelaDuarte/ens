@@ -23,6 +23,7 @@ import Setor from '../pages/Setor';
 import Siglas from '../pages/Siglas';
 import Equipe from '../pages/Equipe';
 import Pdf from '../pages/Pdf';
+import Quadrante from '../pages/Quadrante';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
@@ -77,6 +78,7 @@ export default function Routes() {
       <Router path="/siglas" component={Siglas} />
       <Router path="/equipe/:equipe?" component={Equipe} />
       <Router path="/pdf/:pdf?" component={Pdf} />
+      <Router path="/quadrante" component={Quadrante} />
 
       <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />

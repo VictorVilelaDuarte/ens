@@ -29,7 +29,7 @@ export default function LoginAdm() {
         abortEarly: false,
       });
 
-      signIn(data);
+      signIn({ idmens: data.idmens, password: data.password, page: 'adm' });
     } catch (err) {
       const validationErrors = {};
       if (err instanceof Yup.ValidationError) {

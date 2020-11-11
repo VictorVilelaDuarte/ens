@@ -141,8 +141,8 @@ export default function Header() {
                   <FaImages /> Galeria
                 </Item.Link>
               </Link>
-              <Link to="/login">
-                <Item.Link href="#link">
+              <Link to="/quadrante">
+                <Item.Link href="#quadrante">
                   <FaTh /> Quadrante
                 </Item.Link>
               </Link>

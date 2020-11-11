@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     return {};
   });
 
-  const signIn = useCallback(({ idmens, password }) => {
+  const signIn = useCallback(({ idmens, password, page }) => {
     api
       .post('/session', {
         idmens,
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
           return;
         }
         const { token, user } = res.data;
-        if (user.Adm) {
+        if (user.Adm && page === 'adm') {
           toast.info('Login efetuado com sucesso!');
           localStorage.setItem('ensccpv:token', token);
           localStorage.setItem('ensccpv:user', JSON.stringify(user));
@@ -42,7 +42,11 @@ export function AuthProvider({ children }) {
           history.push('/painel');
           return;
         }
-        console.log('AQUI NÃO É ADM');
+        toast.info('Login efetuado com sucesso!');
+        sessionStorage.setItem('ensccpv:token', token);
+        sessionStorage.setItem('ensccpv:user', JSON.stringify(user));
+        api.defaults.headers.Authorization = `Bearer ${token}`;
+        history.push('/quadrante');
       })
       .catch((err) => {
         toast.error(err.response.data.message);
