@@ -1,9 +1,13 @@
 .ck-editor__editable {
-  min-height: 200px; 
+  min-height: 200px;
   width: 100% !important;
-} 
+}
 
 .ck.ck-editor {
   width: 100%;
   margin-top: 10px !important;
+}
+
+.tox-notifications-container{
+  display: none;
 }

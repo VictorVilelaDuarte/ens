@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import CKEditor from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Editor } from '@tinymce/tinymce-react';
 import { toast } from 'react-toastify';
 
 import api from '../../services/api';
@@ -53,6 +54,10 @@ function PaginaCadastro({ match }) {
       });
   }
 
+  function handleEditorChange(content) {
+    setText(content);
+  }
+
   return (
     <>
       <Container>
@@ -61,11 +66,29 @@ function PaginaCadastro({ match }) {
         </TitleDiv>
         <FormDiv>
           <FormInputs onSubmit={handleSubmit}>
-            <CKEditor
+            <Editor
+              initialValue={text}
+              init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+                      alignleft aligncenter alignright alignjustify | image imagetools |\
+                      bullist numlist outdent indent | removeformat | help',
+              }}
+              onEditorChange={handleEditorChange}
+            />
+            {/* <CKEditor
               editor={ClassicEditor}
               config={{
                 placeholder: 'Digite o conteudo da página',
-                // toolbar: ['imageUpload'],
+
+                // toolbar: [...'ImageInsert', 'imageUpload'],
                 ckfinder: {
                   uploadUrl:
                     'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json',
@@ -76,7 +99,7 @@ function PaginaCadastro({ match }) {
                 const data = editor.getData();
                 setText(data);
               }}
-            />
+            /> */}
             <Button type="submit">Enviar</Button>
           </FormInputs>
         </FormDiv>
