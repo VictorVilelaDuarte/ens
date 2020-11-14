@@ -10,7 +10,7 @@ function AdmHeader() {
   return (
     <Container>
       <Profile>
-        <Image />
+        {/* <Image /> */}
         <Name>{loggedUser.user.Nome}</Name>
       </Profile>
       <Exit onClick={() => signOut()}>
