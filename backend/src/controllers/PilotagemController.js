@@ -270,7 +270,6 @@ class PilotagemController {
       Pilot_AnoExpCom FROM ens_pilotagem WHERE Pilot_IDMENS = ${idmens}`,
       (err, result) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível transferir o casal',

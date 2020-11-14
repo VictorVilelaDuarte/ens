@@ -158,6 +158,7 @@ routes.post(
   uploadCasal.single('file'),
   CasalController.alteraFoto
 );
+routes.delete('/casal/:idmens', CasalController.deleta);
 
 routes.get('/pilotagem', PilotagemController.lista);
 routes.get('/pilotagem/:idmens', PilotagemController.busca);
