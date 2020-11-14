@@ -42,7 +42,8 @@ function InputDate({ name, children, placeholder, ...rest }) {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           ref={inputRef}
-          value={defaultValue && formatDate(defaultValue)}
+          defaultValue={defaultValue && formatDate(defaultValue)}
+          // value={defaultValue && formatDate(defaultValue)}
           {...rest}
         />
         {error && (
