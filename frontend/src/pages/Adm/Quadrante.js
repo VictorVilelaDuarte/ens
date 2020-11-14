@@ -29,10 +29,8 @@ function QuadranteAdm() {
   const [casal, setCasal] = useState([]);
   const [conselheiro, setConselheiro] = useState([]);
   const [equipe, setEquipe] = useState(1);
-  const [showDelete, setShowDetele] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
   const [showConselheiroDetail, setShowConselheiroDetail] = useState(false);
-  const [casalToDelete, setCasalToDelete] = useState({});
   const [casalToDetail, setCasalToDetail] = useState({});
   const [conselheiroToDetail, setConselheiroToDetail] = useState({});
   const equipes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -73,15 +71,6 @@ function QuadranteAdm() {
     getConselheiro();
   }, [equipe]);
 
-  function handleShowDelete(casalDelete) {
-    if (casalDelete) {
-      setCasalToDelete(casalDelete);
-    } else {
-      setCasalToDelete({});
-    }
-    setShowDetele(!showDelete);
-  }
-
   function handleShowDetail(casalDetail) {
     if (casalDetail) {
       setCasalToDetail(casalDetail);
@@ -113,7 +102,32 @@ function QuadranteAdm() {
       month = `0${month}`;
     }
 
-    return `${dt}/${month}/${year}`;
+    return `${dt}/${month}`;
+  }
+
+  function handleDelete() {
+    api
+      .delete(`/casal/${casalToDetail.Casal_IDMENS}`)
+      .then((res) => {
+        toast.success('Casal deletado com sucesso');
+        api
+          .get(`/casal/${equipe}`)
+          .then((res) => {
+            setCasal([]);
+            if (res.data.status === true) {
+              res.data.data.map((item) => {
+                setCasal((prevCasais) => [...prevCasais, item]);
+              });
+            }
+          })
+          .catch((err) => {
+            toast.error(err.response.data.message);
+          });
+        setShowDetail(!showDetail);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   }
 
   return (
@@ -159,23 +173,6 @@ function QuadranteAdm() {
           ))}
         </QuadranteDiv>
       </Container>
-      <Modal show={showDelete} onHide={handleShowDelete}>
-        <Modal.Header
-          style={{ backgroundColor: '#F54B30', color: '#fff' }}
-          closeButton
-        >
-          <Modal.Title>Tem certeza que deseja deletar?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Tem certeza que deseja deletar o casal: {casalToDelete.Casal_Nome}
-        </Modal.Body>
-        <Modal.Footer>
-          <ButtonCancelDelete onClick={handleShowDelete}>
-            Cancelar
-          </ButtonCancelDelete>
-          {/* <ButtonDelete onClick={handleDelete}>Deletar</ButtonDelete> */}
-        </Modal.Footer>
-      </Modal>
 
       <Modal size="lg" show={showDetail} onHide={handleShowDetail}>
         <Modal.Header
@@ -296,7 +293,7 @@ function QuadranteAdm() {
           >
             Editar
           </ButtonCancelDelete>
-          <ButtonDelete>Deletar</ButtonDelete>
+          <ButtonDelete onClick={handleDelete}>Deletar</ButtonDelete>
         </Modal.Footer>
       </Modal>
 
