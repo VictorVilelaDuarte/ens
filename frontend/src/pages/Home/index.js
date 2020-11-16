@@ -46,7 +46,7 @@ export default function Home() {
   function formatDate(date) {
     const d = new Date(date);
     let mes = `${d.getMonth() + 1}`;
-    let dia = `${d.getDate()}`;
+    let dia = `${d.getDate() + 1}`;
     const ano = `${d.getFullYear()}`;
 
     mes.length < 2 ? (mes = `0${mes}`) : mes;

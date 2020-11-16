@@ -96,7 +96,7 @@ function Quadrante() {
     const nDate = new Date(date);
     const year = nDate.getFullYear();
     let month = nDate.getMonth() + 1;
-    let dt = nDate.getDate();
+    let dt = nDate.getDate() + 1;
 
     if (dt < 10) {
       dt = `0${dt}`;
@@ -105,7 +105,7 @@ function Quadrante() {
       month = `0${month}`;
     }
 
-    return `${dt}/${month}/${year}`;
+    return `${dt}/${month}`;
   }
 
   return (
