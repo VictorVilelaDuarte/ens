@@ -62,19 +62,21 @@ function EventoAdm({ match }) {
   }
 
   function formatDate(date) {
-    const nDate = new Date(date);
-    const year = nDate.getFullYear();
-    let month = nDate.getMonth() + 1;
-    let dt = nDate.getDate();
+    const nDate = new Date(date).toLocaleDateString('pt-br');
+    console.log(nDate);
+    return nDate;
+    // const year = nDate.getFullYear();
+    // let month = nDate.getMonth() + 1;
+    // let dt = nDate.getDate();
 
-    if (dt < 10) {
-      dt = `0${dt}`;
-    }
-    if (month < 10) {
-      month = `0${month}`;
-    }
+    // if (dt < 10) {
+    //   dt = `0${dt}`;
+    // }
+    // if (month < 10) {
+    //   month = `0${month}`;
+    // }
 
-    return `${dt}/${month}/${year}`;
+    // return `${dt}/${month}/${year}`;
   }
 
   function handleShowDelete(eventoDelete) {
