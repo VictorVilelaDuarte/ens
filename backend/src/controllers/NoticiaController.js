@@ -65,10 +65,23 @@ class NoticiaController {
     const { filename: path } = req.file;
     const final_path = `${process.env.APP_URL}/files-noticia/${path}`;
     const { texto, titulo, destaque } = req.body;
-    const hoje = new Date().toLocaleDateString();
+    const hoje = new Date();
+    function formatDate(date) {
+      const d = new Date(date);
+      let month = `${d.getMonth() + 1}`;
+      let day = `${d.getDate()}`;
+      const year = d.getFullYear();
+
+      if (month.length < 2) month = `0${month}`;
+      if (day.length < 2) day = `0${day}`;
+
+      return [year, month, day].join('-');
+    }
 
     bd.query(
-      `INSERT INTO ens_noticia (noticia_autor, noticia_hora, noticia_texto, noticia_titulo, noticia_imagem, noticia_destaque) VALUES ('${autor}', '${hoje}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
+      `INSERT INTO ens_noticia (noticia_autor, noticia_hora, noticia_texto, noticia_titulo, noticia_imagem, noticia_destaque) VALUES ('${autor}', '${formatDate(
+        hoje
+      )}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
       (err) => {
         if (err) {
           console.log(err);
