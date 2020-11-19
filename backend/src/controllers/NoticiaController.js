@@ -84,7 +84,6 @@ class NoticiaController {
       )}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
       (err) => {
         if (err) {
-          console.log(err);
           return res.status(400).json({
             error: err,
             staus: false,
