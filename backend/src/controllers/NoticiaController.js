@@ -71,7 +71,9 @@ class NoticiaController {
       `INSERT INTO ens_noticia (noticia_autor, noticia_hora, noticia_texto, noticia_titulo, noticia_imagem, noticia_destaque) VALUES ('${autor}', '${hoje}', '${texto}', '${titulo}', '${final_path}', '${destaque}')`,
       (err) => {
         if (err) {
+          console.log(err);
           return res.status(400).json({
+            error: err,
             staus: false,
             message: 'Não foi possível salvar a noticia.',
           });
