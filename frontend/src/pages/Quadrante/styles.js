@@ -45,7 +45,7 @@ export const ConselheiroDiv = styled.div`
 `;
 
 export const CasalFotoDiv = styled.div`
-  height: 250px;
+  height: auto;
   width: 250px;
   margin-top: 15px;
   background: #fff;
