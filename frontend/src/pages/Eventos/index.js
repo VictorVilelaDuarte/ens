@@ -20,9 +20,10 @@ export default function Eventos() {
 
   function formatDate(date) {
     const nDate = new Date(date);
+    nDate.setDate(nDate.getDate() + 1);
     const year = nDate.getFullYear();
     let month = nDate.getMonth() + 1;
-    let dt = nDate.getDate() + 1;
+    let dt = nDate.getDate();
 
     if (dt < 10) {
       dt = `0${dt}`;

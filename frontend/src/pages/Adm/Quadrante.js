@@ -91,9 +91,9 @@ function QuadranteAdm() {
 
   function formatDate(date) {
     const nDate = new Date(date);
-    const year = nDate.getFullYear();
+    nDate.setDate(nDate.getDate() + 1);
     let month = nDate.getMonth() + 1;
-    let dt = nDate.getDate() + 1;
+    let dt = nDate.getDate();
 
     if (dt < 10) {
       dt = `0${dt}`;
@@ -103,6 +103,23 @@ function QuadranteAdm() {
     }
 
     return `${dt}/${month}`;
+  }
+
+  function formatDateCompleta(date) {
+    const nDate = new Date(date);
+    nDate.setDate(nDate.getDate() + 1);
+    const year = nDate.getFullYear();
+    let month = nDate.getMonth() + 1;
+    let dt = nDate.getDate();
+
+    if (dt < 10) {
+      dt = `0${dt}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+
+    return `${dt}/${month}/${year}`;
   }
 
   function handleDelete() {
@@ -210,7 +227,7 @@ function QuadranteAdm() {
           </CasalDetailText>
           <CasalDetailText>
             <b>Data de casamento: </b>
-            {formatDate(casalToDetail.Casal_DataCasamento)}
+            {formatDateCompleta(casalToDetail.Casal_DataCasamento)}
           </CasalDetailText>
           <CasalDetailText>
             <b>Igreja do casamento: </b> {casalToDetail.Casal_IgrejaCasamento}
@@ -225,7 +242,7 @@ function QuadranteAdm() {
           </CasalDetailText>
           <CasalDetailText>
             <b>Data de inicio ENS: </b>
-            {formatDate(casalToDetail.Casal_DataInicioENS)}
+            {formatDateCompleta(casalToDetail.Casal_DataInicioENS)}
           </CasalDetailText>
           {casalToDetail.Casal_NomeFilho1 ? (
             <CasalDetailText>
