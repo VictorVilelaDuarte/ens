@@ -103,8 +103,21 @@ class NoticiaController {
     const { id } = req.params;
     const { texto, titulo, destaque } = req.body;
     const hoje = new Date().toLocaleDateString();
+    function formatDate(date) {
+      const d = new Date(date);
+      let month = `${d.getMonth() + 1}`;
+      let day = `${d.getDate()}`;
+      const year = d.getFullYear();
+
+      if (month.length < 2) month = `0${month}`;
+      if (day.length < 2) day = `0${day}`;
+
+      return [year, month, day].join('-');
+    }
     let sql = `UPDATE ens_noticia
-    SET noticia_autor='${autor}', noticia_hora='${hoje}', noticia_texto='${texto}', noticia_titulo='${titulo}', noticia_destaque='${destaque}'
+    SET noticia_autor='${autor}', noticia_hora='${formatDate(
+      hoje
+    )}', noticia_texto='${texto}', noticia_titulo='${titulo}', noticia_destaque='${destaque}'
     WHERE noticia_cod='${id}'`;
     if (req.file) {
       const { filename: path } = req.file;

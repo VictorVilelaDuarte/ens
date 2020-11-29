@@ -55,7 +55,7 @@ class GaleriaController {
     const { id } = req.params;
     const { titulo, data } = req.body;
     bd.query(
-      `UPDATE ens_galeria SET Galeria_Titulo='${titulo}', Galeria_Data='${data}'`,
+      `UPDATE ens_galeria SET Galeria_Titulo='${titulo}', Galeria_Data='${data}' WHERE Galeria_ID = ${id}`,
       (err) => {
         if (err) {
           return res.status(400).json({
