@@ -75,9 +75,9 @@ function Painel() {
             </BigButtons>
           </Link>
           {/* <Link to="/quadranteadm"> */}
-          <BigButtons color="orange">
+          {/* <BigButtons color="orange">
             <FaUserSlash /> Ex-equipista
-          </BigButtons>
+          </BigButtons> */}
           {/* </Link> */}
           <Link to="/padroeiraadm">
             <BigButtons color="orange">

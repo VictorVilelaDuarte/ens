@@ -108,14 +108,20 @@ function CasalagemCadastro({ match }) {
         Casal_IDMENS: data.Casal_IDMENS,
         Casal_HomemID: data.Casal_HomemID,
         Casal_HomemNome: data.Casal_HomemNome,
-        Casal_HomemEmail: data.Casal_HomemEmail,
-        Casal_HomemTelCel: data.Casal_HomemTelCel,
+        Casal_HomemEmail: data.Casal_HomemEmail ? data.Casal_HomemEmail : null,
+        Casal_HomemTelCel: data.Casal_HomemTelCel
+          ? data.Casal_HomemTelCel
+          : null,
         Casal_HomemTelCom: data.Casal_HomemTelCom,
         Casal_HomemDataNascimento: data.Casal_HomemDataNascimento,
         Casal_MulherID: data.Casal_MulherID,
         Casal_MulherNome: data.Casal_MulherNome,
-        Casal_MulherEmail: data.Casal_MulherEmail,
-        Casal_MulherTelCel: data.Casal_MulherTelCel,
+        Casal_MulherEmail: data.Casal_MulherEmail
+          ? data.Casal_MulherEmail
+          : null,
+        Casal_MulherTelCel: data.Casal_MulherTelCel
+          ? data.Casal_MulherTelCel
+          : null,
         Casal_MulherTelCom: data.Casal_MulherTelCom,
         Casal_MulherDataNascimento: data.Casal_MulherDataNascimento,
         Casal_Nome: data.Casal_Nome,
