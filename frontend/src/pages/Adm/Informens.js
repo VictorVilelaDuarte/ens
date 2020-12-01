@@ -25,7 +25,7 @@ function InformensAdm() {
   useEffect(() => {
     function getInformens() {
       api
-        .get(`/informens`)
+        .get(`/informensTotal`)
         .then((res) => {
           if (res.data.status === true) {
             res.data.data.map((item) => {
