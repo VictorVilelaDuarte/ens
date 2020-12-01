@@ -65,8 +65,8 @@ class InformensController {
       `INSERT INTO ens_informens (Informens_Titulo, Informens_Path, Informens_Data)
          VALUES ('${titulo}','${final_path}', '${data}')`,
       (err) => {
-        console.log(err);
         if (err) {
+          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível o informens.',
