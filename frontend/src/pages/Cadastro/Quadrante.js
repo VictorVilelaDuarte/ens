@@ -40,12 +40,8 @@ function CasalagemCadastro({ match }) {
           .length(12, 'O IDMENS deve ter 12 dígitos'),
         Casal_HomemID: Yup.string().required('O ID do homem é obrigatório'),
         Casal_HomemNome: Yup.string().required('O nome do homem é obrigatório'),
-        Casal_HomemEmail: Yup.string().required(
-          'O e-mail do homem é obrigatório'
-        ),
-        Casal_HomemTelCel: Yup.string().required(
-          'O celular do homem é obrigatório'
-        ),
+        Casal_HomemEmail: Yup.string(),
+        Casal_HomemTelCel: Yup.string(),
         Casal_HomemTelCom: Yup.string(),
         Casal_HomemDataNascimento: Yup.string().required(
           'A data de nascimento do homem é obrigatória'
@@ -54,12 +50,8 @@ function CasalagemCadastro({ match }) {
         Casal_MulherNome: Yup.string().required(
           'O nome da mulher é obrigatório'
         ),
-        Casal_MulherEmail: Yup.string().required(
-          'O e-mail da mulher é obrigatório'
-        ),
-        Casal_MulherTelCel: Yup.string().required(
-          'O celular da mulher é obrigatório'
-        ),
+        Casal_MulherEmail: Yup.string(),
+        Casal_MulherTelCel: Yup.string(),
         Casal_MulherTelCom: Yup.string(),
         Casal_MulherDataNascimento: Yup.string().required(
           'A data de nascimento da mulher é obrigatória'
