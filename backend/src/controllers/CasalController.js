@@ -102,19 +102,15 @@ class CasalController {
     SET
     Casal_HomemID = '${Casal_HomemID}',
     Casal_HomemNome = '${Casal_HomemNome}',
-    Casal_HomemEmail = '${Casal_HomemEmail ? `'${Casal_HomemEmail}'` : null}',
-    Casal_HomemTelCel = '${
-      Casal_HomemTelCel ? `'${Casal_HomemTelCel}'` : null
-    }',
+    Casal_HomemEmail = '${Casal_HomemEmail ? `${Casal_HomemEmail}` : null}',
+    Casal_HomemTelCel = '${Casal_HomemTelCel ? `${Casal_HomemTelCel}` : null}',
     Casal_HomemTelCom = '${Casal_HomemTelCom}',
     Casal_HomemDataNascimento = '${Casal_HomemDataNascimento}',
     Casal_MulherID = '${Casal_MulherID}',
     Casal_MulherNome = '${Casal_MulherNome}',
-    Casal_MulherEmail = '${
-      Casal_MulherEmail ? `'${Casal_MulherEmail}'` : null
-    }',
+    Casal_MulherEmail = '${Casal_MulherEmail ? `${Casal_MulherEmail}` : null}',
     Casal_MulherTelCel = '${
-      Casal_MulherTelCel ? `'${Casal_MulherTelCel}'` : null
+      Casal_MulherTelCel ? `${Casal_MulherTelCel}` : null
     }',
     Casal_MulherTelCom = '${Casal_MulherTelCom}',
     Casal_MulherDataNascimento = '${Casal_MulherDataNascimento}',
@@ -153,6 +149,7 @@ class CasalController {
     WHERE Casal_IDMENS = '${idmens}'`,
       (err) => {
         if (err) {
+          console.log(err);
           return res.status(400).json({
             staus: false,
             message: 'Não foi possível salvar o casal.',
