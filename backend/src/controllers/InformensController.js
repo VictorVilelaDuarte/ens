@@ -19,6 +19,24 @@ class InformensController {
     );
   }
 
+  async listaTotal(req, res) {
+    bd.query(
+      `SELECT * FROM ens_informens ORDER BY informens_data DESC`,
+      (error, results) => {
+        if (error) {
+          return res.status(400).json({
+            staus: false,
+            message: 'Não foi possível buscar os informens.',
+          });
+        }
+        return res.status(200).json({
+          status: true,
+          data: results,
+        });
+      }
+    );
+  }
+
   async listaAno(req, res) {
     const { year } = req.params;
     bd.query(
