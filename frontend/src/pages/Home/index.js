@@ -68,6 +68,7 @@ export default function Home() {
             style={{
               width: 800,
               maxHeight: 450,
+              maxWidth: '100%',
             }}
             interval={3000}
             indicators={false}

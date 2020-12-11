@@ -14,6 +14,7 @@ export const CarouselDiv = styled.div`
   align-items: center;
   margin-top: 40px;
   margin-bottom: 40px;
+  max-width: 100%;
 `;
 
 export const DivEvento = styled.div`
