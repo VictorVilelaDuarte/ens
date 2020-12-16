@@ -43,9 +43,7 @@ export default function NovaSenha(props) {
       <Container>
         <Title>Nova senha - {user.name}</Title>
         <DivForm>
-          <WelcomeText>
-            Lembre-se que só poderá ser cadastra uma senha forte
-          </WelcomeText>
+          <WelcomeText>Cadastre uma senha forte</WelcomeText>
           <InputGeneric
             type="password"
             onChange={(e) => setPassword(e.target.value)}
