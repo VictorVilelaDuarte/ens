@@ -57,9 +57,6 @@ class PilotagemController {
       Pilot_AnoExpCom,
     } = req.body;
 
-    // console.log(req.body);
-    // return;
-
     bd.query(
       `INSERT INTO ens_pilotagem (Pilot_IDMENS, Pilot_HomemID, Pilot_HomemNome, Pilot_HomemEmail, Pilot_HomemTelCel,
         Pilot_HomemTelCom, Pilot_HomemDataNascimento, Pilot_MulherID, Pilot_MulherNome, Pilot_MulherEmail, Pilot_MulherTelCel,
