@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import HTMLEllipsis from 'react-lines-ellipsis/lib/html';
 
 import api from '../../services/api';
 
@@ -71,11 +72,22 @@ function Equipe({ match }) {
         <b>Casal responsável: </b>
         {equipe.Casal_Nome}
       </p>
+      <p>
+        <b>Casal ligação: </b>
+        {equipe.Casal_Ligacao}
+      </p>
       <hr />
       <b>Casais da equipe:</b>
       {casais.map((item) => (
         <CasalDiv>{item.Casal_Nome}</CasalDiv>
       ))}
+      <hr />
+      <HTMLEllipsis
+        unsafeHTML={equipe.Equipe_Historico}
+        maxLine="500"
+        ellipsis="..."
+        basedOn="letters"
+      />
     </Container>
   );
 }
