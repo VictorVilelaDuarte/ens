@@ -69,7 +69,7 @@ function Informens() {
             }}
           >
             <Document loading="Carregando o PDF..." file={item.Informens_Path}>
-              <Principal height={500} scale={0.7} pageNumber={1} />
+              <Principal height={400} scale={0.7} pageNumber={1} />
               <SubTitle>{item.Informens_Titulo}</SubTitle>
             </Document>
           </Link>
