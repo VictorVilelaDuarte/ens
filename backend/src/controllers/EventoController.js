@@ -180,7 +180,8 @@ class EventoController {
     let mes = new Date();
     mes.setDate(mes.getDate() + 30);
     mes = mes.toLocaleDateString();
-
+    console.log(mes);
+    console.log(hoje);
     bd.query(
       `SELECT * FROM ens_evento where Evento_Data BETWEEN '${hoje}' AND '${mes}' order by Evento_Data`,
       (err, result) => {
