@@ -95,6 +95,7 @@ class EventoController {
       `INSERT INTO ens_evento (Evento_Data, Evento_Horario, Evento_Local, Evento_TipoID, Evento_EquipeResp, Evento_Descricao, Evento_Historico, Evento_Destaque)
        VALUES ('${data}', '${hora}', '${local}', '${tipo}', '${equipe}', '${descricao}', '${historico}', '${destaque}')`,
       (err) => {
+        console.log(err);
         if (err) {
           return res.status(400).json({
             staus: false,
