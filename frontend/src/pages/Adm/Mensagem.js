@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Modal } from 'react-bootstrap';
 import {
   FaArrowAltCircleRight,
   FaExclamationCircle,
@@ -17,6 +17,8 @@ import ButtonIconPointer from '../../components/ButtonIconPointer';
 
 function MensagemAdm({ match }) {
   const [mensagem, setMensagem] = useState([]);
+  const [showMessageDetail, setShowMessageDatail] = useState(false);
+  const [messageDetail, setMessageDetail] = useState({});
 
   useEffect(() => {
     function getMensagens() {
@@ -35,6 +37,16 @@ function MensagemAdm({ match }) {
     }
     getMensagens();
   }, []);
+
+  function handleShowDetail(message) {
+    console.log(message);
+    if (message) {
+      setMessageDetail(message);
+    } else {
+      setMessageDetail({});
+    }
+    setShowMessageDatail(!showMessageDetail);
+  }
 
   function formatDate(date) {
     const nDate = new Date(date);
@@ -87,7 +99,11 @@ function MensagemAdm({ match }) {
                 </td>
                 <td>
                   <ButtonIconPointer>
-                    <FaArrowAltCircleRight size={18} color="#326B97" />
+                    <FaArrowAltCircleRight
+                      size={18}
+                      color="#326B97"
+                      onClick={() => handleShowDetail(item)}
+                    />
                   </ButtonIconPointer>
                 </td>
               </tr>
@@ -95,6 +111,25 @@ function MensagemAdm({ match }) {
           </tbody>
         </Table>
       </Container>
+
+      <Modal size="lg" show={showMessageDetail} onHide={handleShowDetail}>
+        <Modal.Header
+          style={{ backgroundColor: '#326B97', color: '#fff' }}
+          closeButton
+        >
+          <Modal.Title>
+            {messageDetail.Mensagem_Assunto} - {messageDetail.Mensagem_Nome}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <b>Nome: </b> {messageDetail.Mensagem_Nome} <hr />
+          <b>Assunto: </b> {messageDetail.Mensagem_Assunto} <hr />
+          <b>Texto: </b> {messageDetail.Mensagem_Conteudo} <hr />
+          <b>Telefone: </b> {messageDetail.Mensagem_Telefone} <hr />
+          <b>E-mail: </b> {messageDetail.Mensagem_Email} <hr />
+          <b>Data: </b> {formatDate(messageDetail.Mensagem_Data)}
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
