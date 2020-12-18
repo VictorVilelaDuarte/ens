@@ -177,12 +177,21 @@ class EventoController {
   }
 
   home(req, res) {
-    const hoje = new Date().toLocaleDateString();
+    let hoje = new Date();
     let mes = new Date();
-    mes.setDate(mes.getDate() + 30);
-    mes = mes.toLocaleDateString();
-    console.log(mes);
-    console.log(hoje);
+
+    const hojeDia = hoje.getDate() + 1;
+    const hojeMes = hoje.getMonth() + 1;
+    const hojeAno = hoje.getFullYear();
+    const mesDia = hoje.getDate() + 1;
+    const mesMes = hoje.getMonth() + 1;
+    const mesAno = hoje.getFullYear();
+
+    hoje = `${hojeAno}-${hojeMes}-${hojeDia}`;
+    mes = `${mesAno}-${mesMes}-${mesDia}`;
+
+    console.log(hoje, mes);
+
     bd.query(
       `SELECT * FROM ens_evento where Evento_Data BETWEEN '${hoje}' AND '${mes}' order by Evento_Data`,
       (err, result) => {
