@@ -151,7 +151,7 @@ export default function Eventos() {
         </Modal.Header>
         <Modal.Body>Hora: {eventoDetail.time}</Modal.Body>
         <Modal.Body>Onde: {eventoDetail.local}</Modal.Body>
-        <Modal.Body>Realizado pela equipe: {eventoDetail.local}</Modal.Body>
+        <Modal.Body>Realizado pela equipe: {eventoDetail.equipe}</Modal.Body>
       </Modal>
     </Container>
   );
