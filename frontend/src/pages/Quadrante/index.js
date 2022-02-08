@@ -68,10 +68,14 @@ function Quadrante() {
     getConselheiro();
   }, [equipe]);
 
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem('ensccpv:token')) {
+  //     history.push('/login');
+  //   }
+  // }, []);
+
   useEffect(() => {
-    if (!sessionStorage.getItem('ensccpv:token')) {
-      history.push('/login');
-    }
+    history.push('/manutencao');
   }, []);
 
   function handleShowDetail(casalDetail) {
@@ -147,8 +151,8 @@ function Quadrante() {
                 {item.Casal_imagem ? (
                   <CasalFoto src={item.Casal_imagem} />
                 ) : (
-                  <CasalFoto src={CasalDefault} />
-                )}
+                    <CasalFoto src={CasalDefault} />
+                  )}
               </CasalFotoDiv>
               <CasalNome>{item.Casal_Nome}</CasalNome>
             </CasalDiv>
@@ -159,8 +163,8 @@ function Quadrante() {
                 {item.Conselheiro_Imagem ? (
                   <CasalFoto src={item.Conselheiro_Imagem} />
                 ) : (
-                  <CasalFoto src={ConselheiroDefault} />
-                )}
+                    <CasalFoto src={ConselheiroDefault} />
+                  )}
               </CasalFotoDiv>
               <CasalNome>{item.Conselheiro_Perfil}</CasalNome>
             </ConselheiroDiv>
@@ -229,8 +233,8 @@ function Quadrante() {
               )}`}
             </CasalDetailText>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
           {casalToDetail.Casal_NomeFilho2 ? (
             <CasalDetailText>
               <b>Nome do segundo filho: </b>
@@ -239,8 +243,8 @@ function Quadrante() {
               )}`}
             </CasalDetailText>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
           {casalToDetail.Casal_NomeFilho3 ? (
             <CasalDetailText>
               <b>Nome do terceiro filho: </b>
@@ -249,8 +253,8 @@ function Quadrante() {
               )}`}
             </CasalDetailText>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
           {casalToDetail.Casal_NomeFilho4 ? (
             <CasalDetailText>
               <b>Nome do quarto filho: </b>
@@ -259,8 +263,8 @@ function Quadrante() {
               )}`}
             </CasalDetailText>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
           {casalToDetail.Casal_NomeFilho5 ? (
             <CasalDetailText>
               <b>Nome do quinto filho: </b>
@@ -269,8 +273,8 @@ function Quadrante() {
               )}`}
             </CasalDetailText>
           ) : (
-            <></>
-          )}
+              <></>
+            )}
         </Modal.Body>
       </Modal>
 

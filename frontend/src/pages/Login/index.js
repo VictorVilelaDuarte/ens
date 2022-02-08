@@ -1,6 +1,7 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import * as Yup from 'yup';
+import history from '../../services/history';
 
 import { AuthContext } from '../../context/AuthContext';
 
@@ -12,6 +13,10 @@ import Title from '../../components/Title';
 
 export default function Login() {
   const { signIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    history.push('/manutencao');
+  }, []);
 
   const formRef = useRef(null);
   async function handleLogin(data) {

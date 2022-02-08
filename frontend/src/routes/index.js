@@ -24,6 +24,7 @@ import Siglas from '../pages/Siglas';
 import Equipe from '../pages/Equipe';
 import Pdf from '../pages/Pdf';
 import Quadrante from '../pages/Quadrante';
+import Manutencao from '../pages/Manutencao';
 
 import NoticiaAdm from '../pages/Adm/Noticia';
 import InformensAdm from '../pages/Adm/Informens';
@@ -79,6 +80,7 @@ export default function Routes() {
       <Router path="/equipe/:equipe?" component={Equipe} />
       <Router path="/pdf/:pdf?" component={Pdf} />
       <Router path="/quadrante" component={Quadrante} />
+      <Router path="/manutencao" component={Manutencao} />
 
       <Router path="/painel" component={Painel} isPrivate />
       <Router path="/noticiaadm/:page?" component={NoticiaAdm} isPrivate />

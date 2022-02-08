@@ -57,9 +57,9 @@ function Equipe({ match }) {
   return (
     <Container>
       <Title>{equipe.Equipe_Nome}</Title>
-      <PhotoDiv>
+      {/* <PhotoDiv>
         <Photo src={equipe.Equipe_imagem} />
-      </PhotoDiv>
+      </PhotoDiv> */}
       <p>
         <b>Fundação da equipe: </b>
         {formatDate(equipe.Equipe_DataFundacao)}
