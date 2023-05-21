@@ -181,7 +181,7 @@ class NoticiaController {
 
   home(req, res) {
     bd.query(
-      `SELECT * FROM ens_noticia WHERE noticia_destaque = 1`,
+      `SELECT * FROM ens_noticia WHERE noticia_destaque = 1 ORDER BY noticia_hora DESC`,
       (err, result) => {
         if (err) {
           return res.status(400).json({
